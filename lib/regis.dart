@@ -1,32 +1,7 @@
-// import 'package:flutter/material.dart';
-//
-// class Registration extends StatefulWidget {
-//   const Registration({Key? key}) : super(key: key);
-//
-//   @override
-//   State<Registration> createState() => _RegistrationState();
-// }
-//
-// class _RegistrationState extends State<Registration> {
-//   final TextEditingController _teamNameController = TextEditingController();
-//   final TextEditingController _teamLeaderController = TextEditingController();
-//   // final TextEditingController _branchController = TextEditingController();
-//   final TextEditingController _emailController = TextEditingController();
-//   final TextEditingController _rollNoController = TextEditingController();
-// //  final TextEditingController _hostelerController = TextEditingController();
-//   //final TextEditingController _yearController = TextEditingController();
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: SingleChildScrollView(
-//         child: Column(
-//           children: [],
-//         ),
-//       ),
-//     );
-//   }
-// }
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 
 const List<String> list = <String>['  Choose', '  Yes', '  No'];
 const List<String> ylist = <String>['  Your year', '  1st', '  2nd'];
@@ -110,7 +85,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     if (value!.isEmpty) {
                       return 'Team Name cannot be empty';
                     }
-                    if (RegExp(r'^[a-zA-Z0-9_\#@+-]{3,15}$').hasMatch(value)) {
+                    if (RegExp(r'^(?=.{1,15}$)[a-zA-Z0-9]+(?:\s[a-zA-Z0-9]+)*$')
+                        .hasMatch(value)) {
                       tn = true;
                       return null;
                     } else {
@@ -147,7 +123,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     if (value!.isEmpty) {
                       return 'Name cannot be empty';
                     }
-                    if (RegExp(r'^[a-zA-Z]+(?:\s[a-zA-Z]+)+$')
+                    if (RegExp(r'^[a-zA-Z]+(?:\s[a-zA-Z]+)*$')
                         .hasMatch(value)) {
                       na = true;
                       return null;
@@ -364,11 +340,20 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       dropdownValue != list.first &&
                       ydropdownValue != ylist.first &&
                       bdropdownValue != blist.first) {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text("Registered Successfully"),
-                      backgroundColor: Colors.blue,
-                      duration: Duration(seconds: 3),
-                    ));
+                    register(
+                        _emailController.text.toString(),
+                        _nameController.text.toString(),
+                        _teamNameController.text.toString(),
+                        _phoneNoController.text.toString(),
+                        _rollNoController.text.toString(),
+                        bdropdownValue,
+                        dropdownValue,
+                        ydropdownValue);
+                    // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    //   content: Text("Registered Successfully"),
+                    //   backgroundColor: Colors.blue,
+                    //   duration: Duration(seconds: 3),
+                    // ));
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: Text("Not registered"),
@@ -391,5 +376,43 @@ class _DetailsScreenState extends State<DetailsScreen> {
             ]),
           ),
         ));
+  }
+
+  void register(String email, String name, String teamname, String phone,
+      String roll, String branch, String hosteler, String year) async {
+    try {
+      Response response =
+          await post(Uri.parse('https://reqres.in/api/login'), body: {
+        "team_name": teamname,
+        "name": name,
+        "email": email,
+        "hosteler": hosteler,
+        "year": year,
+        "branch": branch,
+        "rollNo": roll,
+        "phoneNo": phone,
+        "member": {}
+      });
+
+      if (response.statusCode == 200) {
+        var data = jsonDecode(response.body.toString());
+        print(response.body);
+        print('Login successfully');
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text("Registered Successfully"),
+          backgroundColor: Colors.blue,
+          duration: Duration(seconds: 3),
+        ));
+      } else {
+        print('failed');
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text("Not registered"),
+          backgroundColor: Colors.blue,
+          duration: Duration(seconds: 3),
+        ));
+      }
+    } catch (e) {
+      print(e.toString());
+    }
   }
 }
