@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:registration/regis.dart';
+import 'package:registration/screens/bv2_register.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -11,8 +11,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      themeMode: ThemeMode.light,
-      home: DetailsScreen(),
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      debugShowCheckedModeBanner: false,
+      home: const BV2Registration(),
     );
   }
 }
+
