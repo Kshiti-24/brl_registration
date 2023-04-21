@@ -1,0 +1,37 @@
+POST https://blockverseapi.onrender.com/register HTTP/1.1
+Content-Type: application/json
+
+{
+    "team_name": "mymemm",
+    "leader_name": "mypadssword",
+    "email": "myemmmadd@akgec.ac.in",
+    "hosteler": "yes",
+    "year": "1",
+    "branch": "CSE",
+    "phoneNo": "7234567890",
+    "rollNo": "92627890",
+    "team_member": {
+        "m_name": "",
+        "m_email": "",
+        "m_phoneNo": "",
+        "m_rollNo": "",
+        "m_year": "",
+        "m_branch": "",
+        "m_hosteler": ""
+    }
+}
+
+###
+POST http://localhost:9000/register HTTP/1.1
+Content-Type: application/json
+
+{
+    "team_name": "myuseddddrnamemm",
+    "leader_name": "mypadssword",
+    "email": "myemmmadilddd@akgec.ac.in",
+    "hosteler": "yes",
+    "year": "1",
+    "branch": "CSE",
+    "phoneNo": "7234567890",
+    "rollNo": "9234252627890"
+}
