@@ -547,7 +547,7 @@ class _BV2RegistrationState extends State<BV2Registration> {
                 Center(
                   child: ElevatedButton(
                     onPressed: () async {
-                      var res;
+                      var res ="Not Validated";
                       if (formKey.currentState!.validate() &&
                           dropdownValue != list.first &&
                           ydropdownValue != ylist.first &&
