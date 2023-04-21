@@ -11,13 +11,13 @@ Content-Type: application/json
     "phoneNo": "7234567890",
     "rollNo": "92627890",
     "team_member": {
-        "m_name": "",
-        "m_email": "",
-        "m_phoneNo": "",
-        "m_rollNo": "",
-        "m_year": "",
-        "m_branch": "",
-        "m_hosteler": ""
+        "m_name": "utkbdf",
+        "m_email": "haramam@akgec.ac.in",
+        "m_phoneNo": "929299",
+        "m_rollNo": "222222",
+        "m_year": "2",
+        "m_branch": "cs",
+        "m_hosteler": "yes"
     }
 }
 

@@ -41,7 +41,7 @@ class BV2RegistrationController {
     Dio dio = Dio();
     try {
       res =
-          await dio.post('https://blockverseapi.onrender.com/register', data: {
+          await dio.post('https://fuzzy-doodle-bv2-reg-production.up.railway.app/register', data: {
         "team_name": teamname,
         "leader_name": lName,
         "email": lEmail,
@@ -104,7 +104,7 @@ class BV2RegistrationController {
     Dio dio = Dio();
     try {
       res =
-          await dio.post('https://blockverseapi.onrender.com/register', data: {
+          await dio.post('https://fuzzy-doodle-bv2-reg-production.up.railway.app/register', data: {
         "team_name": teamname,
         "leader_name": lName,
         "email": lEmail,
