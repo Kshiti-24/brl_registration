@@ -3,21 +3,21 @@ import 'package:flutter/material.dart';
 
 class BV2RegistrationController {
   Future<String> register(
-      String teamname,
-      String lEmail,
-      String lName,
-      String lPhone,
-      String lRoll,
-      String lBranch,
-      String lHosteler,
-      String lYear,
+      { required String teamname,
+      required String lEmail,
+      required String lName,
+      required String lPhone,
+      required String lRoll,
+      required String lBranch,
+      required String lHosteler,
+      required String lYear,
       String? mEmail,
       String? mName,
       String? mPhone,
       String? mRoll,
       String? mBranch,
       String? mHosteler,
-      String? mYear) async {
+      String? mYear}) async {
     // String x = jsonEncode({
     //   "team_name": teamname,
     //   "leader_name": name,
@@ -40,26 +40,27 @@ class BV2RegistrationController {
     Response res;
     Dio dio = Dio();
     try {
-      res =
-          await dio.post('https://fuzzy-doodle-bv2-reg-production.up.railway.app/register', data: {
-        "team_name": teamname,
-        "leader_name": lName,
-        "email": lEmail,
-        "hosteler": lHosteler,
-        "year": lYear,
-        "branch": lBranch,
-        "phoneNo": lPhone,
-        "rollNo": lRoll,
-        "team_member": {
-          "m_email": mEmail ?? "",
-          "m_rollNo": mRoll ?? "",
-          "m_name": mName ?? "",
-          "m_phoneNo": mPhone ?? "",
-          "m_branch": mBranch ?? "",
-          "m_year": mYear ?? "",
-          "m_hosteler": mHosteler ?? ""
-        }
-      });
+      res = await dio.post(
+          'https://fuzzy-doodle-bv2-reg-production.up.railway.app/register',
+          data: {
+            "team_name": teamname,
+            "leader_name": lName,
+            "email": lEmail,
+            "hosteler": lHosteler,
+            "year": lYear,
+            "branch": lBranch,
+            "phoneNo": lPhone,
+            "rollNo": lRoll,
+            "team_member": {
+              "m_email": mEmail ?? "",
+              "m_rollNo": mRoll ?? "",
+              "m_name": mName ?? "",
+              "m_phoneNo": mPhone ?? "",
+              "m_branch": mBranch ?? "",
+              "m_year": mYear ?? "",
+              "m_hosteler": mHosteler ?? ""
+            }
+          });
       print(res.statusCode);
       print(res.data);
       return res.data;
@@ -103,17 +104,18 @@ class BV2RegistrationController {
     Response res;
     Dio dio = Dio();
     try {
-      res =
-          await dio.post('https://fuzzy-doodle-bv2-reg-production.up.railway.app/register', data: {
-        "team_name": teamname,
-        "leader_name": lName,
-        "email": lEmail,
-        "hosteler": lHosteler,
-        "year": lYear,
-        "branch": lBranch,
-        "phoneNo": lPhone,
-        "rollNo": lRoll
-      });
+      res = await dio.post(
+          'https://fuzzy-doodle-bv2-reg-production.up.railway.app/register',
+          data: {
+            "team_name": teamname,
+            "leader_name": lName,
+            "email": lEmail,
+            "hosteler": lHosteler,
+            "year": lYear,
+            "branch": lBranch,
+            "phoneNo": lPhone,
+            "rollNo": lRoll
+          });
       print(res.statusCode);
       print(res.data);
       return res.data;

@@ -547,7 +547,7 @@ class _BV2RegistrationState extends State<BV2Registration> {
                 Center(
                   child: ElevatedButton(
                     onPressed: () async {
-                      var res ="Not Validated";
+                      var res = "Not Validated";
                       if (formKey.currentState!.validate() &&
                           dropdownValue != list.first &&
                           ydropdownValue != ylist.first &&
@@ -556,53 +556,53 @@ class _BV2RegistrationState extends State<BV2Registration> {
                         // ("Validated").log();
                         print("hey");
                         // "hey".log();
-                        print(_teamNameController.text.toString());
-                        print(_emailController.text.toString());
-                        print(_nameController.text.toString());
-                        print(_phoneNoController.text.toString());
-                        print(_rollNoController.text.toString());
-                        print(bdropdownValue);
-                        print(dropdownValue);
-                        print(ydropdownValue);
-                        print(_memailController.text);
-                        print(_mnameController.text);
-                        print(_mphoneNoController.text.toString());
-                        print(_mrollNoController.text.toString());
-                        print(mbdropdownValue);
-                        print(mdropdownValue);
-                        print(mydropdownValue);
-                        
-                        if (show) {
+                        // print(_teamNameController.text.toString());
+                        // print(_emailController.text.toString());
+                        // print(_nameController.text.toString());
+                        // print(_phoneNoController.text.toString());
+                        // print(_rollNoController.text.toString());
+                        // print(bdropdownValue);
+                        // print(dropdownValue);
+                        // print(ydropdownValue);
+                        // print(_memailController.text);
+                        // print(_mnameController.text);
+                        // print(_mphoneNoController.text.toString());
+                        // print(_mrollNoController.text.toString());
+                        // print(mbdropdownValue);
+                        // print(mdropdownValue);
+                        // print(mydropdownValue);
+
+                        // if (show) {
                           res = await BV2RegistrationController().register(
-                            _teamNameController.text.toString(),
-                            _emailController.text.toString(),
-                            _nameController.text.toString(),
-                            _phoneNoController.text.toString(),
-                            _rollNoController.text.toString(),
-                            bdropdownValue,
-                            dropdownValue,
-                            ydropdownValue,
-                            _memailController.text,
-                            _mnameController.text,
-                            _mphoneNoController.text.toString(),
-                            _mrollNoController.text.toString(),
-                            mbdropdownValue,
-                            mdropdownValue,
-                            mydropdownValue,
+                            teamname: _teamNameController.text.toString(),
+                            lEmail: _emailController.text.toString(),
+                            lName: _nameController.text.toString(),
+                            lPhone: _phoneNoController.text.toString(),
+                            lRoll: _rollNoController.text.toString(),
+                            lBranch: bdropdownValue,
+                            lHosteler: dropdownValue,
+                            lYear: ydropdownValue,
+                            mEmail: _memailController.text,
+                            mBranch:mbdropdownValue,
+                            mName: _mnameController.text,
+                            mPhone: _mphoneNoController.text,
+                            mRoll: _rollNoController.text,
+                            mHosteler: mdropdownValue,
+                            mYear: mydropdownValue
                           );
-                        } else {
-                          res = await BV2RegistrationController()
-                              .individualRegister(
-                            _teamNameController.text.toString(),
-                            _emailController.text.toString(),
-                            _nameController.text.toString(),
-                            _phoneNoController.text.toString(),
-                            _rollNoController.text.toString(),
-                            bdropdownValue,
-                            dropdownValue,
-                            ydropdownValue,
-                          );
-                        }
+                        // } else {
+                        //   res = await BV2RegistrationController()
+                        //       .individualRegister(
+                        //     _teamNameController.text.toString(),
+                        //     _emailController.text.toString(),
+                        //     _nameController.text.toString(),
+                        //     _phoneNoController.text.toString(),
+                        //     _rollNoController.text.toString(),
+                        //     bdropdownValue,
+                        //     dropdownValue,
+                        //     ydropdownValue,
+                        //   );
+                        // }
                         print(res);
                         // res.log();
                         showSnackBarr("Registered Successfully", context);
