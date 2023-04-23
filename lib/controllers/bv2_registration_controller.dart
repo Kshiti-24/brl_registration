@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class BV2RegistrationController {
   Future<String> register(
-      { required String teamname,
+      {required String teamname,
       required String lEmail,
       required String lName,
       required String lPhone,
@@ -136,3 +136,31 @@ showSnackBarr(String content, BuildContext context) {
     duration: const Duration(seconds: 3),
   ));
 }
+
+showAlertDialog(BuildContext context, String msg) {
+  // Create button
+  Widget okButton = ElevatedButton(
+    child: Text("OK"),
+    onPressed: () {
+      Navigator.of(context).pop();
+    },
+  );
+
+  // Create AlertDialog
+  AlertDialog alert = AlertDialog(
+    content: Text(msg),
+    actions: [
+      okButton,
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
+}
+
+void dispose() {}
