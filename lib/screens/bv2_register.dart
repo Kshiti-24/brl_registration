@@ -104,6 +104,7 @@ class _BV2RegistrationState extends State<BV2Registration> {
                     child: SizedBox(
                       width: 400,
                       height: 550 + (cardHeight ? 100 : 0),
+
                       child: Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: Column(
@@ -182,13 +183,31 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                   validator: (value) {
                                     if (value!.isEmpty) {
                                       return 'Email cannot be empty';
-                                    }
-                                    if (RegExp(
-                                            r"^[a-zA-Z]+(22|21)(00|1[0123]|15[34]|16[49]|31|40|x{3}|X{3})([0-9]{3})([-]?[dD]?)(@akgec\.ac\.in)$")
-                                        .hasMatch(value)) {
-                                      return null;
                                     } else {
-                                      return "Enter correct College Email";
+                                      String name =
+                                          _nameController.text.toString();
+                                      //     .substring(
+                                      //         0,
+                                      //         _nameController.text
+                                      //             .toString()
+                                      //             .indexOf(" "));
+                                      // print(
+                                      //     name.substring(0, name.indexOf(" ")));
+                                      int r = name.indexOf(" ");
+                                      String ans = "";
+                                      if (r > 0) {
+                                        ans = name.substring(0, r);
+                                      } else {
+                                        ans = name;
+                                      }
+                                      if (RegExp(r"^" +
+                                              ans +
+                                              r"(22|21)(00|1[0123]|15[34]|16[49]|31|40|x{3}|X{3})([0-9]{3})([-]?[dD]?)(@akgec\.ac\.in)$")
+                                          .hasMatch(value)) {
+                                        return null;
+                                      } else {
+                                        return "Enter correct College Email";
+                                      }
                                     }
                                   }),
                               const SizedBox(height: 10.0),
@@ -337,7 +356,7 @@ class _BV2RegistrationState extends State<BV2Registration> {
                         shadowColor: Colors.black,
                         child: SizedBox(
                           width: 400,
-                          height: 550,
+                          height: 635,
                           child: Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: Column(
@@ -457,14 +476,27 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                       validator: (value) {
                                         if (value!.isEmpty) {
                                           return 'Email cannot be empty';
-                                        }
-                                        if (RegExp(
-                                                r"^[a-zA-Z]+(22|21)(00|1[0123]|15[34]|16[49]|31|40|x{3}|X{3})([0-9]{3})([-]?[dD]?)(@akgec\.ac\.in)$")
-                                            .hasMatch(value)) {
-                                          // cm = true;
-                                          return null;
                                         } else {
-                                          return "Enter correct College Email";
+                                          String mname =
+                                              _mnameController.text.toString();
+                                          // print(mname.substring(
+                                          //     0, mname.indexOf(" ")));
+                                          int r = mname.indexOf(" ");
+                                          String mans = "";
+                                          if (r > 0) {
+                                            mans = mname.substring(0, r);
+                                          } else {
+                                            mans = mname;
+                                          }
+                                          if (RegExp(r"^" +
+                                                  mans +
+                                                  r"(22|21)(00|1[0123]|15[34]|16[49]|31|40|x{3}|X{3})([0-9]{3})([-]?[dD]?)(@akgec\.ac\.in)$")
+                                              .hasMatch(value)) {
+                                            // cm = true;
+                                            return null;
+                                          } else {
+                                            return "Enter correct College Email";
+                                          }
                                         }
                                       }),
                                   const SizedBox(height: 10.0),
@@ -678,7 +710,10 @@ class _BV2RegistrationState extends State<BV2Registration> {
                       if (formKey.currentState!.validate() &&
                           dropdownValue != list.first &&
                           ydropdownValue != ylist.first &&
-                          bdropdownValue != blist.first) {
+                          bdropdownValue != blist.first &&
+                          _phoneNoController != _mphoneNoController &&
+                          _emailController != _memailController &&
+                          _rollNoController != _mrollNoController) {
                         print("Validated");
                         // ("Validated").log();
                         // print("hey");
@@ -732,8 +767,9 @@ class _BV2RegistrationState extends State<BV2Registration> {
                         // }
                         print(res);
                         // res.log();
-                        showSnackBarr("Registered Successfully", context);
-                        // ("Registered Successfully").log();
+                        // showSnackBarr("Registered Successfully", context);
+                        showAlertDialog(context, res);
+                        ("Registered Successfully").log();
                       } else {
                         // showSnackBarr("Not registered", context);
                         showSnackBarr(res, context);
