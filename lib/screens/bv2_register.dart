@@ -673,7 +673,10 @@ class _BV2RegistrationState extends State<BV2Registration> {
                       if (formKey.currentState!.validate() &&
                           dropdownValue != list.first &&
                           ydropdownValue != ylist.first &&
-                          bdropdownValue != blist.first) {
+                          bdropdownValue != blist.first &&
+                          _phoneNoController != _mphoneNoController &&
+                          _emailController != _memailController &&
+                          _rollNoController != _mrollNoController) {
                         print("Validated");
                         // ("Validated").log();
                         print("hey");
