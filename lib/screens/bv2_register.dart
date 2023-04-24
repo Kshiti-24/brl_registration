@@ -34,6 +34,7 @@ class _BV2RegistrationState extends State<BV2Registration> {
   bool show = false;
   bool cardHeight = false;
   bool option = true;
+  bool _loading = false;
   String dropdownValue = list.first;
   String ydropdownValue = ylist.first;
   String bdropdownValue = blist.first;
@@ -104,7 +105,6 @@ class _BV2RegistrationState extends State<BV2Registration> {
                     child: SizedBox(
                       width: 400,
                       height: 550 + (cardHeight ? 100 : 0),
-
                       child: Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: Column(
@@ -181,11 +181,15 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                   hintText: "Enter Email",
                                   icon: Icons.email_outlined,
                                   validator: (value) {
+                                    value = value!.toLowerCase();
                                     if (value!.isEmpty) {
                                       return 'Email cannot be empty';
                                     } else {
                                       String name =
                                           _nameController.text.toString();
+                                      if (name.isEmpty) {
+                                        return 'Name cannot be empty';
+                                      }
                                       //     .substring(
                                       //         0,
                                       //         _nameController.text
@@ -196,9 +200,10 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                       int r = name.indexOf(" ");
                                       String ans = "";
                                       if (r > 0) {
-                                        ans = name.substring(0, r);
+                                        ans =
+                                            name.substring(0, r).toLowerCase();
                                       } else {
-                                        ans = name;
+                                        ans = name.toLowerCase();
                                       }
                                       if (RegExp(r"^" +
                                               ans +
@@ -474,11 +479,15 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                       autovalidateMode:
                                           AutovalidateMode.onUserInteraction,
                                       validator: (value) {
+                                        value = value!.toLowerCase();
                                         if (value!.isEmpty) {
                                           return 'Email cannot be empty';
                                         } else {
                                           String mname =
                                               _mnameController.text.toString();
+                                          if (mname.isEmpty) {
+                                            return 'Name cannot be empty';
+                                          }
                                           // print(mname.substring(
                                           //     0, mname.indexOf(" ")));
                                           int r = mname.indexOf(" ");
@@ -649,13 +658,11 @@ class _BV2RegistrationState extends State<BV2Registration> {
                 GestureDetector(
                   onTap: () {
                     if (!show) {
-                      if (formKey.currentState!.validate()) {
+                      if (formKey.currentState!.validate() &&
+                          ydropdownValue != ylist.first &&
+                          bdropdownValue != blist.last &&
+                          dropdownValue != list.first) {
                         print("Validated");
-                        _emailController = TextEditingController();
-                        _rollNoController = TextEditingController();
-                        _phoneNoController = TextEditingController();
-                        _nameController = TextEditingController();
-
                         // formKey.currentState!.save();
                         print(_mnameController.text);
                         print(_memailController.text);
@@ -666,15 +673,19 @@ class _BV2RegistrationState extends State<BV2Registration> {
                         print(mydropdownValue);
                       } else {
                         print("Not Validated");
-                        cardHeight = true;
+
+                        setState(() {
+                          cardHeight = true;
+                        });
                         return showSnackBarr(
                             "Enter the above details properly first", context);
                       }
                     } else if (show) {
-                      _memailController.dispose();
-                      _mrollNoController.dispose();
-                      _mphoneNoController.dispose();
-                      _mnameController.dispose();
+                      _memailController.clear();
+                      _mrollNoController.clear();
+                      _mphoneNoController.clear();
+                      _mnameController.clear();
+                      mbdropdownValue;
                     }
                     setState(() {
                       show = !show;
@@ -684,7 +695,7 @@ class _BV2RegistrationState extends State<BV2Registration> {
                     decoration: BoxDecoration(
                       color: Colors.blue,
                       border: Border.all(color: Colors.black),
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      borderRadius: const BorderRadius.all(Radius.circular(10)),
                     ),
                     width: MediaQuery.of(context).size.width,
                     height: 45,
@@ -700,10 +711,16 @@ class _BV2RegistrationState extends State<BV2Registration> {
                 Center(
                   child: ElevatedButton(
                     onPressed: () async {
+                      setState(() {
+                        _loading = true;
+                      });
                       var res = "Not Validated";
                       if (_emailController.text == _memailController.text ||
-                          _rollNoController.text == _memailController.text ||
+                          _rollNoController.text == _mrollNoController.text ||
                           _phoneNoController.text == _mphoneNoController.text) {
+                        setState(() {
+                          _loading = false;
+                        });
                         return showSnackBarr("Duplicate values", context);
                       }
 
@@ -766,6 +783,7 @@ class _BV2RegistrationState extends State<BV2Registration> {
                         //   );
                         // }
                         print(res);
+
                         // res.log();
                         // showSnackBarr("Registered Successfully", context);
                         showAlertDialog(context, res);
@@ -777,8 +795,34 @@ class _BV2RegistrationState extends State<BV2Registration> {
                         print("Not Validated");
                         // ("Not Validated").log();
                       }
+                      if (res == "Registered Successfully") {
+                        _teamNameController.clear();
+                        _emailController.clear();
+                        _nameController.clear();
+                        _phoneNoController.clear();
+                        _rollNoController.clear();
+                        _memailController.clear();
+                        _mnameController.clear();
+                        _mphoneNoController.clear();
+                        _mrollNoController.clear();
+                        setState(() {
+                          dropdownValue = list.first;
+                          ydropdownValue = ylist.first;
+                          bdropdownValue = blist.first;
+                          mdropdownValue = list.first;
+                          mydropdownValue = ylist.first;
+                          mbdropdownValue = blist.first;
+                        });
+                      }
+                      setState(() {
+                        _loading = false;
+                      });
                     },
-                    child: const Text("Submit"),
+                    child: _loading
+                        ? CircularProgressIndicator(
+                            color: Colors.white,
+                          )
+                        : const Text("Submit"),
                   ),
                 ),
                 // ElevatedButton(
