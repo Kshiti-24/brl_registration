@@ -35,6 +35,8 @@ class _BV2RegistrationState extends State<BV2Registration> {
   bool cardHeight = false;
   bool option = true;
   bool _loading = false;
+  bool optloading = false;
+  bool cheeek = false;
   String dropdownValue = list.first;
   String ydropdownValue = ylist.first;
   String bdropdownValue = blist.first;
@@ -99,243 +101,282 @@ class _BV2RegistrationState extends State<BV2Registration> {
                 ),
                 const SizedBox(height: 15.0),
                 Center(
-                  child: Card(
-                    elevation: 50,
-                    shadowColor: Colors.black,
-                    child: SizedBox(
-                      width: 400,
-                      height: 550 + (cardHeight ? 100 : 0),
-                      child: Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                'Leader Name',
-                                style: TextStyle(
-                                  fontSize: 18.0,
-                                  fontWeight: FontWeight.bold,
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Card(
+                      elevation: 5,
+                      shadowColor: Colors.black,
+                      child: SizedBox(
+                        width: 400,
+                        height: 630,
+                        child: Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text(
+                                  'Leader Name',
+                                  style: TextStyle(
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              textFormFieldWidget(
-                                  controller: _nameController,
-                                  keyboardType: TextInputType.name,
-                                  hintText: "Enter Leader Name",
-                                  icon:
-                                      Icons.drive_file_rename_outline_outlined,
-                                  validator: (value) {
-                                    if (value!.isEmpty) {
-                                      return 'Name cannot be empty';
-                                    }
-                                    if (RegExp(r'^[a-zA-Z]+(?:\s[a-zA-Z]+)*$')
-                                        .hasMatch(value)) {
-                                      return null;
-                                    } else {
-                                      return "Enter correct Name";
-                                    }
-                                  }),
-                              const SizedBox(height: 10.0),
-                              const Text(
-                                'Phone No',
-                                style: TextStyle(
-                                  fontSize: 18.0,
-                                  fontWeight: FontWeight.bold,
+                                const SizedBox(
+                                  height: 5,
                                 ),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              textFormFieldWidget(
-                                  controller: _phoneNoController,
-                                  keyboardType: TextInputType.number,
-                                  hintText: "Enter Phone No.",
-                                  icon: Icons.phone_outlined,
-                                  validator: (value) {
-                                    if (value!.isEmpty) {
-                                      return 'Phone No. cannot be empty';
-                                    }
-                                    if (RegExp(r'^(?:\+91|0)?[6789]\d{9}$')
-                                        .hasMatch(value)) {
-                                      return null;
-                                    } else {
-                                      return "Enter correct Phone No.";
-                                    }
-                                  }),
-                              const SizedBox(height: 10.0),
-                              const Text(
-                                'College Email',
-                                style: TextStyle(
-                                  fontSize: 18.0,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              textFormFieldWidget(
-                                  controller: _emailController,
-                                  keyboardType: TextInputType.emailAddress,
-                                  hintText: "Enter Email",
-                                  icon: Icons.email_outlined,
-                                  validator: (value) {
-                                    value = value!.toLowerCase();
-                                    if (value!.isEmpty) {
-                                      return 'Email cannot be empty';
-                                    } else {
-                                      String name =
-                                          _nameController.text.toString();
-                                      if (name.isEmpty) {
+                                textFormFieldWidget(
+                                    controller: _nameController,
+                                    keyboardType: TextInputType.name,
+                                    hintText: "Enter Leader Name",
+                                    icon: Icons
+                                        .drive_file_rename_outline_outlined,
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
                                         return 'Name cannot be empty';
                                       }
-                                      //     .substring(
-                                      //         0,
-                                      //         _nameController.text
-                                      //             .toString()
-                                      //             .indexOf(" "));
-                                      // print(
-                                      //     name.substring(0, name.indexOf(" ")));
-                                      int r = name.indexOf(" ");
-                                      String ans = "";
-                                      if (r > 0) {
-                                        ans =
-                                            name.substring(0, r).toLowerCase();
-                                      } else {
-                                        ans = name.toLowerCase();
-                                      }
-                                      if (RegExp(r"^" +
-                                              ans +
-                                              r"(22|21)(00|1[0123]|15[34]|16[49]|31|40|x{3}|X{3})([0-9]{3})([-]?[dD]?)(@akgec\.ac\.in)$")
+                                      if (RegExp(r'^[a-zA-Z]+(?:\s[a-zA-Z]+)*$')
                                           .hasMatch(value)) {
                                         return null;
                                       } else {
-                                        return "Enter correct College Email";
+                                        return "Enter correct Name";
                                       }
-                                    }
-                                  }),
-                              const SizedBox(height: 10.0),
-                              const Text(
-                                'Roll No',
-                                style: TextStyle(
-                                  fontSize: 18.0,
-                                  fontWeight: FontWeight.bold,
+                                    }),
+                                const SizedBox(height: 10.0),
+                                const Text(
+                                  'Phone No',
+                                  style: TextStyle(
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              textFormFieldWidget(
-                                  keyboardType: TextInputType.number,
-                                  controller: _rollNoController,
-                                  hintText: "Enter Roll No.",
-                                  icon: Icons.numbers_outlined,
-                                  validator: (value) {
-                                    if (value!.isEmpty) {
-                                      return 'Roll No. cannot be empty';
-                                    }
-                                    if (RegExp(
-                                            r"^(2[12])(0027)(000|01[0123]|15[34]|16[49]|031|040)([0-9]{4})$")
-                                        .hasMatch(value)) {
-                                      return null;
-                                    } else {
-                                      return "Enter correct Roll No.";
-                                    }
-                                  }),
-                              const SizedBox(height: 10.0),
-                              const Text(
-                                'Branch',
-                                style: TextStyle(
-                                  fontSize: 18.0,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              DropdownButton<String>(
-                                value: bdropdownValue,
-                                icon: const Icon(Icons.arrow_downward),
-                                elevation: 16,
-                                underline: Container(
+                                const SizedBox(
                                   height: 5,
                                 ),
-                                onChanged: (String? value) {
-                                  setState(() {
-                                    bdropdownValue = value!;
-                                  });
-                                },
-                                items: blist.map<DropdownMenuItem<String>>(
-                                    (String value) {
-                                  return DropdownMenuItem<String>(
-                                    value: value,
-                                    child: Text(value),
-                                  );
-                                }).toList(),
-                              ),
-                              const SizedBox(height: 10.0),
-                              SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Row(children: [
-                                  const Text(
-                                    'Hosteler',
-                                    style: TextStyle(
-                                      fontSize: 18.0,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                textFormFieldWidget(
+                                    controller: _phoneNoController,
+                                    keyboardType: TextInputType.number,
+                                    hintText: "Enter Phone No.",
+                                    icon: Icons.phone_outlined,
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return 'Phone No. cannot be empty';
+                                      }
+                                      if (RegExp(r'^(?:\+91|0)?[6789]\d{9}$')
+                                          .hasMatch(value)) {
+                                        return null;
+                                      } else {
+                                        return "Enter correct Phone No.";
+                                      }
+                                    }),
+                                const SizedBox(height: 10.0),
+                                const Text(
+                                  'Branch',
+                                  style: TextStyle(
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.bold,
                                   ),
-                                  DropdownButton<String>(
-                                    value: dropdownValue,
-                                    icon: const Icon(Icons.arrow_downward),
-                                    elevation: 16,
-                                    underline: Container(
-                                      height: 5,
-                                    ),
-                                    onChanged: (String? value) {
-                                      setState(() {
-                                        dropdownValue = value!;
-                                      });
-                                    },
-                                    items: list.map<DropdownMenuItem<String>>(
-                                        (String value) {
-                                      return DropdownMenuItem<String>(
-                                        value: value,
-                                        child: Text(value),
-                                      );
-                                    }).toList(),
+                                ),
+                                DropdownButton<String>(
+                                  value: bdropdownValue,
+                                  icon: const Icon(Icons.arrow_downward),
+                                  elevation: 16,
+                                  underline: Container(
+                                    height: 5,
                                   ),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  const Text(
-                                    'Year',
-                                    style: TextStyle(
-                                      fontSize: 18.0,
-                                      fontWeight: FontWeight.bold,
+                                  onChanged: (String? value) {
+                                    setState(() {
+                                      bdropdownValue = value!;
+                                    });
+                                  },
+                                  items: blist.map<DropdownMenuItem<String>>(
+                                      (String value) {
+                                    return DropdownMenuItem<String>(
+                                      value: value,
+                                      child: Text(value),
+                                    );
+                                  }).toList(),
+                                ),
+                                const SizedBox(height: 10.0),
+                                SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Row(children: [
+                                    const Text(
+                                      'Hosteler',
+                                      style: TextStyle(
+                                        fontSize: 18.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
-                                  ),
-                                  DropdownButton<String>(
-                                    value: ydropdownValue,
-                                    icon: const Icon(Icons.arrow_downward),
-                                    elevation: 16,
-                                    disabledHint: Text(ydropdownValue),
-                                    underline: Container(
-                                      height: 2,
+                                    DropdownButton<String>(
+                                      value: dropdownValue,
+                                      icon: const Icon(Icons.arrow_downward),
+                                      elevation: 16,
+                                      underline: Container(
+                                        height: 5,
+                                      ),
+                                      onChanged: (String? value) {
+                                        setState(() {
+                                          dropdownValue = value!;
+                                        });
+                                      },
+                                      items: list.map<DropdownMenuItem<String>>(
+                                          (String value) {
+                                        return DropdownMenuItem<String>(
+                                          value: value,
+                                          child: Text(value),
+                                        );
+                                      }).toList(),
                                     ),
-                                    onChanged: (String? value) {
-                                      setState(() {
-                                        ydropdownValue = value!;
-                                      });
-                                    },
-                                    items: ylist.map<DropdownMenuItem<String>>(
-                                        (String value) {
-                                      return DropdownMenuItem<String>(
-                                        value: value,
-                                        child: Text(value),
-                                      );
-                                    }).toList(),
-                                  )
-                                ]),
-                              ),
-                            ]),
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    const Text(
+                                      'Year',
+                                      style: TextStyle(
+                                        fontSize: 18.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    DropdownButton<String>(
+                                      value: ydropdownValue,
+                                      icon: const Icon(Icons.arrow_downward),
+                                      elevation: 16,
+                                      disabledHint: Text(ydropdownValue),
+                                      underline: Container(
+                                        height: 2,
+                                      ),
+                                      onChanged: (String? value) {
+                                        setState(() {
+                                          ydropdownValue = value!;
+                                        });
+                                      },
+                                      items: ylist
+                                          .map<DropdownMenuItem<String>>(
+                                              (String value) {
+                                        return DropdownMenuItem<String>(
+                                          value: value,
+                                          child: Text(value),
+                                        );
+                                      }).toList(),
+                                    )
+                                  ]),
+                                ),
+                                const SizedBox(height: 10.0),
+                                const Text(
+                                  'College Email',
+                                  style: TextStyle(
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                textFormFieldWidget(
+                                    controller: _emailController,
+                                    keyboardType: TextInputType.emailAddress,
+                                    hintText: "Enter Email",
+                                    icon: Icons.email_outlined,
+                                    validator: (value) {
+                                      value = value!.toLowerCase();
+                                      if (value!.isEmpty) {
+                                        return 'Email cannot be empty';
+                                      } else {
+                                        String name =
+                                            _nameController.text.toString();
+                                        if (name.isEmpty) {
+                                          return 'Name cannot be empty';
+                                        }
+                                        //     .substring(
+                                        //         0,
+                                        //         _nameController.text
+                                        //             .toString()
+                                        //             .indexOf(" "));
+                                        // print(
+                                        //     name.substring(0, name.indexOf(" ")));
+                                        int r = name.indexOf(" ");
+                                        String ans = "";
+                                        if (r > 0) {
+                                          ans = name
+                                              .substring(0, r)
+                                              .toLowerCase();
+                                        } else {
+                                          ans = name.toLowerCase();
+                                        }
+                                        int p = ylist.indexOf(ydropdownValue);
+                                        print(p);
+                                        String sy = yylist[p];
+                                        print(sy);
+                                        int k = blist.indexOf(bdropdownValue);
+                                        print(k);
+                                        String sn = cslist[k];
+                                        print(sn);
+                                        if (sy == '22') {
+                                          sn = '164';
+                                        }
+                                        if (RegExp(r"^" +
+                                                ans +
+                                                sy +
+                                                sn +
+                                                r"([0-9]{3})([-]?[dD]?)(@akgec\.ac\.in)$")
+                                            .hasMatch(value)) {
+                                          cheeek = true;
+                                          return null;
+                                        } else {
+                                          return "Enter correct College Email";
+                                        }
+                                      }
+                                    }),
+                                Visibility(
+                                    visible: cheeek,
+                                    child: Container(
+                                      width: 150,
+                                      height: 15,
+                                      child: Center(
+                                        child: Text("send otp"),
+                                      ),
+                                    )),
+                                const SizedBox(height: 10.0),
+                                const Text(
+                                  'Roll No',
+                                  style: TextStyle(
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                textFormFieldWidget(
+                                    keyboardType: TextInputType.number,
+                                    controller: _rollNoController,
+                                    hintText: "Enter Roll No.",
+                                    icon: Icons.numbers_outlined,
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return 'Roll No. cannot be empty';
+                                      }
+                                      int pp = ylist.indexOf(ydropdownValue);
+                                      print(pp);
+                                      String syy = yylist[pp];
+                                      print(syy);
+                                      int tr = blist.indexOf(bdropdownValue);
+                                      print(tr);
+                                      String ww = rlist[tr];
+                                      print(ww);
+                                      if (RegExp(r"^" +
+                                              syy +
+                                              r"(0027)" +
+                                              ww +
+                                              r"([0-9]{4})$")
+                                          .hasMatch(value)) {
+                                        return null;
+                                      } else {
+                                        return "Enter correct Roll No.";
+                                      }
+                                    }),
+                              ]),
+                        ),
                       ),
                     ),
                   ),
@@ -357,11 +398,11 @@ class _BV2RegistrationState extends State<BV2Registration> {
                     const SizedBox(height: 15.0),
                     Center(
                       child: Card(
-                        elevation: 50,
+                        elevation: 5,
                         shadowColor: Colors.black,
                         child: SizedBox(
                           width: 400,
-                          height: 635,
+                          height: 645,
                           child: Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: Column(
@@ -447,106 +488,6 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                           return null;
                                         } else {
                                           return "Enter correct Phone No.";
-                                        }
-                                      }),
-                                  const SizedBox(height: 10.0),
-                                  const Text(
-                                    'College Email',
-                                    style: TextStyle(
-                                      fontSize: 18.0,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  TextFormField(
-                                      keyboardType: TextInputType.emailAddress,
-                                      controller: _memailController,
-                                      decoration: InputDecoration(
-                                        hintText: "Enter Email",
-                                        border: new OutlineInputBorder(
-                                          borderRadius:
-                                              new BorderRadius.circular(15.0),
-                                        ),
-                                        suffixIcon: Icon(
-                                          Icons.email_outlined,
-                                          size: 20,
-                                          color: Colors.black,
-                                        ),
-                                        // suffix: Text("@akgec.ac.in"),
-                                      ),
-                                      autovalidateMode:
-                                          AutovalidateMode.onUserInteraction,
-                                      validator: (value) {
-                                        value = value!.toLowerCase();
-                                        if (value!.isEmpty) {
-                                          return 'Email cannot be empty';
-                                        } else {
-                                          String mname =
-                                              _mnameController.text.toString();
-                                          if (mname.isEmpty) {
-                                            return 'Name cannot be empty';
-                                          }
-                                          // print(mname.substring(
-                                          //     0, mname.indexOf(" ")));
-                                          int r = mname.indexOf(" ");
-                                          String mans = "";
-                                          if (r > 0) {
-                                            mans = mname.substring(0, r);
-                                          } else {
-                                            mans = mname;
-                                          }
-                                          if (RegExp(r"^" +
-                                                  mans +
-                                                  r"(22|21)(00|1[0123]|15[34]|16[49]|31|40|x{3}|X{3})([0-9]{3})([-]?[dD]?)(@akgec\.ac\.in)$")
-                                              .hasMatch(value)) {
-                                            // cm = true;
-                                            return null;
-                                          } else {
-                                            return "Enter correct College Email";
-                                          }
-                                        }
-                                      }),
-                                  const SizedBox(height: 10.0),
-                                  const Text(
-                                    'Roll No',
-                                    style: TextStyle(
-                                      fontSize: 18.0,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  TextFormField(
-                                      controller: _mrollNoController,
-                                      decoration: InputDecoration(
-                                        hintText: "Enter Roll No.",
-                                        border: new OutlineInputBorder(
-                                          borderRadius:
-                                              new BorderRadius.circular(15.0),
-                                        ),
-                                        suffixIcon: Icon(
-                                          Icons.numbers_outlined,
-                                          size: 20,
-                                          color: Colors.black,
-                                        ),
-                                        // suffix: Text("@akgec.ac.in"),
-                                      ),
-                                      autovalidateMode:
-                                          AutovalidateMode.onUserInteraction,
-                                      validator: (value) {
-                                        if (value!.isEmpty) {
-                                          return 'Roll No. cannot be empty';
-                                        }
-                                        if (RegExp(
-                                                r"^(2[12])(0027)(000|01[0123]|15[34]|16[49]|031|040)([0-9]{4})$")
-                                            .hasMatch(value)) {
-                                          // rn = true;
-                                          return null;
-                                        } else {
-                                          return "Enter correct Roll No.";
                                         }
                                       }),
                                   const SizedBox(height: 10.0),
@@ -642,6 +583,136 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                       )
                                     ]),
                                   ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  const SizedBox(height: 10.0),
+                                  const Text(
+                                    'College Email',
+                                    style: TextStyle(
+                                      fontSize: 18.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  TextFormField(
+                                      keyboardType: TextInputType.emailAddress,
+                                      controller: _memailController,
+                                      decoration: InputDecoration(
+                                        hintText: "Enter Email",
+                                        border: new OutlineInputBorder(
+                                          borderRadius:
+                                              new BorderRadius.circular(15.0),
+                                        ),
+                                        suffixIcon: Icon(
+                                          Icons.email_outlined,
+                                          size: 20,
+                                          color: Colors.black,
+                                        ),
+                                        // suffix: Text("@akgec.ac.in"),
+                                      ),
+                                      autovalidateMode:
+                                          AutovalidateMode.onUserInteraction,
+                                      validator: (value) {
+                                        value = value!.toLowerCase();
+                                        if (value!.isEmpty) {
+                                          return 'Email cannot be empty';
+                                        } else {
+                                          String mname =
+                                              _mnameController.text.toString();
+                                          if (mname.isEmpty) {
+                                            return 'Name cannot be empty';
+                                          }
+                                          // print(mname.substring(
+                                          //     0, mname.indexOf(" ")));
+                                          int r = mname.indexOf(" ");
+                                          String mans = "";
+                                          if (r > 0) {
+                                            mans = mname
+                                                .substring(0, r)
+                                                .toLowerCase();
+                                          } else {
+                                            mans = mname.toLowerCase();
+                                          }
+                                          int mp =
+                                              ylist.indexOf(mydropdownValue);
+                                          print(mp);
+                                          String msy = yylist[mp];
+                                          print(msy);
+                                          int mk =
+                                              blist.indexOf(mbdropdownValue);
+                                          print(mk);
+                                          String msn = cslist[mk];
+                                          print(msn);
+                                          if (msy == '22') {
+                                            msn = '164';
+                                          }
+                                          if (RegExp(r"^" +
+                                                  mans +
+                                                  msy +
+                                                  msn +
+                                                  r"([0-9]{3})([-]?[dD]?)(@akgec\.ac\.in)$")
+                                              .hasMatch(value)) {
+                                            // cm = true;
+                                            return null;
+                                          } else {
+                                            return "Enter correct College Email";
+                                          }
+                                        }
+                                      }),
+                                  const SizedBox(height: 10.0),
+                                  const Text(
+                                    'Roll No',
+                                    style: TextStyle(
+                                      fontSize: 18.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  TextFormField(
+                                      controller: _mrollNoController,
+                                      decoration: InputDecoration(
+                                        hintText: "Enter Roll No.",
+                                        border: new OutlineInputBorder(
+                                          borderRadius:
+                                              new BorderRadius.circular(15.0),
+                                        ),
+                                        suffixIcon: Icon(
+                                          Icons.numbers_outlined,
+                                          size: 20,
+                                          color: Colors.black,
+                                        ),
+                                        // suffix: Text("@akgec.ac.in"),
+                                      ),
+                                      autovalidateMode:
+                                          AutovalidateMode.onUserInteraction,
+                                      validator: (value) {
+                                        if (value!.isEmpty) {
+                                          return 'Roll No. cannot be empty';
+                                        }
+                                        int mpp =
+                                            ylist.indexOf(mydropdownValue);
+                                        print(mpp);
+                                        String msyy = yylist[mpp];
+                                        print(msyy);
+                                        int mtr =
+                                            blist.indexOf(mbdropdownValue);
+                                        print(mtr);
+                                        String mww = rlist[mtr];
+                                        print(mww);
+                                        if (RegExp(r"^" +
+                                                msyy +
+                                                r"(0027)" +
+                                                mww +
+                                                r"([0-9]{4})$")
+                                            .hasMatch(value)) {
+                                          // rn = true;
+                                          return null;
+                                        } else {
+                                          return "Enter correct Roll No.";
+                                        }
+                                      }),
                                   const SizedBox(
                                     height: 10,
                                   ),
@@ -731,6 +802,7 @@ class _BV2RegistrationState extends State<BV2Registration> {
                           _phoneNoController != _mphoneNoController &&
                           _emailController != _memailController &&
                           _rollNoController != _mrollNoController) {
+                        print(show);
                         print("Validated");
                         // ("Validated").log();
                         // print("hey");
@@ -790,6 +862,23 @@ class _BV2RegistrationState extends State<BV2Registration> {
                         ("Registered Successfully").log();
                       } else {
                         // showSnackBarr("Not registered", context);
+                        print(show);
+                        if (bdropdownValue == blist.first) {
+                          res = "Choose your branch";
+                        } else if (dropdownValue == list.first) {
+                          res = "Choose if you are hosteler or not";
+                        } else if (ydropdownValue == ylist.first) {
+                          res = "Choose your year";
+                        } else if ((mbdropdownValue == blist.first &&
+                            show == true)) {
+                          res = "Choose your branch";
+                        } else if ((mdropdownValue == list.first &&
+                            show == true)) {
+                          res = "Choose if you are hosteler or not";
+                        } else if ((mydropdownValue == ylist.first &&
+                            show == true)) {
+                          res = "Choose your year";
+                        }
                         showSnackBarr(res, context);
                         // ("Not registered").log();
                         print("Not Validated");
