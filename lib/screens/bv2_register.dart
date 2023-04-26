@@ -276,7 +276,7 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                   ),
                                 ),
                                 const SizedBox(
-                                  height: 5,
+                                  height: 6,
                                 ),
                                 textFormFieldWidget(
                                     controller: _emailController,
