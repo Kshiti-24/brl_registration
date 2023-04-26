@@ -304,13 +304,13 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                           ans = name.toLowerCase();
                                         }
                                         int p = ylist.indexOf(ydropdownValue);
-                                        print(p);
+                                        // print(p);
                                         String sy = yylist[p];
-                                        print(sy);
+                                        // print(sy);
                                         int k = blist.indexOf(bdropdownValue);
-                                        print(k);
+                                        // print(k);
                                         String sn = cslist[k];
-                                        print(sn);
+                                        // print(sn);
                                         if (sy == '22') {
                                           sn = '164';
                                         }
@@ -357,13 +357,13 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                         return 'Roll No. cannot be empty';
                                       }
                                       int pp = ylist.indexOf(ydropdownValue);
-                                      print(pp);
+                                      // print(pp);
                                       String syy = yylist[pp];
-                                      print(syy);
+                                      // print(syy);
                                       int tr = blist.indexOf(bdropdownValue);
-                                      print(tr);
+                                      // print(tr);
                                       String ww = rlist[tr];
-                                      print(ww);
+                                      // print(ww);
                                       if (RegExp(r"^" +
                                               syy +
                                               r"(0027)" +
@@ -635,14 +635,14 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                           }
                                           int mp =
                                               ylist.indexOf(mydropdownValue);
-                                          print(mp);
+                                          // print(mp);
                                           String msy = yylist[mp];
-                                          print(msy);
+                                          // print(msy);
                                           int mk =
                                               blist.indexOf(mbdropdownValue);
-                                          print(mk);
+                                          // print(mk);
                                           String msn = cslist[mk];
-                                          print(msn);
+                                          // print(msn);
                                           if (msy == '22') {
                                             msn = '164';
                                           }
@@ -693,14 +693,14 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                         }
                                         int mpp =
                                             ylist.indexOf(mydropdownValue);
-                                        print(mpp);
+                                        // print(mpp);
                                         String msyy = yylist[mpp];
-                                        print(msyy);
+                                        // print(msyy);
                                         int mtr =
                                             blist.indexOf(mbdropdownValue);
-                                        print(mtr);
+                                        // print(mtr);
                                         String mww = rlist[mtr];
-                                        print(mww);
+                                        // print(mww);
                                         if (RegExp(r"^" +
                                                 msyy +
                                                 r"(0027)" +
@@ -729,6 +729,8 @@ class _BV2RegistrationState extends State<BV2Registration> {
                 GestureDetector(
                   onTap: () {
                     if (!show) {
+                      print(!show);
+                      print(show);
                       if (formKey.currentState!.validate() &&
                           ydropdownValue != ylist.first &&
                           bdropdownValue != blist.last &&
@@ -786,16 +788,19 @@ class _BV2RegistrationState extends State<BV2Registration> {
                         _loading = true;
                       });
                       var res = "Not Validated";
-                      if (_emailController.text == _memailController.text ||
-                          _rollNoController.text == _mrollNoController.text ||
-                          _phoneNoController.text == _mphoneNoController.text) {
+                      if ((_emailController.text == _memailController.text &&
+                              _emailController.text.toString().isNotEmpty) ||
+                          (_rollNoController.text == _mrollNoController.text &&
+                              _rollNoController.text.toString().isNotEmpty) ||
+                          (_phoneNoController.text ==
+                                  _mphoneNoController.text &&
+                              _phoneNoController.text.toString().isNotEmpty)) {
                         setState(() {
                           _loading = false;
+                          res = "Duplicate Values";
                         });
-                        return showSnackBarr("Duplicate values", context);
-                      }
-
-                      if (formKey.currentState!.validate() &&
+                        return showSnackBarr(res, context);
+                      } else if (formKey.currentState!.validate() &&
                           dropdownValue != list.first &&
                           ydropdownValue != ylist.first &&
                           bdropdownValue != blist.first &&
@@ -862,8 +867,12 @@ class _BV2RegistrationState extends State<BV2Registration> {
                         ("Registered Successfully").log();
                       } else {
                         // showSnackBarr("Not registered", context);
+                        print("1");
                         print(show);
-                        if (bdropdownValue == blist.first) {
+                        print(formKey.currentState!.validate());
+                        if (formKey.currentState!.validate() != true) {
+                          res = "Not Validated";
+                        } else if (bdropdownValue == blist.first) {
                           res = "Choose your branch";
                         } else if (dropdownValue == list.first) {
                           res = "Choose if you are hosteler or not";
