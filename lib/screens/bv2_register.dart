@@ -114,7 +114,7 @@ class _BV2RegistrationState extends State<BV2Registration> {
                       shadowColor: Colors.black,
                       child: SizedBox(
                         width: 400,
-                        height: 630,
+                        height: 675,
                         child: Padding(
                           padding: const EdgeInsets.all(15.0),
                           child: Column(
@@ -298,13 +298,6 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                         } else if (ydropdownValue == 'Choose') {
                                           return 'Select Year';
                                         }
-                                        //     .substring(
-                                        //         0,
-                                        //         _nameController.text
-                                        //             .toString()
-                                        //             .indexOf(" "));
-                                        // print(
-                                        //     name.substring(0, name.indexOf(" ")));
                                         int r = name.indexOf(" ");
                                         String ans = "";
                                         if (r > 0) {
@@ -315,17 +308,12 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                           ans = name.toLowerCase();
                                         }
                                         int p = ylist.indexOf(ydropdownValue);
-                                        print(p);
                                         String sy = yylist[p];
-                                        print(sy);
                                         int k = blist.indexOf(bdropdownValue);
-                                        print(k);
                                         String sn = cslist[k];
-                                        print(sn);
                                         if (sy == '22') {
                                           sn = '164';
                                         }
-                                        print(ans);
                                         if (RegExp(r"^" +
                                                 ans +
                                                 sy +
@@ -355,8 +343,8 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                                     checkotp = true;
                                                   });
                                                 })
-                                              : sendEmail(_emailController.text
-                                                  .toString());
+                                              : sendEmail(
+                                                  _emailController.text);
                                         },
                                         child: Text(checkotp
                                             ? "Resend Otp"
@@ -400,13 +388,9 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                         return 'Select Year';
                                       }
                                       int pp = ylist.indexOf(ydropdownValue);
-                                      // print(pp);
                                       String syy = yylist[pp];
-                                      // print(syy);
                                       int tr = blist.indexOf(bdropdownValue);
-                                      // print(tr);
                                       String ww = rlist[tr];
-                                      // print(ww);
                                       if (RegExp(r"^" +
                                               syy +
                                               r"(0027)" +
@@ -445,7 +429,7 @@ class _BV2RegistrationState extends State<BV2Registration> {
                         shadowColor: Colors.black,
                         child: SizedBox(
                           width: 400,
-                          height: 645,
+                          height: 700,
                           child: Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: Column(
@@ -671,8 +655,6 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                               'Choose') {
                                             return 'Select Year';
                                           }
-                                          // print(mname.substring(
-                                          //     0, mname.indexOf(" ")));
                                           int r = mname.indexOf(" ");
                                           String mans = "";
                                           if (r > 0) {
@@ -684,14 +666,10 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                           }
                                           int mp =
                                               ylist.indexOf(mydropdownValue);
-                                          // print(mp);
                                           String msy = yylist[mp];
-                                          // print(msy);
                                           int mk =
                                               blist.indexOf(mbdropdownValue);
-                                          // print(mk);
                                           String msn = cslist[mk];
-                                          // print(msn);
                                           if (msy == '22') {
                                             msn = '164';
                                           }
@@ -708,6 +686,41 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                           }
                                         }
                                       }),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Visibility(
+                                      visible: cheeek,
+                                      child: Row(children: [
+                                        ElevatedButton(
+                                          onPressed: () {
+                                            checkotp
+                                                ? Timer(
+                                                    const Duration(minutes: 15),
+                                                    () {
+                                                    setState(() {
+                                                      checkotp = true;
+                                                    });
+                                                  })
+                                                : sendEmail(
+                                                    _memailController.text);
+                                          },
+                                          child: Text(checkotp
+                                              ? "Resend Otp"
+                                              : "Send Otp"),
+                                        ),
+                                        const SizedBox(
+                                          width: 25,
+                                        ),
+                                        SizedBox(
+                                          width: 150,
+                                          height: 35,
+                                          child: Pinput(
+                                            length: 4,
+                                            controller: _motpController,
+                                          ),
+                                        )
+                                      ])),
                                   const SizedBox(height: 10.0),
                                   const Text(
                                     'Roll No',
@@ -747,14 +760,10 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                         }
                                         int mpp =
                                             ylist.indexOf(mydropdownValue);
-                                        // print(mpp);
                                         String msyy = yylist[mpp];
-                                        // print(msyy);
                                         int mtr =
                                             blist.indexOf(mbdropdownValue);
-                                        // print(mtr);
                                         String mww = rlist[mtr];
-                                        // print(mww);
                                         if (RegExp(r"^" +
                                                 msyy +
                                                 r"(0027)" +
@@ -783,21 +792,10 @@ class _BV2RegistrationState extends State<BV2Registration> {
                 GestureDetector(
                   onTap: () {
                     if (!show) {
-                      // print(!show);
-                      // print(show);
                       if (formKey.currentState!.validate() &&
                           ydropdownValue != ylist.first &&
                           bdropdownValue != blist.first &&
                           dropdownValue != list.first) {
-                        // print("Validated");
-                        // // formKey.currentState!.save();
-                        // print(_mnameController.text);
-                        // print(_memailController.text);
-                        // print(_mrollNoController.text);
-                        // print(_mphoneNoController.text);
-                        // print(mdropdownValue);
-                        // print(mbdropdownValue);
-                        // print(mydropdownValue);
                         setState(() {
                           show = !show;
                         });
@@ -875,22 +873,6 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                   mdropdownValue != list.first &&
                                   mydropdownValue != ylist.first) ^
                               (!show))) {
-                        // print(_teamNameController.text.toString());
-                        // print(_emailController.text.toString());
-                        // print(_nameController.text.toString());
-                        // print(_phoneNoController.text.toString());
-                        // print(_rollNoController.text.toString());
-                        // print(bdropdownValue);
-                        // print(dropdownValue);
-                        // print(int.parse(ydropdownValue));
-                        // print(_memailController.text);
-                        // print(_mnameController.text);
-                        // print(_mphoneNoController.text.toString());
-                        // print(_mrollNoController.text.toString());
-                        // print(mbdropdownValue);
-                        // print(mdropdownValue);
-                        // print(int.parse(mydropdownValue));
-                        // if (show) {
                         bool host = false;
                         if (dropdownValue == "Yes") {
                           setState(() {
@@ -911,34 +893,73 @@ class _BV2RegistrationState extends State<BV2Registration> {
                             mhost = false;
                           });
                         }
-                        res = await BV2RegistrationController().register(
-                            team_name: _teamNameController.text,
-                            // lEmail: _emailController.text.toString(),
-                            l_name: _nameController.text.toString(),
-                            l_email: _emailController.text.toString(),
-                            l_otp: int.parse(_otpController.text),
-                            l_hosteler: host,
-                            l_year: int.parse(ydropdownValue),
-                            l_branch: bdropdownValue,
-                            l_rollNo: int.parse(_rollNoController.text),
-                            l_phoneNo: int.parse(_phoneNoController.text),
-                            m_name: _mnameController.text,
-                            m_email: _memailController.text,
-                            m_otp: int.parse(_motpController.text),
-                            m_hosteler: mhost,
-                            m_year: int.parse(mydropdownValue),
-                            m_branch: bdropdownValue,
-                            m_rollNo: int.parse(_mrollNoController.text),
-                            m_phoneNo: int.parse(_mphoneNoController.text));
-
+                        print(_teamNameController.text);
+                        print(_nameController.text.toString());
+                        print(_emailController.text.toString());
+                        print(int.parse(_otpController.text));
+                        print(host);
+                        print(int.parse(ydropdownValue));
+                        print(bdropdownValue);
+                        print(int.parse(_rollNoController.text));
+                        print(int.parse(_phoneNoController.text));
+                        if (show == true) {
+                          res = await BV2RegistrationController().teamRegister(
+                              _teamNameController.text,
+                              _nameController.text.toString(),
+                              _emailController.text.toString(),
+                              int.parse(_otpController.text.toString()),
+                              host,
+                              int.parse(ydropdownValue),
+                              bdropdownValue,
+                              int.parse(_rollNoController.text.toString()),
+                              int.parse(_phoneNoController.text.toString()),
+                              _mnameController.text,
+                              _memailController.text,
+                              int.parse(_motpController.text),
+                              mhost,
+                              int.parse(mydropdownValue),
+                              bdropdownValue,
+                              int.parse(_mrollNoController.text),
+                              int.parse(_mphoneNoController.text));
+                        } else {
+                          res = await BV2RegistrationController()
+                              .individualRegister(
+                                  _teamNameController.text,
+                                  _nameController.text.toString(),
+                                  _emailController.text.toString(),
+                                  int.parse(_otpController.text.toString()),
+                                  host,
+                                  int.parse(ydropdownValue),
+                                  bdropdownValue,
+                                  int.parse(_rollNoController.text.toString()),
+                                  int.parse(
+                                      _phoneNoController.text.toString()));
+                        }
+                        // res = await BV2RegistrationController().register(
+                        //     team_name: _teamNameController.text,
+                        //     // lEmail: _emailController.text.toString(),
+                        //     l_name: _nameController.text.toString(),
+                        //     l_email: _emailController.text.toString(),
+                        //     l_otp: int.parse(_otpController.text.toString()),
+                        //     l_hosteler: host,
+                        //     l_year: int.parse(ydropdownValue),
+                        //     l_branch: bdropdownValue,
+                        //     l_rollNo:
+                        //         int.parse(_rollNoController.text.toString()),
+                        //     l_phoneNo:
+                        //         int.parse(_phoneNoController.text.toString()),
+                        //     m_name: _mnameController.text,
+                        //     m_email: _memailController.text,
+                        //     m_otp: int.parse(_motpController.text),
+                        //     m_hosteler: mhost,
+                        //     m_year: int.parse(mydropdownValue),
+                        //     m_branch: bdropdownValue,
+                        //     m_rollNo: int.parse(_mrollNoController.text),
+                        //     m_phoneNo: int.parse(_mphoneNoController.text));
                         if (!mounted) return;
                         showAlertDialog(context, res);
                         ("Registered Successfully").log();
                       } else {
-                        // showSnackBarr("Not registered", context);
-                        print("1");
-                        print(show);
-                        print(formKey.currentState!.validate());
                         if (formKey.currentState!.validate() != true) {
                           res = "Please correct the above details";
                         } else if (bdropdownValue == blist.first) {
@@ -997,7 +1018,7 @@ class _BV2RegistrationState extends State<BV2Registration> {
     );
   }
 
-  Future<String> sendEmail(String email) async {
+  sendEmail(String email) async {
     try {
       Response res;
       Dio dio = Dio();
@@ -1010,8 +1031,6 @@ class _BV2RegistrationState extends State<BV2Registration> {
     } catch (e) {
       print('Caught an error in API call!');
       print('e is: ${e.toString()}');
-      // Alert(context: context, title: 'Http POST error', desc: '$e').show();
-      // print('Status code in apiCall() catch is ${res.statusCode}');
       return e.toString();
     }
   }

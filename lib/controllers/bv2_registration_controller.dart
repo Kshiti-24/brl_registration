@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 class BV2RegistrationController {
-  Future<String> register({
+  dynamic register({
     required String team_name,
     required String l_name,
     required String l_email,
@@ -20,27 +20,11 @@ class BV2RegistrationController {
     String? m_branch,
     int? m_rollNo,
     int? m_phoneNo,
-  }) async {
-    // String x = jsonEncode({
-    //   "team_name": teamname,
-    //   "leader_name": name,
-    //   "email": email,
-    //   "hosteler": hosteler,
-    //   "year": year,
-    //   "branch": branch,
-    //   "phoneNo": phone,
-    //   "rollNo": roll,
-    //   "team_member": {
-    //     "m_email": email,
-    //     "m_rollNo": roll,
-    //     "m_name": name,
-
-    //     "m_phoneNo": phone,
-    //     "m_branch": branch,
-    //     "m_year": year,
-    //     "m_hosteler": hosteler
-    //   }
-    if (l_email != null && m_email != '') {
+  }) {
+    print(m_email);
+    print(l_email);
+    if (m_email != null && l_email != '') {
+      print("tema");
       return teamRegister(
           team_name,
           l_name,
@@ -94,34 +78,38 @@ class BV2RegistrationController {
       int m_phoneNo) async {
     Response res;
     Dio dio = Dio();
+    dynamic x = {
+      "team_name": team_name,
+      "l_name": l_name,
+      "l_email": l_email,
+      "l_otp": l_otp,
+      "l_hosteler": l_hosteler,
+      "l_year": l_year,
+      "l_branch": l_branch,
+      "l_rollNo": l_rollNo,
+      "l_phoneNo": l_phoneNo,
+      "m_name": m_name,
+      "m_email": m_email,
+      "m_otp": m_otp,
+      "m_hosteler": m_hosteler,
+      "m_year": m_year,
+      "m_branch": m_branch,
+      "m_rollNo": m_rollNo,
+      "m_phoneNo": m_phoneNo
+    };
+    print("this");
+    print(x);
     try {
-      res = await dio.post("http://3.6.75.26:5000/register", data: {
-        "team_name": team_name,
-        "l_name": l_name,
-        "l_email": l_email,
-        "l_otp": l_otp,
-        "l_hosteler": l_hosteler,
-        "l_year": l_year,
-        "l_branch": l_branch,
-        "l_phoneNo": l_phoneNo,
-        "l_rollNo": l_rollNo,
-        "m_name": m_name,
-        "m_email": m_email,
-        "m_otp": m_otp,
-        "m_rollNo": m_rollNo,
-        "m_phoneNo": m_phoneNo,
-        "m_branch": m_branch,
-        "m_year": m_year,
-        "m_hosteler": m_hosteler
-      });
+      res = await dio.post("http://3.6.75.26:5000/register", data: x);
       print(res.statusCode);
       print(res.data);
-      return res.data;
+      print("hello");
+      print(res.data["message"]);
+      print(res.data["success"]);
+      return res.data["message"];
     } catch (e) {
       print('Caught an error in API call!');
       print('e is: ${e.toString()}');
-      // Alert(context: context, title: 'Http POST error', desc: '$e').show();
-      // print('Status code in apiCall() catch is ${res.statusCode}');
       return e.toString();
     }
   }
@@ -137,46 +125,31 @@ class BV2RegistrationController {
     int l_rollNo,
     int l_phoneNo,
   ) async {
-    // String x = jsonEncode({
-    //   "team_name": teamname,
-    //   "leader_name": name,
-    //   "email": email,
-    //   "hosteler": hosteler,
-    //   "year": year,
-    //   "branch": branch,
-    //   "phoneNo": phone,
-    //   "rollNo": roll,
-    //   "team_member": {
-    //     "m_email": email,
-    //     "m_rollNo": roll,
-    //     "m_name": name,
-
-    //     "m_phoneNo": phone,
-    //     "m_branch": branch,
-    //     "m_year": year,
-    //     "m_hosteler": hosteler
-    //   }
     Response res;
     Dio dio = Dio();
+    dynamic x = {
+      "team_name": team_name,
+      "l_name": l_name,
+      "l_email": l_email,
+      "l_otp": l_otp,
+      "l_hosteler": l_hosteler,
+      "l_year": l_year,
+      "l_branch": l_branch,
+      "l_rollNo": l_rollNo,
+      "l_phoneNo": l_phoneNo,
+    };
+    print(x);
     try {
-      res = await dio.post("http://3.6.75.26:5000/register", data: {
-        "team_name": team_name,
-        "l_name": l_name,
-        "l_email": l_email,
-        "l_otp": l_otp,
-        "l_hosteler": l_hosteler,
-        "l_year": l_year,
-        "l_branch": l_branch,
-        "l_rollNo": l_rollNo,
-        "l_phoneNo": l_phoneNo,
-      });
+      res = await dio.post("http://3.6.75.26:5000/register", data: x);
       print(res.statusCode);
       print(res.data);
-      return res.data;
+      print("hello");
+      print(res.data["message"]);
+      print(res.data["success"]);
+      return res.data["message"];
     } catch (e) {
       print('Caught an error in API call!');
       print('e is: ${e.toString()}');
-      // Alert(context: context, title: 'Http POST error', desc: '$e').show();
       // print('Status code in apiCall() catch is ${res.statusCode}');
       return e.toString();
     }
