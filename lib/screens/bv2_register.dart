@@ -10,7 +10,7 @@ import 'package:registration/widgets/text_form_field.dart';
 
 extension Log on Object {
   void log() {
-    devtools.log(this.toString());
+    devtools.log(toString());
   }
 }
 
@@ -23,10 +23,10 @@ class BV2Registration extends StatefulWidget {
 
 class _BV2RegistrationState extends State<BV2Registration> {
   final TextEditingController _teamNameController = TextEditingController();
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _phoneNoController = TextEditingController();
-  late TextEditingController _emailController = TextEditingController();
-  late TextEditingController _rollNoController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _phoneNoController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _rollNoController = TextEditingController();
   final TextEditingController _mnameController = TextEditingController();
   final TextEditingController _mphoneNoController = TextEditingController();
   final TextEditingController _memailController = TextEditingController();
@@ -66,8 +66,8 @@ class _BV2RegistrationState extends State<BV2Registration> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Center(
-                  child: const Text(
+                const Center(
+                  child: Text(
                     'Team Name',
                     style: TextStyle(
                       fontSize: 18.0,
@@ -96,8 +96,8 @@ class _BV2RegistrationState extends State<BV2Registration> {
                       }
                     }),
                 const SizedBox(height: 15.0),
-                Center(
-                  child: const Text(
+                const Center(
+                  child: Text(
                     'TEAM LEADER',
                     style: TextStyle(
                         fontSize: 18.0,
@@ -233,7 +233,7 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                         );
                                       }).toList(),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 5,
                                     ),
                                     const Text(
@@ -292,6 +292,11 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                             _nameController.text.toString();
                                         if (name.isEmpty) {
                                           return 'Name cannot be empty';
+                                        } else if (bdropdownValue ==
+                                            'Select Branch') {
+                                          return 'Select Branch';
+                                        } else if (ydropdownValue == 'Choose') {
+                                          return 'Select Year';
                                         }
                                         //     .substring(
                                         //         0,
@@ -334,7 +339,7 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                         }
                                       }
                                     }),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
                                 Visibility(
@@ -343,7 +348,8 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                       ElevatedButton(
                                         onPressed: () {
                                           checkotp
-                                              ? Timer(Duration(minutes: 15),
+                                              ? Timer(
+                                                  const Duration(minutes: 15),
                                                   () {
                                                   setState(() {
                                                     checkotp = true;
@@ -356,10 +362,10 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                             ? "Resend Otp"
                                             : "Send Otp"),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 25,
                                       ),
-                                      Container(
+                                      SizedBox(
                                         width: 150,
                                         height: 35,
                                         child: Pinput(
@@ -387,6 +393,11 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                     validator: (value) {
                                       if (value!.isEmpty) {
                                         return 'Roll No. cannot be empty';
+                                      } else if (bdropdownValue ==
+                                          'Select Branch') {
+                                        return 'Select Branch';
+                                      } else if (ydropdownValue == 'Choose') {
+                                        return 'Select Year';
                                       }
                                       int pp = ylist.indexOf(ydropdownValue);
                                       // print(pp);
@@ -418,8 +429,8 @@ class _BV2RegistrationState extends State<BV2Registration> {
                   visible: show,
                   child: Column(children: [
                     const SizedBox(height: 15.0),
-                    Center(
-                      child: const Text(
+                    const Center(
+                      child: Text(
                         'MEMBER 2',
                         style: TextStyle(
                             fontSize: 18.0,
@@ -447,18 +458,18 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 5,
                                   ),
                                   TextFormField(
                                       controller: _mnameController,
                                       decoration: InputDecoration(
                                         hintText: "Enter Name",
-                                        border: new OutlineInputBorder(
+                                        border: OutlineInputBorder(
                                           borderRadius:
-                                              new BorderRadius.circular(15.0),
+                                              BorderRadius.circular(15.0),
                                         ),
-                                        suffixIcon: Icon(
+                                        suffixIcon: const Icon(
                                           Icons
                                               .drive_file_rename_outline_outlined,
                                           size: 20,
@@ -489,7 +500,7 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 5,
                                   ),
                                   TextFormField(
@@ -497,11 +508,11 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                       keyboardType: TextInputType.number,
                                       decoration: InputDecoration(
                                         hintText: "Enter Phone No.",
-                                        border: new OutlineInputBorder(
+                                        border: OutlineInputBorder(
                                           borderRadius:
-                                              new BorderRadius.circular(15.0),
+                                              BorderRadius.circular(15.0),
                                         ),
-                                        suffixIcon: Icon(
+                                        suffixIcon: const Icon(
                                           Icons.phone_outlined,
                                           size: 20,
                                           color: Colors.black,
@@ -582,7 +593,7 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                           );
                                         }).toList(),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 8,
                                       ),
                                       const Text(
@@ -615,7 +626,7 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                       )
                                     ]),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 5,
                                   ),
                                   const SizedBox(height: 10.0),
@@ -631,11 +642,11 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                       controller: _memailController,
                                       decoration: InputDecoration(
                                         hintText: "Enter Email",
-                                        border: new OutlineInputBorder(
+                                        border: OutlineInputBorder(
                                           borderRadius:
-                                              new BorderRadius.circular(15.0),
+                                              BorderRadius.circular(15.0),
                                         ),
-                                        suffixIcon: Icon(
+                                        suffixIcon: const Icon(
                                           Icons.email_outlined,
                                           size: 20,
                                           color: Colors.black,
@@ -653,6 +664,12 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                               _mnameController.text.toString();
                                           if (mname.isEmpty) {
                                             return 'Name cannot be empty';
+                                          } else if (mbdropdownValue ==
+                                              'Select Branch') {
+                                            return 'Select Branch';
+                                          } else if (mydropdownValue ==
+                                              'Choose') {
+                                            return 'Select Year';
                                           }
                                           // print(mname.substring(
                                           //     0, mname.indexOf(" ")));
@@ -699,18 +716,18 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 5,
                                   ),
                                   TextFormField(
                                       controller: _mrollNoController,
                                       decoration: InputDecoration(
                                         hintText: "Enter Roll No.",
-                                        border: new OutlineInputBorder(
+                                        border: OutlineInputBorder(
                                           borderRadius:
-                                              new BorderRadius.circular(15.0),
+                                              BorderRadius.circular(15.0),
                                         ),
-                                        suffixIcon: Icon(
+                                        suffixIcon: const Icon(
                                           Icons.numbers_outlined,
                                           size: 20,
                                           color: Colors.black,
@@ -722,6 +739,11 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                       validator: (value) {
                                         if (value!.isEmpty) {
                                           return 'Roll No. cannot be empty';
+                                        } else if (bdropdownValue ==
+                                            'Select Branch') {
+                                          return 'Select Branch';
+                                        } else if (ydropdownValue == 'Choose') {
+                                          return 'Select Year';
                                         }
                                         int mpp =
                                             ylist.indexOf(mydropdownValue);
@@ -761,40 +783,43 @@ class _BV2RegistrationState extends State<BV2Registration> {
                 GestureDetector(
                   onTap: () {
                     if (!show) {
-                      print(!show);
-                      print(show);
+                      // print(!show);
+                      // print(show);
                       if (formKey.currentState!.validate() &&
                           ydropdownValue != ylist.first &&
-                          bdropdownValue != blist.last &&
+                          bdropdownValue != blist.first &&
                           dropdownValue != list.first) {
-                        print("Validated");
-                        // formKey.currentState!.save();
-                        print(_mnameController.text);
-                        print(_memailController.text);
-                        print(_mrollNoController.text);
-                        print(_mphoneNoController.text);
-                        print(mdropdownValue);
-                        print(mbdropdownValue);
-                        print(mydropdownValue);
+                        // print("Validated");
+                        // // formKey.currentState!.save();
+                        // print(_mnameController.text);
+                        // print(_memailController.text);
+                        // print(_mrollNoController.text);
+                        // print(_mphoneNoController.text);
+                        // print(mdropdownValue);
+                        // print(mbdropdownValue);
+                        // print(mydropdownValue);
+                        setState(() {
+                          show = !show;
+                        });
                       } else {
-                        print("Not Validated");
-
                         setState(() {
                           cardHeight = true;
                         });
-                        return showSnackBarr(
+                        showSnackBarr(
                             "Enter the above details properly first", context);
                       }
-                    } else if (show) {
+                    } else {
+                      mbdropdownValue = blist.first;
+                      mydropdownValue = ylist.first;
+                      mdropdownValue = list.first;
                       _memailController.clear();
                       _mrollNoController.clear();
                       _mphoneNoController.clear();
                       _mnameController.clear();
-                      mbdropdownValue;
+                      setState(() {
+                        show = !show;
+                      });
                     }
-                    setState(() {
-                      show = !show;
-                    });
                   },
                   child: Container(
                     decoration: BoxDecoration(
@@ -807,58 +832,64 @@ class _BV2RegistrationState extends State<BV2Registration> {
                     child: Center(
                         child: Text(
                       show ? "Remove Team Member" : "Add Team Member",
-                      style: TextStyle(color: Colors.white, fontSize: 18),
+                      style: const TextStyle(color: Colors.white, fontSize: 18),
                     )),
                   ),
                 ),
                 const SizedBox(height: 10.0),
-
                 Center(
                   child: ElevatedButton(
                     onPressed: () async {
                       setState(() {
                         _loading = true;
                       });
-                      var res = "Not Validated";
-                      if ((_emailController.text == _memailController.text &&
-                              _emailController.text.toString().isNotEmpty) ||
-                          (_rollNoController.text == _mrollNoController.text &&
-                              _rollNoController.text.toString().isNotEmpty) ||
-                          (_phoneNoController.text ==
-                                  _mphoneNoController.text &&
-                              _phoneNoController.text.toString().isNotEmpty)) {
+                      var res = "Please fill the above details properly first";
+                      if (_emailController.text == _memailController.text &&
+                          _emailController.text.toString().isNotEmpty) {
                         setState(() {
                           _loading = false;
-                          res = "Duplicate Values";
+                          res = "Duplicate Email";
+                        });
+                        return showSnackBarr(res, context);
+                      } else if (_rollNoController.text ==
+                              _mrollNoController.text &&
+                          _rollNoController.text.toString().isNotEmpty) {
+                        setState(() {
+                          _loading = false;
+                          res = "Duplicate Roll No.";
+                        });
+                        return showSnackBarr(res, context);
+                      } else if (_phoneNoController.text ==
+                              _mphoneNoController.text &&
+                          _phoneNoController.text.toString().isNotEmpty) {
+                        setState(() {
+                          _loading = false;
+                          res = "Duplicate Phone No.";
                         });
                         return showSnackBarr(res, context);
                       } else if (formKey.currentState!.validate() &&
                           dropdownValue != list.first &&
                           ydropdownValue != ylist.first &&
                           bdropdownValue != blist.first &&
-                          _phoneNoController != _mphoneNoController &&
-                          _emailController != _memailController &&
-                          _rollNoController != _mrollNoController) {
-                        print(show);
-                        print("Validated");
-                        // ("Validated").log();
-                        // print("hey");
-                        // "hey".log();
-                        print(_teamNameController.text.toString());
-                        print(_emailController.text.toString());
-                        print(_nameController.text.toString());
-                        print(_phoneNoController.text.toString());
-                        print(_rollNoController.text.toString());
-                        print(bdropdownValue);
-                        print(dropdownValue);
-                        print(int.parse(ydropdownValue));
-                        print(_memailController.text);
-                        print(_mnameController.text);
-                        print(_mphoneNoController.text.toString());
-                        print(_mrollNoController.text.toString());
-                        print(mbdropdownValue);
-                        print(mdropdownValue);
-                        print(int.parse(mydropdownValue));
+                          ((mbdropdownValue != blist.first &&
+                                  mdropdownValue != list.first &&
+                                  mydropdownValue != ylist.first) ^
+                              (!show))) {
+                        // print(_teamNameController.text.toString());
+                        // print(_emailController.text.toString());
+                        // print(_nameController.text.toString());
+                        // print(_phoneNoController.text.toString());
+                        // print(_rollNoController.text.toString());
+                        // print(bdropdownValue);
+                        // print(dropdownValue);
+                        // print(int.parse(ydropdownValue));
+                        // print(_memailController.text);
+                        // print(_mnameController.text);
+                        // print(_mphoneNoController.text.toString());
+                        // print(_mrollNoController.text.toString());
+                        // print(mbdropdownValue);
+                        // print(mdropdownValue);
+                        // print(int.parse(mydropdownValue));
                         // if (show) {
                         bool host = false;
                         if (dropdownValue == "Yes") {
@@ -899,23 +930,8 @@ class _BV2RegistrationState extends State<BV2Registration> {
                             m_branch: bdropdownValue,
                             m_rollNo: int.parse(_mrollNoController.text),
                             m_phoneNo: int.parse(_mphoneNoController.text));
-                        // } else {
-                        //   res = await BV2RegistrationController()
-                        //       .individualRegister(
-                        //     _teamNameController.text.toString(),
-                        //     _emailController.text.toString(),
-                        //     _nameController.text.toString(),
-                        //     _phoneNoController.text.toString(),
-                        //     _rollNoController.text.toString(),
-                        //     bdropdownValue,
-                        //     dropdownValue,
-                        //     ydropdownValue,
-                        //   );
-                        // }
-                        print(res);
 
-                        // res.log();
-                        // showSnackBarr("Registered Successfully", context);
+                        if (!mounted) return;
                         showAlertDialog(context, res);
                         ("Registered Successfully").log();
                       } else {
@@ -924,7 +940,7 @@ class _BV2RegistrationState extends State<BV2Registration> {
                         print(show);
                         print(formKey.currentState!.validate());
                         if (formKey.currentState!.validate() != true) {
-                          res = "Not Validated";
+                          res = "Please correct the above details";
                         } else if (bdropdownValue == blist.first) {
                           res = "Choose your branch";
                         } else if (dropdownValue == list.first) {
@@ -942,9 +958,6 @@ class _BV2RegistrationState extends State<BV2Registration> {
                           res = "Choose your year";
                         }
                         showSnackBarr(res, context);
-                        // ("Not registered").log();
-                        print("Not Validated");
-                        // ("Not Validated").log();
                       }
                       if (res == "Registered Successfully") {
                         _teamNameController.clear();
@@ -970,20 +983,12 @@ class _BV2RegistrationState extends State<BV2Registration> {
                       });
                     },
                     child: _loading
-                        ? CircularProgressIndicator(
+                        ? const CircularProgressIndicator(
                             color: Colors.white,
                           )
                         : const Text("Submit"),
                   ),
                 ),
-                // ElevatedButton(
-                //   onPressed: () async {
-                //     var d = await BV2RegistrationController()
-                //         .register("a", "a", "a", "a", "a", "a", "a", "a");
-                //     print(d);
-                //   },
-                //   child: Text("Register"),
-                // ),
               ],
             ),
           ),
@@ -996,7 +1001,7 @@ class _BV2RegistrationState extends State<BV2Registration> {
     try {
       Response res;
       Dio dio = Dio();
-      res = await dio.post("http://3.110.128.223:5000/send_email", data: {
+      res = await dio.post("http://3.6.75.26:5000/send_email", data: {
         "email": email,
       });
       print(res.statusCode);
