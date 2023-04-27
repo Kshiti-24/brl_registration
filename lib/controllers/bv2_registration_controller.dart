@@ -95,24 +95,24 @@ class BV2RegistrationController {
     Response res;
     Dio dio = Dio();
     try {
-      res = await dio.post("http://3.110.128.223:5000/register", data: {
+      res = await dio.post("http://3.6.75.26:5000/register", data: {
         "team_name": team_name,
-        "leader_name": l_name,
-        "email": l_email,
-        "hosteler": l_hosteler,
-        "year": l_year,
-        "branch": l_branch,
-        "phoneNo": l_phoneNo,
-        "rollNo": l_rollNo,
-        "team_member": {
-          "m_email": m_email,
-          "m_rollNo": m_rollNo,
-          "m_name": m_name,
-          "m_phoneNo": m_phoneNo,
-          "m_branch": m_branch,
-          "m_year": m_year,
-          "m_hosteler": m_hosteler
-        }
+        "l_name": l_name,
+        "l_email": l_email,
+        "l_otp": l_otp,
+        "l_hosteler": l_hosteler,
+        "l_year": l_year,
+        "l_branch": l_branch,
+        "l_phoneNo": l_phoneNo,
+        "l_rollNo": l_rollNo,
+        "m_name": m_name,
+        "m_email": m_email,
+        "m_otp": m_otp,
+        "m_rollNo": m_rollNo,
+        "m_phoneNo": m_phoneNo,
+        "m_branch": m_branch,
+        "m_year": m_year,
+        "m_hosteler": m_hosteler
       });
       print(res.statusCode);
       print(res.data);
@@ -159,7 +159,7 @@ class BV2RegistrationController {
     Response res;
     Dio dio = Dio();
     try {
-      res = await dio.post("http://3.110.128.223:5000/register", data: {
+      res = await dio.post("http://3.6.75.26:5000/register", data: {
         "team_name": team_name,
         "l_name": l_name,
         "l_email": l_email,
@@ -194,7 +194,7 @@ showSnackBarr(String content, BuildContext context) {
 showAlertDialog(BuildContext context, String msg) {
   // Create button
   Widget okButton = ElevatedButton(
-    child: Text("OK"),
+    child: const Text("OK"),
     onPressed: () {
       Navigator.of(context).pop();
     },

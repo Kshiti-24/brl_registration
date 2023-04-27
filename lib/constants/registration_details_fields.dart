@@ -1,7 +1,7 @@
-const List<String> list = <String>['  Choose', '  Yes', '  No'];
-const List<String> ylist = <String>[' Choose', '  1', '  2'];
+const List<String> list = <String>['Choose', 'Yes', 'No'];
+const List<String> ylist = <String>['Choose', '1', '2'];
 const List<String> blist = <String>[
-  'Select your branch',
+  'Select Branch',
   'CSE',
   'CS',
   'CSE(DS)',
