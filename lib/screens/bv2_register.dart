@@ -870,7 +870,11 @@ class _BV2RegistrationState extends State<BV2Registration> {
                       } else if (formKey.currentState!.validate() &&
                           dropdownValue != list.first &&
                           ydropdownValue != ylist.first &&
-                          bdropdownValue != blist.first ) {
+                          bdropdownValue != blist.first &&
+                          ((mbdropdownValue != blist.first &&
+                                  mdropdownValue != list.first &&
+                                  mydropdownValue != ylist.first) ^
+                              (!show))) {
                         // print(_teamNameController.text.toString());
                         // print(_emailController.text.toString());
                         // print(_nameController.text.toString());
