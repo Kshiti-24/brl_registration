@@ -114,7 +114,7 @@ class BV2RegistrationController {
     }
   }
 
-  Future<String> individualRegister(
+  Future<dynamic> individualRegister(
     String team_name,
     String l_name,
     String l_email,
@@ -152,8 +152,7 @@ class BV2RegistrationController {
       print('e is: ${e.toString()}');
       // print('Status code in apiCall() catch is ${res.statusCode}');
       if (e.response!.statusCode == 500) {
-        print(e.response);
-        return (e.message!);
+        return (e.response!.data["message"]);
       } else {
         return e.message!;
       }
