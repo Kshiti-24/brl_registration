@@ -956,6 +956,7 @@ class _BV2RegistrationState extends State<BV2Registration> {
                         //     m_branch: bdropdownValue,
                         //     m_rollNo: int.parse(_mrollNoController.text),
                         //     m_phoneNo: int.parse(_mphoneNoController.text));
+                        (res).log();
                         if (!mounted) return;
                         showAlertDialog(context, res);
                         ("Registered Successfully").log();

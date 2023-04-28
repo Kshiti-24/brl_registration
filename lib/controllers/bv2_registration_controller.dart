@@ -147,11 +147,16 @@ class BV2RegistrationController {
       print(res.data["message"]);
       print(res.data["success"]);
       return res.data["message"];
-    } catch (e) {
+    } on DioError catch (e) {
       print('Caught an error in API call!');
       print('e is: ${e.toString()}');
       // print('Status code in apiCall() catch is ${res.statusCode}');
-      return e.toString();
+      if (e.response!.statusCode == 500) {
+        print(e.response);
+        return (e.message!);
+      } else {
+        return e.message!;
+      }
     }
   }
 }
