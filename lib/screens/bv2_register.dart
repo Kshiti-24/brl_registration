@@ -308,9 +308,13 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                           ans = name.toLowerCase();
                                         }
                                         int p = ylist.indexOf(ydropdownValue);
+                                        print(p);
                                         String sy = yylist[p];
+                                        print(sy);
                                         int k = blist.indexOf(bdropdownValue);
+                                        print(k);
                                         String sn = cslist[k];
+                                        print(sn);
                                         if (sy == '22') {
                                           sn = '164';
                                         }
@@ -318,7 +322,7 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                                 ans +
                                                 sy +
                                                 sn +
-                                                r"([0-9]{3})([-]?[dD]?)(@akgec\.ac\.in)$")
+                                                r"([0-9]{2,3})([-]?[dD]?)(@akgec\.ac\.in)$")
                                             .hasMatch(value)) {
                                           cheeek = true;
                                           return null;
@@ -359,6 +363,15 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                         child: Pinput(
                                           length: 4,
                                           controller: _otpController,
+                                          keyboardType: TextInputType.number,
+                                          textInputAction: TextInputAction.next,
+                                          pinputAutovalidateMode:
+                                              PinputAutovalidateMode.onSubmit,
+                                          // validator: (value) {
+                                          //   if (value!.isEmpty) {
+                                          //     return "OTP cannot be empty";
+                                          //   }
+                                          // },
                                         ),
                                       )
                                     ])),
@@ -865,6 +878,18 @@ class _BV2RegistrationState extends State<BV2Registration> {
                           res = "Duplicate Phone No.";
                         });
                         return showSnackBarr(res, context);
+                      } else if (_otpController.text.isEmpty) {
+                        setState(() {
+                          _loading = false;
+                          res = "Enter the OTP";
+                        });
+                        return showSnackBarr(res, context);
+                      } else if (_motpController.text.isEmpty && show == true) {
+                        setState(() {
+                          _loading = false;
+                          res = "Enter the OTP";
+                        });
+                        return showSnackBarr(res, context);
                       } else if (formKey.currentState!.validate() &&
                           dropdownValue != list.first &&
                           ydropdownValue != ylist.first &&
@@ -991,6 +1016,8 @@ class _BV2RegistrationState extends State<BV2Registration> {
                         _mnameController.clear();
                         _mphoneNoController.clear();
                         _mrollNoController.clear();
+                        _otpController.clear();
+                        _motpController.clear();
                         setState(() {
                           dropdownValue = list.first;
                           ydropdownValue = ylist.first;
@@ -1028,11 +1055,17 @@ class _BV2RegistrationState extends State<BV2Registration> {
       });
       print(res.statusCode);
       print(res.data);
-      return res.data;
-    } catch (e) {
+      showSnackBarr(res.data["message"], context);
+      return res.data["message"];
+    } on DioError catch (e) {
       print('Caught an error in API call!');
+      if (e.type == DioErrorType.connectionTimeout) {
+        return ("Please wait for a moment");
+      }
+      if (e.type == DioErrorType.receiveTimeout) {
+        return ("Please wait for sometime");
+      }
       print('e is: ${e.toString()}');
-      return e.toString();
     }
   }
 }
