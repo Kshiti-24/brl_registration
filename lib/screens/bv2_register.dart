@@ -47,22 +47,28 @@ class _BV2RegistrationState extends State<BV2Registration> {
   String ydropdownValue = ylist.first;
   String bdropdownValue = blist.first;
   GlobalKey<FormState> formKey = GlobalKey();
-  final _scrollController = ScrollController();
+  final _scrollController = ScrollController(
+    // initialScrollOffset: -20
+  );
   // bool _switch = true;
   double _height = 0;
+  @override
+  void initState() {
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     _scrollController.addListener(() {
       // print(_scrollController.offset);
-      if (_scrollController.offset > 180) {
+      if (_scrollController.offset > 240) {
         setState(() {
           // _switch = false;
           _height = 80;
         });
-      } else if (_scrollController.offset > 100) {
+      } else if (_scrollController.offset > 80) {
         setState(() {
           // _switch = false;
-          _height = (_scrollController.offset - 100);
+          _height = (_scrollController.offset - 80)/2;
         });
       } else {
         setState(() {
@@ -87,6 +93,7 @@ class _BV2RegistrationState extends State<BV2Registration> {
                 title: Image.asset('asset/ghj.jpg', fit: BoxFit.fitWidth),
                 centerTitle: true,
                 titleSpacing: 0,
+                // scrolledUnderElevation: 20,
 
                 // bottom: PreferredSize(
                 //   preferredSize: Size.fromHeight(-50),
@@ -104,6 +111,8 @@ class _BV2RegistrationState extends State<BV2Registration> {
                 expandedHeight: 120,
                 backgroundColor: Colors.transparent,
                 elevation: 0,
+
+                // scrolledUnderElevation: 20,
                 pinned: false,
                 centerTitle: false,
                 flexibleSpace: FlexibleSpaceBar(
