@@ -422,19 +422,24 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                             visible: cheeek,
                                             child: Row(children: [
                                               ElevatedButton(
-                                                onPressed: () {
+
+                                                onPressed: checkotp ? () => showAlertDialog( context,"1 minutes timer running",) : () {
                                                   checkotp
                                                       ? Timer(
                                                           const Duration(
-                                                              minutes: 15), () {
+                                                              minutes: 1), () {
                                                           setState(() {
-                                                            checkotp = true;
+                                                            checkotp = false;
                                                           });
                                                         })
                                                       : sendEmail(
                                                           _emailController
-                                                              .text);
+                                                              .text, context);
+                                                  setState(() {
+                                                    checkotp =true;
+                                                  });
                                                 },
+                                                
                                                 child: Text(checkotp
                                                     ? "Resend Otp"
                                                     : "Send Otp"),
@@ -813,19 +818,22 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                               visible: cheeek,
                                               child: Row(children: [
                                                 ElevatedButton(
-                                                  onPressed: () {
+                                                  onPressed: checkotp ? () => showAlertDialog( context,"1 minutes timer running",) :  () {
                                                     checkotp
                                                         ? Timer(
                                                             const Duration(
-                                                                minutes: 15),
+                                                                minutes: 1),
                                                             () {
                                                             setState(() {
-                                                              checkotp = true;
+                                                              checkotp = false;
                                                             });
                                                           })
                                                         : sendEmail(
                                                             _memailController
-                                                                .text);
+                                                                .text, context);
+                                                    setState(() {
+                                                      checkotp = true;
+                                                    });
                                                   },
                                                   child: Text(checkotp
                                                       ? "Resend Otp"
@@ -1175,7 +1183,7 @@ class _BV2RegistrationState extends State<BV2Registration> {
     );
   }
 
-  sendEmail(String email) async {
+  sendEmail(String email, BuildContext context) async {
     try {
       Response res;
       Dio dio = Dio();
