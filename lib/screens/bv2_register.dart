@@ -43,19 +43,22 @@ class _BV2RegistrationState extends State<BV2Registration> {
   bool _loading = false;
   bool optloading = false;
   bool cheeek = false;
+  bool _sendAllow = true;
+  String _timerText = "";
   String dropdownValue = list.first;
   String ydropdownValue = ylist.first;
   String bdropdownValue = blist.first;
   GlobalKey<FormState> formKey = GlobalKey();
   final _scrollController = ScrollController(
-    // initialScrollOffset: -20
-  );
+      // initialScrollOffset: -20
+      );
   // bool _switch = true;
   double _height = 0;
   @override
   void initState() {
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     _scrollController.addListener(() {
@@ -68,7 +71,7 @@ class _BV2RegistrationState extends State<BV2Registration> {
       } else if (_scrollController.offset > 80) {
         setState(() {
           // _switch = false;
-          _height = (_scrollController.offset - 80)/2;
+          _height = (_scrollController.offset - 80) / 2;
         });
       } else {
         setState(() {
@@ -422,26 +425,36 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                             visible: cheeek,
                                             child: Row(children: [
                                               ElevatedButton(
+                                                onPressed: !_sendAllow
+                                                    ? null
+                                                    : () {
+                                                        sendEmail(
+                                                            _emailController
+                                                                .text,
+                                                            context);
 
-                                                onPressed: checkotp ? () => showAlertDialog( context,"1 minutes timer running",) : () {
-                                                  sendEmail(
-                                                          _emailController
-                                                              .text, context);
-                                                  Timer(
-                                                      const Duration(
-                                                          minutes: 1), () {
-                                                    setState(() {
-                                                      checkotp = false;
-                                                    });
-                                                  });
-                                                  setState(() {
-                                                    checkotp =true;
-                                                  });
-                                                },
-                                                
-                                                child: Text(checkotp
-                                                    ? "Resend Otp"
-                                                    : "Send Otp"),
+                                                        // Timer(
+                                                        //     const Duration(
+                                                        //         minutes: 1),
+                                                        //     () {
+                                                        //   setState(() {
+                                                        //     checkotp = false;
+                                                        //   });
+                                                        // });
+                                                        setState(() {
+
+                                                          _sendAllow = false;
+                                                          checkotp = true;
+                                                        });
+                                                        timer();
+                                                      },
+                                                child: Text(
+                                                  checkotp
+                                                      ? _sendAllow
+                                                          ? "Resend Otp"
+                                                          : _timerText
+                                                      : "Send Otp",
+                                                ),
                                               ),
                                               const SizedBox(
                                                 width: 25,
@@ -817,24 +830,33 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                               visible: cheeek,
                                               child: Row(children: [
                                                 ElevatedButton(
-                                                  onPressed: checkotp ? () => showAlertDialog( context,"1 minutes timer running",) :  () {
-                                                    sendEmail(
-                                                            _memailController
-                                                                .text, context);
-                                                    Timer(
-                                                        const Duration(
-                                                            minutes: 1), () {
-                                                      setState(() {
-                                                        checkotp = false;
-                                                      });
-                                                    });
-                                                    setState(() {
-                                                      checkotp = true;
-                                                    });
-                                                  },
+                                                  onPressed: !_sendAllow
+                                                      ? null
+                                                      : () {
+                                                          sendEmail(
+                                                              _memailController
+                                                                  .text,
+                                                              context);
+                                                          // Timer(
+                                                          //     const Duration(
+                                                          //         minutes: 1),
+                                                          //     () {
+                                                          //   setState(() {
+                                                          //     checkotp = false;
+                                                          //   });
+                                                          // });
+                                                          setState(() {
+
+                                                            _sendAllow = false;
+                                                            checkotp = true;
+                                                          });
+                                                          timer();
+                                                        },
                                                   child: Text(checkotp
+                                                      ? _sendAllow
                                                       ? "Resend Otp"
-                                                      : "Send Otp"),
+                                                      : _timerText
+                                                      : "Send Otp",),
                                                 ),
                                                 const SizedBox(
                                                   width: 25,
@@ -1178,6 +1200,22 @@ class _BV2RegistrationState extends State<BV2Registration> {
             ],
           )),
     );
+  }
+  void timer () {
+    int ref = 59;
+
+    Timer.periodic(const Duration(seconds: 1), (Timer timer) {
+
+      // final DateTime now = DateTime.now();
+      if (0 == ref) {
+        // cancel the timer
+        _sendAllow = true;
+        timer.cancel();
+      }
+      setState(() {
+        _timerText = "${0}:${ref--}";
+      });
+    });
   }
 
   sendEmail(String email, BuildContext context) async {
