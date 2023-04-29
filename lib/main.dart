@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           fontFamily: GoogleFonts.aBeeZee().fontFamily),
       debugShowCheckedModeBanner: false,
-      home: BV2Registration(),
+      home: const BV2Registration(),
     );
   }
 }
