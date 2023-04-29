@@ -424,17 +424,16 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                               ElevatedButton(
 
                                                 onPressed: checkotp ? () => showAlertDialog( context,"1 minutes timer running",) : () {
-                                                  checkotp
-                                                      ? Timer(
-                                                          const Duration(
-                                                              minutes: 1), () {
-                                                          setState(() {
-                                                            checkotp = false;
-                                                          });
-                                                        })
-                                                      : sendEmail(
+                                                  sendEmail(
                                                           _emailController
                                                               .text, context);
+                                                  Timer(
+                                                      const Duration(
+                                                          minutes: 1), () {
+                                                    setState(() {
+                                                      checkotp = false;
+                                                    });
+                                                  });
                                                   setState(() {
                                                     checkotp =true;
                                                   });
@@ -819,18 +818,16 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                               child: Row(children: [
                                                 ElevatedButton(
                                                   onPressed: checkotp ? () => showAlertDialog( context,"1 minutes timer running",) :  () {
-                                                    checkotp
-                                                        ? Timer(
-                                                            const Duration(
-                                                                minutes: 1),
-                                                            () {
-                                                            setState(() {
-                                                              checkotp = false;
-                                                            });
-                                                          })
-                                                        : sendEmail(
+                                                    sendEmail(
                                                             _memailController
                                                                 .text, context);
+                                                    Timer(
+                                                        const Duration(
+                                                            minutes: 1), () {
+                                                      setState(() {
+                                                        checkotp = false;
+                                                      });
+                                                    });
                                                     setState(() {
                                                       checkotp = true;
                                                     });
