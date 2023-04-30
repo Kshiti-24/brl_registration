@@ -38,6 +38,8 @@ class _BV2RegistrationState extends State<BV2Registration> {
   String mbdropdownValue = blist.first;
   bool show = false;
   bool checkotp = false;
+  bool mcheeek = false;
+  bool mcheckotp = false;
   bool cardHeight = false;
   bool option = true;
   bool _loading = false;
@@ -394,14 +396,14 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                                 }
                                                 int p = ylist
                                                     .indexOf(ydropdownValue);
-                                                print(p);
+                                                // print(p);
                                                 String sy = yylist[p];
-                                                print(sy);
+                                                // print(sy);
                                                 int k = blist
                                                     .indexOf(bdropdownValue);
-                                                print(k);
+                                                // print(k);
                                                 String sn = cslist[k];
-                                                print(sn);
+                                                // print(sn);
                                                 if (sy == '22') {
                                                   sn = '164';
                                                 }
@@ -414,6 +416,7 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                                   cheeek = true;
                                                   return null;
                                                 } else {
+                                                  cheeek = false;
                                                   return "Enter correct College Email";
                                                 }
                                               }
@@ -428,25 +431,32 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                                 onPressed: !_sendAllow
                                                     ? null
                                                     : () {
-                                                        sendEmail(
-                                                            _emailController
-                                                                .text,
-                                                            context);
+                                                        if (formKey
+                                                            .currentState!
+                                                            .validate()) {
+                                                          sendEmail(
+                                                              _emailController
+                                                                  .text,
+                                                              context);
 
-                                                        // Timer(
-                                                        //     const Duration(
-                                                        //         minutes: 1),
-                                                        //     () {
-                                                        //   setState(() {
-                                                        //     checkotp = false;
-                                                        //   });
-                                                        // });
-                                                        setState(() {
-
-                                                          _sendAllow = false;
-                                                          checkotp = true;
-                                                        });
-                                                        timer();
+                                                          // Timer(
+                                                          //     const Duration(
+                                                          //         minutes: 1),
+                                                          //     () {
+                                                          //   setState(() {
+                                                          //     checkotp = false;
+                                                          //   });
+                                                          // });
+                                                          setState(() {
+                                                            _sendAllow = false;
+                                                            checkotp = true;
+                                                          });
+                                                          timer();
+                                                        } else {
+                                                          showSnackBarr(
+                                                              "Enter the details properly",
+                                                              context);
+                                                        }
                                                       },
                                                 child: Text(
                                                   checkotp
@@ -817,8 +827,10 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                                           r"([0-9]{3})([-]?[dD]?)(@akgec\.ac\.in)$")
                                                       .hasMatch(value)) {
                                                     // cm = true;
+                                                    mcheeek = true;
                                                     return null;
                                                   } else {
+                                                    mcheeek = false;
                                                     return "Enter correct College Email";
                                                   }
                                                 }
@@ -827,36 +839,42 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                             height: 10,
                                           ),
                                           Visibility(
-                                              visible: cheeek,
+                                              visible: mcheeek,
                                               child: Row(children: [
                                                 ElevatedButton(
                                                   onPressed: !_sendAllow
                                                       ? null
                                                       : () {
-                                                          sendEmail(
-                                                              _memailController
-                                                                  .text,
-                                                              context);
-                                                          // Timer(
-                                                          //     const Duration(
-                                                          //         minutes: 1),
-                                                          //     () {
-                                                          //   setState(() {
-                                                          //     checkotp = false;
-                                                          //   });
-                                                          // });
-                                                          setState(() {
-
-                                                            _sendAllow = false;
-                                                            checkotp = true;
-                                                          });
-                                                          timer();
+                                                          if (formKey
+                                                              .currentState!
+                                                              .validate()) {
+                                                            sendEmail(
+                                                                _memailController
+                                                                    .text,
+                                                                context);
+                                                            // Timer(
+                                                            //     const Duration(
+                                                            //         minutes: 1),
+                                                            //     () {
+                                                            //   setState(() {
+                                                            //     checkotp = false;
+                                                            //   });
+                                                            // });
+                                                            setState(() {
+                                                              _sendAllow =
+                                                                  false;
+                                                              mcheckotp = true;
+                                                            });
+                                                            timer();
+                                                          }
                                                         },
-                                                  child: Text(checkotp
-                                                      ? _sendAllow
-                                                      ? "Resend Otp"
-                                                      : _timerText
-                                                      : "Send Otp",),
+                                                  child: Text(
+                                                    mcheckotp
+                                                        ? _sendAllow
+                                                            ? "Resend Otp"
+                                                            : _timerText
+                                                        : "Send Otp",
+                                                  ),
                                                 ),
                                                 const SizedBox(
                                                   width: 25,
@@ -1025,18 +1043,23 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                   res = "Duplicate Phone No.";
                                 });
                                 return showSnackBarr(res, context);
-                              } else if (_otpController.text.isEmpty) {
+                              } else if (formKey.currentState!.validate() &&
+                                  (_otpController.text.isEmpty ||
+                                      _otpController.text.length < 4)) {
                                 setState(() {
                                   _loading = false;
                                   res = "Enter the OTP";
                                 });
                                 return showSnackBarr(res, context);
-                              } else if (_motpController.text.isEmpty &&
-                                  show == true) {
+                              } else if (formKey.currentState!.validate() &&
+                                  ((_motpController.text.isEmpty &&
+                                          _motpController.text.length < 4) &&
+                                      show == true)) {
                                 setState(() {
                                   _loading = false;
                                   res = "Enter the OTP";
                                 });
+                                print(formKey.currentState!.validate());
                                 return showSnackBarr(res, context);
                               } else if (formKey.currentState!.validate() &&
                                   dropdownValue != list.first &&
@@ -1140,7 +1163,12 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                 showAlertDialog(context, res);
                                 ("Registered Successfully").log();
                               } else {
-                                if (formKey.currentState!.validate() != true) {
+                                if (formKey.currentState!.validate() &&
+                                    (_otpController.text.isEmpty ||
+                                        _otpController.text.length < 4)) {
+                                  res = "kjhj";
+                                } else if (formKey.currentState!.validate() !=
+                                    true) {
                                   res = "Please correct the above details";
                                 } else if (bdropdownValue == blist.first) {
                                   res = "Choose your branch";
@@ -1201,11 +1229,11 @@ class _BV2RegistrationState extends State<BV2Registration> {
           )),
     );
   }
-  void timer () {
-    int ref = 59;
+
+  void timer() {
+    int ref = 29;
 
     Timer.periodic(const Duration(seconds: 1), (Timer timer) {
-
       // final DateTime now = DateTime.now();
       if (0 == ref) {
         // cancel the timer
