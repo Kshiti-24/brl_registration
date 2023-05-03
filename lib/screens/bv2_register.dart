@@ -189,7 +189,7 @@ class _BV2RegistrationState extends State<BV2Registration> {
                               shadowColor: Colors.black,
                               child: SizedBox(
                                 width: 400,
-                                height: 675,
+                                height: 700,
                                 child: Padding(
                                   padding: const EdgeInsets.all(15.0),
                                   child: Column(
@@ -207,23 +207,24 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                           height: 5,
                                         ),
                                         textFormFieldWidget(
-                                            controller: _nameController,
-                                            keyboardType: TextInputType.name,
-                                            hintText: "Enter Leader Name",
-                                            icon: Icons
-                                                .drive_file_rename_outline_outlined,
-                                            validator: (value) {
-                                              if (value!.isEmpty) {
-                                                return 'Name cannot be empty';
-                                              }
-                                              if (RegExp(
-                                                      r'^[a-zA-Z]+(?:\s[a-zA-Z]+)*$')
-                                                  .hasMatch(value)) {
-                                                return null;
-                                              } else {
-                                                return "Enter correct Name";
-                                              }
-                                            }),
+                                          controller: _nameController,
+                                          keyboardType: TextInputType.name,
+                                          hintText: "Enter Leader Name",
+                                          icon: Icons
+                                              .drive_file_rename_outline_outlined,
+                                          validator: (value) {
+                                            if (value!.isEmpty) {
+                                              return 'Name cannot be empty';
+                                            }
+                                            if (RegExp(
+                                                    r'^[a-zA-Z]+(?:\.\s)?[a-zA-Z]+(?:\s[a-zA-Z]+)*\s*$')
+                                                .hasMatch(value)) {
+                                              return null;
+                                            } else {
+                                              return "Enter correct Name";
+                                            }
+                                          },
+                                        ),
                                         const SizedBox(height: 10.0),
                                         const Text(
                                           'Phone No',
@@ -404,20 +405,35 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                                 // print(k);
                                                 String sn = cslist[k];
                                                 // print(sn);
-                                                if (sy == '22') {
+                                                print(ans);
+                                                if (sy == '22' && k == 5) {
                                                   sn = '164';
                                                 }
-                                                if (RegExp(r"^" +
-                                                        ans +
-                                                        sy +
-                                                        sn +
-                                                        r"([0-9]{2,3})([-]?[dD]?)(@akgec\.ac\.in)$")
-                                                    .hasMatch(value)) {
-                                                  cheeek = true;
-                                                  return null;
+                                                if (ans != "mohammad" &&
+                                                    ans != "md." &&
+                                                    ans != "mohd") {
+                                                  if (RegExp(r"^" +
+                                                          ans +
+                                                          sy +
+                                                          sn +
+                                                          r"([0-9]{2,3})([-]?[dD]?)(@akgec\.ac\.in)$")
+                                                      .hasMatch(value)) {
+                                                    cheeek = true;
+                                                    return null;
+                                                  } else {
+                                                    cheeek = false;
+                                                    return "Enter correct College Email";
+                                                  }
                                                 } else {
-                                                  cheeek = false;
-                                                  return "Enter correct College Email";
+                                                  if (RegExp(
+                                                          r"^.*@akgec\.ac\.in$")
+                                                      .hasMatch(value)) {
+                                                    cheeek = true;
+                                                    return null;
+                                                  } else {
+                                                    cheeek = false;
+                                                    return "Enter correct College Email";
+                                                  }
                                                 }
                                               }
                                             }),
@@ -601,7 +617,7 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                                   return 'Name cannot be empty';
                                                 }
                                                 if (RegExp(
-                                                        r'^[a-zA-Z]+(?:\s[a-zA-Z]+)*$')
+                                                        r'^[a-zA-Z]+(?:\s[a-zA-Z]+)*\s*$')
                                                     .hasMatch(value)) {
                                                   // na = true;
                                                   return null;
@@ -817,7 +833,7 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                                   int mk = blist
                                                       .indexOf(mbdropdownValue);
                                                   String msn = cslist[mk];
-                                                  if (msy == '22') {
+                                                  if (msy == '22' && mk == 5) {
                                                     msn = '164';
                                                   }
                                                   if (RegExp(r"^" +
@@ -984,6 +1000,7 @@ class _BV2RegistrationState extends State<BV2Registration> {
                               _mrollNoController.clear();
                               _mphoneNoController.clear();
                               _mnameController.clear();
+                              _motpController.clear();
                               setState(() {
                                 show = !show;
                               });
@@ -1188,7 +1205,7 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                 }
                                 showSnackBarr(res, context);
                               }
-                              if (res == "Registered Successfully") {
+                              if (res == "Registration successfull") {
                                 _teamNameController.clear();
                                 _emailController.clear();
                                 _nameController.clear();
