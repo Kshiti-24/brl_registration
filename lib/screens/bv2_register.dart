@@ -836,18 +836,32 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                                   if (msy == '22' && mk == 5) {
                                                     msn = '164';
                                                   }
-                                                  if (RegExp(r"^" +
-                                                          mans +
-                                                          msy +
-                                                          msn +
-                                                          r"([0-9]{3})([-]?[dD]?)(@akgec\.ac\.in)$")
-                                                      .hasMatch(value)) {
-                                                    // cm = true;
-                                                    mcheeek = true;
-                                                    return null;
+                                                  if (mans != "mohammad" &&
+                                                      mans != "md." &&
+                                                      mans != "mohd") {
+                                                    if (RegExp(r"^" +
+                                                            mans +
+                                                            msy +
+                                                            msn +
+                                                            r"([0-9]{2,3})([-]?[dD]?)(@akgec\.ac\.in)$")
+                                                        .hasMatch(value)) {
+                                                      // cm = true;
+                                                      mcheeek = true;
+                                                      return null;
+                                                    } else {
+                                                      mcheeek = false;
+                                                      return "Enter correct College Email";
+                                                    }
                                                   } else {
-                                                    mcheeek = false;
-                                                    return "Enter correct College Email";
+                                                    if (RegExp(
+                                                            r"^.*@akgec\.ac\.in$")
+                                                        .hasMatch(value)) {
+                                                      cheeek = true;
+                                                      return null;
+                                                    } else {
+                                                      cheeek = false;
+                                                      return "Enter correct College Email";
+                                                    }
                                                   }
                                                 }
                                               }),
