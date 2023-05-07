@@ -518,37 +518,38 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                           height: 5,
                                         ),
                                         textFormFieldWidget(
-                                            keyboardType: TextInputType.number,
-                                            controller: _rollNoController,
-                                            hintText: "Enter Roll No.",
-                                            icon: Icons.numbers_outlined,
-                                            validator: (value) {
-                                              if (value!.isEmpty) {
-                                                return 'Roll No. cannot be empty';
-                                              } else if (bdropdownValue ==
-                                                  'Select Branch') {
-                                                return 'Select Branch';
-                                              } else if (ydropdownValue ==
-                                                  'Choose') {
-                                                return 'Select Year';
-                                              }
-                                              int pp =
-                                                  ylist.indexOf(ydropdownValue);
-                                              String syy = yylist[pp];
-                                              int tr =
-                                                  blist.indexOf(bdropdownValue);
-                                              String ww = rlist[tr];
-                                              if (RegExp(r"^" +
-                                                      syy +
-                                                      r"(0027)" +
-                                                      ww +
-                                                      r"([0-9]{4})$")
-                                                  .hasMatch(value)) {
-                                                return null;
-                                              } else {
-                                                return "Enter correct Roll No.";
-                                              }
-                                            }),
+                                          keyboardType: TextInputType.number,
+                                          controller: _rollNoController,
+                                          hintText: "Enter Roll No.",
+                                          icon: Icons.numbers_outlined,
+                                          validator: (value) {
+                                            if (value!.isEmpty) {
+                                              return 'Roll No. cannot be empty';
+                                            } else if (bdropdownValue ==
+                                                'Select Branch') {
+                                              return 'Select Branch';
+                                            } else if (ydropdownValue ==
+                                                'Choose') {
+                                              return 'Select Year';
+                                            }
+                                            int pp =
+                                                ylist.indexOf(ydropdownValue);
+                                            String syy = yylist[pp];
+                                            int tr =
+                                                blist.indexOf(bdropdownValue);
+                                            String ww = rlist[tr];
+                                            if (RegExp(r"^" +
+                                                    syy +
+                                                    r"(0027)" +
+                                                    ww +
+                                                    r"([0-9]{4})$")
+                                                .hasMatch(value)) {
+                                              return null;
+                                            } else {
+                                              return "Enter correct Roll No.";
+                                            }
+                                          },
+                                        ),
                                       ]),
                                 ),
                               ),
