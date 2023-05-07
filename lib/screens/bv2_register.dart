@@ -259,7 +259,7 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
-                                        DecoratedBox(
+                                                DecoratedBox(
                                           decoration: BoxDecoration(
                                               // color:Colors.lightGreen, //background color of dropdown button
                                               border: Border.all(color: Colors.black38, width:1), //border of dropdown button
@@ -723,7 +723,18 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
-                                          DropdownButton<String>(
+                                    DecoratedBox(
+                                      decoration: BoxDecoration(
+                                        // color:Colors.lightGreen, //background color of dropdown button
+                                        border: Border.all(color: Colors.black38, width:1), //border of dropdown button
+                                        borderRadius: BorderRadius.circular(15), //border raiuds of dropdown button
+
+                                      ),
+
+
+                                      child:Padding(
+                                          padding: EdgeInsets.only(left:10, right:10),
+                                          child: DropdownButton<String>(
                                             value: mbdropdownValue,
                                             icon: const Icon(
                                                 Icons.arrow_downward),
@@ -744,7 +755,7 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                                 child: Text(value),
                                               );
                                             }).toList(),
-                                          ),
+                                          ),)),
                                           const SizedBox(height: 10.0),
                                           SingleChildScrollView(
                                             scrollDirection: Axis.horizontal,
@@ -756,7 +767,19 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                                   fontWeight: FontWeight.bold,
                                                 ),
                                               ),
-                                              DropdownButton<String>(
+                                              SizedBox(width: 5,),
+                                              DecoratedBox(
+                                                decoration: BoxDecoration(
+                                                  // color:Colors.lightGreen, //background color of dropdown button
+                                                  border: Border.all(color: Colors.black38, width:1), //border of dropdown button
+                                                  borderRadius: BorderRadius.circular(15), //border raiuds of dropdown button
+
+                                                ),
+
+
+                                                child:Padding(
+                                                    padding: EdgeInsets.only(left:10, right:10),
+                                                    child: DropdownButton<String>(
                                                 value: mdropdownValue,
                                                 icon: const Icon(
                                                     Icons.arrow_downward),
@@ -779,9 +802,9 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                                     child: Text(value),
                                                   );
                                                 }).toList(),
-                                              ),
+                                              ),)),
                                               const SizedBox(
-                                                width: 8,
+                                                width: 5,
                                               ),
                                               const Text(
                                                 'Year',
@@ -790,7 +813,19 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                                   fontWeight: FontWeight.bold,
                                                 ),
                                               ),
-                                              DropdownButton<String>(
+                                              SizedBox(width: 5,),
+                                              DecoratedBox(
+                                                decoration: BoxDecoration(
+                                                  // color:Colors.lightGreen, //background color of dropdown button
+                                                  border: Border.all(color: Colors.black38, width:1), //border of dropdown button
+                                                  borderRadius: BorderRadius.circular(15), //border raiuds of dropdown button
+
+                                                ),
+
+
+                                                child:Padding(
+                                                    padding: EdgeInsets.only(left:10, right:10),
+                                                    child: DropdownButton<String>(
                                                 value: mydropdownValue,
                                                 icon: const Icon(
                                                     Icons.arrow_downward),
@@ -813,7 +848,7 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                                     child: Text(value),
                                                   );
                                                 }).toList(),
-                                              )
+                                              ))),
                                             ]),
                                           ),
                                           const SizedBox(
