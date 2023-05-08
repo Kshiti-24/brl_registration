@@ -395,28 +395,12 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                                 } else {
                                                   ans = name.toLowerCase();
                                                 }
-                                                int p = ylist
-                                                    .indexOf(ydropdownValue);
-                                                // print(p);
-                                                String sy = yylist[p];
-                                                // print(sy);
-                                                int k = blist
-                                                    .indexOf(bdropdownValue);
-                                                // print(k);
-                                                String sn = cslist[k];
-                                                // print(sn);
-                                                print(ans);
-                                                if (sy == '22' && k == 5) {
-                                                  sn = '164';
-                                                }
                                                 if (ans != "mohammad" &&
                                                     ans != "md." &&
                                                     ans != "mohd") {
                                                   if (RegExp(r"^" +
                                                           ans +
-                                                          sy +
-                                                          sn +
-                                                          r"([0-9]{2,3})([-]?[dD]?)(@akgec\.ac\.in)$")
+                                                          r"[A-Za-z0-9._%+-]+@akgec\.ac\.in$")
                                                       .hasMatch(value)) {
                                                     cheeek = true;
                                                     return null;
@@ -454,15 +438,6 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                                               _emailController
                                                                   .text,
                                                               context);
-
-                                                          // Timer(
-                                                          //     const Duration(
-                                                          //         minutes: 1),
-                                                          //     () {
-                                                          //   setState(() {
-                                                          //     checkotp = false;
-                                                          //   });
-                                                          // });
                                                           setState(() {
                                                             _sendAllow = false;
                                                             checkotp = true;
@@ -498,11 +473,6 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                                   pinputAutovalidateMode:
                                                       PinputAutovalidateMode
                                                           .onSubmit,
-                                                  // validator: (value) {
-                                                  //   if (value!.isEmpty) {
-                                                  //     return "OTP cannot be empty";
-                                                  //   }
-                                                  // },
                                                 ),
                                               )
                                             ])),
@@ -532,17 +502,7 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                                 'Choose') {
                                               return 'Select Year';
                                             }
-                                            int pp =
-                                                ylist.indexOf(ydropdownValue);
-                                            String syy = yylist[pp];
-                                            int tr =
-                                                blist.indexOf(bdropdownValue);
-                                            String ww = rlist[tr];
-                                            if (RegExp(r"^" +
-                                                    syy +
-                                                    r"(0027)" +
-                                                    ww +
-                                                    r"([0-9]{4})$")
+                                            if (RegExp(r"^\d{13}$")
                                                 .hasMatch(value)) {
                                               return null;
                                             } else {
@@ -828,20 +788,8 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                                   } else {
                                                     mans = mname.toLowerCase();
                                                   }
-                                                  int mp = ylist
-                                                      .indexOf(mydropdownValue);
-                                                  String msy = yylist[mp];
-                                                  int mk = blist
-                                                      .indexOf(mbdropdownValue);
-                                                  String msn = cslist[mk];
-                                                  if (msy == '22' && mk == 5) {
-                                                    msn = '164';
-                                                  }
                                                   if (RegExp(r"^" +
-                                                          mans +
-                                                          msy +
-                                                          msn +
-                                                          r"([0-9]{3})([-]?[dD]?)(@akgec\.ac\.in)$")
+                                                          r"[A-Za-z0-9._%+-]+@akgec\.ac\.in$")
                                                       .hasMatch(value)) {
                                                     // cm = true;
                                                     mcheeek = true;
@@ -918,6 +866,8 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                           ),
                                           TextFormField(
                                               controller: _mrollNoController,
+                                              keyboardType:
+                                                  TextInputType.number,
                                               decoration: InputDecoration(
                                                 hintText: "Enter Roll No.",
                                                 border: OutlineInputBorder(
@@ -950,11 +900,7 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                                 int mtr = blist
                                                     .indexOf(mbdropdownValue);
                                                 String mww = rlist[mtr];
-                                                if (RegExp(r"^" +
-                                                        msyy +
-                                                        r"(0027)" +
-                                                        mww +
-                                                        r"([0-9]{4})$")
+                                                if (RegExp(r"^\d{13}$")
                                                     .hasMatch(value)) {
                                                   // rn = true;
                                                   return null;
@@ -1155,27 +1101,6 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                           int.parse(_phoneNoController.text
                                               .toString()));
                                 }
-                                // res = await BV2RegistrationController().register(
-                                //     team_name: _teamNameController.text,
-                                //     // lEmail: _emailController.text.toString(),
-                                //     l_name: _nameController.text.toString(),
-                                //     l_email: _emailController.text.toString(),
-                                //     l_otp: int.parse(_otpController.text.toString()),
-                                //     l_hosteler: host,
-                                //     l_year: int.parse(ydropdownValue),
-                                //     l_branch: bdropdownValue,
-                                //     l_rollNo:
-                                //         int.parse(_rollNoController.text.toString()),
-                                //     l_phoneNo:
-                                //         int.parse(_phoneNoController.text.toString()),
-                                //     m_name: _mnameController.text,
-                                //     m_email: _memailController.text,
-                                //     m_otp: int.parse(_motpController.text),
-                                //     m_hosteler: mhost,
-                                //     m_year: int.parse(mydropdownValue),
-                                //     m_branch: bdropdownValue,
-                                //     m_rollNo: int.parse(_mrollNoController.text),
-                                //     m_phoneNo: int.parse(_mphoneNoController.text));
                                 (res).log();
                                 if (!mounted) return;
                                 showAlertDialog(context, res);

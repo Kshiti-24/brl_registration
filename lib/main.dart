@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-// import 'package:registration/screens/app_bar_screen.dart';
-// import 'package:registration/screens/bar.dart';
 import 'package:registration/screens/bv2_register.dart';
 
 void main() {
