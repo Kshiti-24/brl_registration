@@ -187,331 +187,373 @@ class _BV2RegistrationState extends State<BV2Registration> {
                             child: Card(
                               elevation: 5,
                               shadowColor: Colors.black,
-                              child: SizedBox(
-                                width: 400,
-                                height: 700,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(15.0),
-                                  child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        const Text(
-                                          'Leader Name',
-                                          style: TextStyle(
-                                            fontSize: 18.0,
-                                            fontWeight: FontWeight.bold,
-                                          ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(15.0),
+                                child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      const Text(
+                                        'Leader Name',
+                                        style: TextStyle(
+                                          fontSize: 18.0,
+                                          fontWeight: FontWeight.bold,
                                         ),
-                                        const SizedBox(
-                                          height: 5,
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      textFormFieldWidget(
+                                        controller: _nameController,
+                                        keyboardType: TextInputType.name,
+                                        hintText: "Enter Leader Name",
+                                        icon: Icons
+                                            .drive_file_rename_outline_outlined,
+                                        validator: (value) {
+                                          if (value!.isEmpty) {
+                                            return 'Name cannot be empty';
+                                          }
+                                          if (RegExp(
+                                                  r'^[a-zA-Z]+(?:\.\s)?[a-zA-Z]+(?:\s[a-zA-Z]+)*\s*$')
+                                              .hasMatch(value)) {
+                                            return null;
+                                          } else {
+                                            return "Enter correct Name";
+                                          }
+                                        },
+                                      ),
+                                      const SizedBox(height: 10.0),
+                                      const Text(
+                                        'Phone No',
+                                        style: TextStyle(
+                                          fontSize: 18.0,
+                                          fontWeight: FontWeight.bold,
                                         ),
-                                        textFormFieldWidget(
-                                          controller: _nameController,
-                                          keyboardType: TextInputType.name,
-                                          hintText: "Enter Leader Name",
-                                          icon: Icons
-                                              .drive_file_rename_outline_outlined,
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      textFormFieldWidget(
+                                          controller: _phoneNoController,
+                                          keyboardType: TextInputType.number,
+                                          hintText: "Enter Phone No.",
+                                          icon: Icons.phone_outlined,
                                           validator: (value) {
                                             if (value!.isEmpty) {
-                                              return 'Name cannot be empty';
+                                              return 'Phone No. cannot be empty';
                                             }
                                             if (RegExp(
-                                                    r'^[a-zA-Z]+(?:\.\s)?[a-zA-Z]+(?:\s[a-zA-Z]+)*\s*$')
+                                                    r'^(?:\+91|0)?[6789]\d{9}$')
                                                 .hasMatch(value)) {
                                               return null;
                                             } else {
-                                              return "Enter correct Name";
+                                              return "Enter correct Phone No.";
                                             }
-                                          },
+                                          }),
+                                      const SizedBox(height: 10.0),
+                                      const Text(
+                                        'Branch',
+                                        style: TextStyle(
+                                          fontSize: 18.0,
+                                          fontWeight: FontWeight.bold,
                                         ),
-                                        const SizedBox(height: 10.0),
-                                        const Text(
-                                          'Phone No',
-                                          style: TextStyle(
-                                            fontSize: 18.0,
-                                            fontWeight: FontWeight.bold,
+                                      ),
+                                      DecoratedBox(
+                                        decoration: BoxDecoration(
+                                          border: Border.all(
+                                              color: Colors.black38,
+                                              width:
+                                                  1), //border of dropdown button
+                                          borderRadius: BorderRadius.circular(
+                                              15), //border raiuds of dropdown button
+                                        ),
+                                        child: Padding(
+                                          padding: EdgeInsets.only(
+                                              left: 10, right: 10),
+                                          child: DropdownButton<String>(
+                                            value: bdropdownValue,
+                                            icon: const Icon(
+                                                Icons.arrow_downward),
+                                            elevation: 16,
+                                            underline: Container(
+                                              height: 5,
+                                            ),
+                                            onChanged: (String? value) {
+                                              setState(() {
+                                                bdropdownValue = value!;
+                                              });
+                                            },
+                                            items: blist
+                                                .map<DropdownMenuItem<String>>(
+                                                    (String value) {
+                                              return DropdownMenuItem<String>(
+                                                value: value,
+                                                child: Text(value),
+                                              );
+                                            }).toList(),
                                           ),
                                         ),
-                                        const SizedBox(
-                                          height: 5,
-                                        ),
-                                        textFormFieldWidget(
-                                            controller: _phoneNoController,
-                                            keyboardType: TextInputType.number,
-                                            hintText: "Enter Phone No.",
-                                            icon: Icons.phone_outlined,
-                                            validator: (value) {
-                                              if (value!.isEmpty) {
-                                                return 'Phone No. cannot be empty';
-                                              }
-                                              if (RegExp(
-                                                      r'^(?:\+91|0)?[6789]\d{9}$')
-                                                  .hasMatch(value)) {
-                                                return null;
-                                              } else {
-                                                return "Enter correct Phone No.";
-                                              }
-                                            }),
-                                        const SizedBox(height: 10.0),
-                                        const Text(
-                                          'Branch',
-                                          style: TextStyle(
-                                            fontSize: 18.0,
-                                            fontWeight: FontWeight.bold,
+                                      ),
+                                      const SizedBox(height: 10.0),
+                                      SingleChildScrollView(
+                                        scrollDirection: Axis.horizontal,
+                                        child: Row(children: [
+                                          const Text(
+                                            'Hosteler',
+                                            style: TextStyle(
+                                              fontSize: 18.0,
+                                              fontWeight: FontWeight.bold,
+                                            ),
                                           ),
-                                        ),
-                                        DropdownButton<String>(
-                                          value: bdropdownValue,
-                                          icon:
-                                              const Icon(Icons.arrow_downward),
-                                          elevation: 16,
-                                          underline: Container(
-                                            height: 5,
-                                          ),
-                                          onChanged: (String? value) {
-                                            setState(() {
-                                              bdropdownValue = value!;
-                                            });
-                                          },
-                                          items: blist
-                                              .map<DropdownMenuItem<String>>(
-                                                  (String value) {
-                                            return DropdownMenuItem<String>(
-                                              value: value,
-                                              child: Text(value),
-                                            );
-                                          }).toList(),
-                                        ),
-                                        const SizedBox(height: 10.0),
-                                        SingleChildScrollView(
-                                          scrollDirection: Axis.horizontal,
-                                          child: Row(children: [
-                                            const Text(
-                                              'Hosteler',
-                                              style: TextStyle(
-                                                fontSize: 18.0,
-                                                fontWeight: FontWeight.bold,
+                                          DecoratedBox(
+                                            decoration: BoxDecoration(
+                                              // color:Colors.lightGreen, //background color of dropdown button
+                                              border: Border.all(
+                                                  color: Colors.black38,
+                                                  width:
+                                                      1), //border of dropdown button
+                                              borderRadius: BorderRadius.circular(
+                                                  15), //border raiuds of dropdown button
+                                            ),
+                                            child: Padding(
+                                              padding: EdgeInsets.only(
+                                                  left: 10, right: 10),
+                                              child: DropdownButton<String>(
+                                                value: dropdownValue,
+                                                icon: const Icon(
+                                                    Icons.arrow_downward),
+                                                elevation: 16,
+                                                underline: Container(
+                                                  height: 5,
+                                                ),
+                                                onChanged: (String? value) {
+                                                  setState(() {
+                                                    dropdownValue = value!;
+                                                  });
+                                                },
+                                                items: list.map<
+                                                        DropdownMenuItem<
+                                                            String>>(
+                                                    (String value) {
+                                                  return DropdownMenuItem<
+                                                      String>(
+                                                    value: value,
+                                                    child: Text(value),
+                                                  );
+                                                }).toList(),
                                               ),
                                             ),
-                                            DropdownButton<String>(
-                                              value: dropdownValue,
-                                              icon: const Icon(
-                                                  Icons.arrow_downward),
-                                              elevation: 16,
-                                              underline: Container(
-                                                height: 5,
+                                          ),
+                                          const SizedBox(
+                                            width: 5,
+                                          ),
+                                          const Text(
+                                            'Year',
+                                            style: TextStyle(
+                                              fontSize: 18.0,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          DecoratedBox(
+                                            decoration: BoxDecoration(
+                                              // color:Colors.lightGreen, //background color of dropdown button
+                                              border: Border.all(
+                                                  color: Colors.black38,
+                                                  width:
+                                                      1), //border of dropdown button
+                                              borderRadius: BorderRadius.circular(
+                                                  15), //border raiuds of dropdown button
+                                            ),
+                                            child: Padding(
+                                              padding: EdgeInsets.only(
+                                                  left: 10, right: 10),
+                                              child: DropdownButton<String>(
+                                                value: ydropdownValue,
+                                                icon: const Icon(
+                                                    Icons.arrow_downward),
+                                                elevation: 16,
+                                                disabledHint:
+                                                    Text(ydropdownValue),
+                                                underline: Container(
+                                                  height: 2,
+                                                ),
+                                                onChanged: (String? value) {
+                                                  setState(() {
+                                                    ydropdownValue = value!;
+                                                  });
+                                                },
+                                                items: ylist.map<
+                                                        DropdownMenuItem<
+                                                            String>>(
+                                                    (String value) {
+                                                  return DropdownMenuItem<
+                                                      String>(
+                                                    value: value,
+                                                    child: Text(value),
+                                                  );
+                                                }).toList(),
                                               ),
-                                              onChanged: (String? value) {
-                                                setState(() {
-                                                  dropdownValue = value!;
-                                                });
-                                              },
-                                              items: list.map<
-                                                      DropdownMenuItem<String>>(
-                                                  (String value) {
-                                                return DropdownMenuItem<String>(
-                                                  value: value,
-                                                  child: Text(value),
-                                                );
-                                              }).toList(),
+                                            ),
+                                          )
+                                        ]),
+                                      ),
+                                      const SizedBox(height: 10.0),
+                                      const Text(
+                                        'College Email',
+                                        style: TextStyle(
+                                          fontSize: 18.0,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 6,
+                                      ),
+                                      textFormFieldWidget(
+                                          controller: _emailController,
+                                          keyboardType:
+                                              TextInputType.emailAddress,
+                                          hintText: "Enter Email",
+                                          icon: Icons.email_outlined,
+                                          validator: (value) {
+                                            value = value!.toLowerCase();
+                                            if (value.isEmpty) {
+                                              return 'Email cannot be empty';
+                                            } else {
+                                              String name = _nameController.text
+                                                  .toString();
+                                              if (name.isEmpty) {
+                                                return 'Name cannot be empty';
+                                              } else if (bdropdownValue ==
+                                                  'Select Branch') {
+                                                return 'Select Branch';
+                                              } else if (ydropdownValue ==
+                                                  'Choose') {
+                                                return 'Select Year';
+                                              }
+                                              int r = name.indexOf(" ");
+                                              String ans = "";
+                                              if (r > 0) {
+                                                ans = name
+                                                    .substring(0, r)
+                                                    .toLowerCase();
+                                              } else {
+                                                ans = name.toLowerCase();
+                                              }
+                                              if (ans != "mohammad" &&
+                                                  ans != "md." &&
+                                                  ans != "mohd") {
+                                                if (RegExp(r"^" +
+                                                        ans +
+                                                        r"[A-Za-z0-9._%+-]+@akgec\.ac\.in$")
+                                                    .hasMatch(value)) {
+                                                  cheeek = true;
+                                                  return null;
+                                                } else {
+                                                  cheeek = false;
+                                                  return "Enter correct College Email";
+                                                }
+                                              } else {
+                                                if (RegExp(
+                                                        r"^.*@akgec\.ac\.in$")
+                                                    .hasMatch(value)) {
+                                                  cheeek = true;
+                                                  return null;
+                                                } else {
+                                                  cheeek = false;
+                                                  return "Enter correct College Email";
+                                                }
+                                              }
+                                            }
+                                          }),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Visibility(
+                                          visible: cheeek,
+                                          child: Row(children: [
+                                            ElevatedButton(
+                                              onPressed: !_sendAllow
+                                                  ? null
+                                                  : () {
+                                                      if (formKey.currentState!
+                                                          .validate()) {
+                                                        sendEmail(
+                                                            _emailController
+                                                                .text,
+                                                            context);
+                                                        setState(() {
+                                                          _sendAllow = false;
+                                                          checkotp = true;
+                                                        });
+                                                        timer();
+                                                      } else {
+                                                        showSnackBarr(
+                                                            "Enter the details properly",
+                                                            context);
+                                                      }
+                                                    },
+                                              child: Text(
+                                                checkotp
+                                                    ? _sendAllow
+                                                        ? "Resend Otp"
+                                                        : _timerText
+                                                    : "Send Otp",
+                                              ),
                                             ),
                                             const SizedBox(
-                                              width: 5,
+                                              width: 25,
                                             ),
-                                            const Text(
-                                              'Year',
-                                              style: TextStyle(
-                                                fontSize: 18.0,
-                                                fontWeight: FontWeight.bold,
+                                            SizedBox(
+                                              width: 150,
+                                              height: 35,
+                                              child: Pinput(
+                                                length: 4,
+                                                controller: _otpController,
+                                                keyboardType:
+                                                    TextInputType.number,
+                                                textInputAction:
+                                                    TextInputAction.next,
+                                                pinputAutovalidateMode:
+                                                    PinputAutovalidateMode
+                                                        .onSubmit,
                                               ),
-                                            ),
-                                            DropdownButton<String>(
-                                              value: ydropdownValue,
-                                              icon: const Icon(
-                                                  Icons.arrow_downward),
-                                              elevation: 16,
-                                              disabledHint:
-                                                  Text(ydropdownValue),
-                                              underline: Container(
-                                                height: 2,
-                                              ),
-                                              onChanged: (String? value) {
-                                                setState(() {
-                                                  ydropdownValue = value!;
-                                                });
-                                              },
-                                              items: ylist.map<
-                                                      DropdownMenuItem<String>>(
-                                                  (String value) {
-                                                return DropdownMenuItem<String>(
-                                                  value: value,
-                                                  child: Text(value),
-                                                );
-                                              }).toList(),
                                             )
-                                          ]),
+                                          ])),
+                                      const SizedBox(height: 10.0),
+                                      const Text(
+                                        'Roll No',
+                                        style: TextStyle(
+                                          fontSize: 18.0,
+                                          fontWeight: FontWeight.bold,
                                         ),
-                                        const SizedBox(height: 10.0),
-                                        const Text(
-                                          'College Email',
-                                          style: TextStyle(
-                                            fontSize: 18.0,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          height: 6,
-                                        ),
-                                        textFormFieldWidget(
-                                            controller: _emailController,
-                                            keyboardType:
-                                                TextInputType.emailAddress,
-                                            hintText: "Enter Email",
-                                            icon: Icons.email_outlined,
-                                            validator: (value) {
-                                              value = value!.toLowerCase();
-                                              if (value.isEmpty) {
-                                                return 'Email cannot be empty';
-                                              } else {
-                                                String name = _nameController
-                                                    .text
-                                                    .toString();
-                                                if (name.isEmpty) {
-                                                  return 'Name cannot be empty';
-                                                } else if (bdropdownValue ==
-                                                    'Select Branch') {
-                                                  return 'Select Branch';
-                                                } else if (ydropdownValue ==
-                                                    'Choose') {
-                                                  return 'Select Year';
-                                                }
-                                                int r = name.indexOf(" ");
-                                                String ans = "";
-                                                if (r > 0) {
-                                                  ans = name
-                                                      .substring(0, r)
-                                                      .toLowerCase();
-                                                } else {
-                                                  ans = name.toLowerCase();
-                                                }
-                                                if (ans != "mohammad" &&
-                                                    ans != "md." &&
-                                                    ans != "mohd") {
-                                                  if (RegExp(r"^" +
-                                                          ans +
-                                                          r"[A-Za-z0-9._%+-]+@akgec\.ac\.in$")
-                                                      .hasMatch(value)) {
-                                                    cheeek = true;
-                                                    return null;
-                                                  } else {
-                                                    cheeek = false;
-                                                    return "Enter correct College Email";
-                                                  }
-                                                } else {
-                                                  if (RegExp(
-                                                          r"^.*@akgec\.ac\.in$")
-                                                      .hasMatch(value)) {
-                                                    cheeek = true;
-                                                    return null;
-                                                  } else {
-                                                    cheeek = false;
-                                                    return "Enter correct College Email";
-                                                  }
-                                                }
-                                              }
-                                            }),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        Visibility(
-                                            visible: cheeek,
-                                            child: Row(children: [
-                                              ElevatedButton(
-                                                onPressed: !_sendAllow
-                                                    ? null
-                                                    : () {
-                                                        if (formKey
-                                                            .currentState!
-                                                            .validate()) {
-                                                          sendEmail(
-                                                              _emailController
-                                                                  .text,
-                                                              context);
-                                                          setState(() {
-                                                            _sendAllow = false;
-                                                            checkotp = true;
-                                                          });
-                                                          timer();
-                                                        } else {
-                                                          showSnackBarr(
-                                                              "Enter the details properly",
-                                                              context);
-                                                        }
-                                                      },
-                                                child: Text(
-                                                  checkotp
-                                                      ? _sendAllow
-                                                          ? "Resend Otp"
-                                                          : _timerText
-                                                      : "Send Otp",
-                                                ),
-                                              ),
-                                              const SizedBox(
-                                                width: 25,
-                                              ),
-                                              SizedBox(
-                                                width: 150,
-                                                height: 35,
-                                                child: Pinput(
-                                                  length: 4,
-                                                  controller: _otpController,
-                                                  keyboardType:
-                                                      TextInputType.number,
-                                                  textInputAction:
-                                                      TextInputAction.next,
-                                                  pinputAutovalidateMode:
-                                                      PinputAutovalidateMode
-                                                          .onSubmit,
-                                                ),
-                                              )
-                                            ])),
-                                        const SizedBox(height: 10.0),
-                                        const Text(
-                                          'Roll No',
-                                          style: TextStyle(
-                                            fontSize: 18.0,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          height: 5,
-                                        ),
-                                        textFormFieldWidget(
-                                          keyboardType: TextInputType.number,
-                                          controller: _rollNoController,
-                                          hintText: "Enter Roll No.",
-                                          icon: Icons.numbers_outlined,
-                                          validator: (value) {
-                                            if (value!.isEmpty) {
-                                              return 'Roll No. cannot be empty';
-                                            } else if (bdropdownValue ==
-                                                'Select Branch') {
-                                              return 'Select Branch';
-                                            } else if (ydropdownValue ==
-                                                'Choose') {
-                                              return 'Select Year';
-                                            }
-                                            if (RegExp(r"^\d{13}$")
-                                                .hasMatch(value)) {
-                                              return null;
-                                            } else {
-                                              return "Enter correct Roll No.";
-                                            }
-                                          },
-                                        ),
-                                      ]),
-                                ),
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      textFormFieldWidget(
+                                        keyboardType: TextInputType.number,
+                                        controller: _rollNoController,
+                                        hintText: "Enter Roll No.",
+                                        icon: Icons.numbers_outlined,
+                                        validator: (value) {
+                                          if (value!.isEmpty) {
+                                            return 'Roll No. cannot be empty';
+                                          } else if (bdropdownValue ==
+                                              'Select Branch') {
+                                            return 'Select Branch';
+                                          } else if (ydropdownValue ==
+                                              'Choose') {
+                                            return 'Select Year';
+                                          }
+                                          if (RegExp(r"^\d{13}$")
+                                              .hasMatch(value)) {
+                                            return null;
+                                          } else {
+                                            return "Enter correct Roll No.";
+                                          }
+                                        },
+                                      ),
+                                    ]),
                               ),
                             ),
                           ),
@@ -638,27 +680,44 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
-                                          DropdownButton<String>(
-                                            value: mbdropdownValue,
-                                            icon: const Icon(
-                                                Icons.arrow_downward),
-                                            elevation: 16,
-                                            underline: Container(
-                                              height: 5,
+                                          DecoratedBox(
+                                            decoration: BoxDecoration(
+                                              // color:Colors.lightGreen, //background color of dropdown button
+                                              border: Border.all(
+                                                  color: Colors.black38,
+                                                  width:
+                                                      1), //border of dropdown button
+                                              borderRadius: BorderRadius.circular(
+                                                  15), //border raiuds of dropdown button
                                             ),
-                                            onChanged: (String? value) {
-                                              setState(() {
-                                                mbdropdownValue = value!;
-                                              });
-                                            },
-                                            items: blist
-                                                .map<DropdownMenuItem<String>>(
+                                            child: Padding(
+                                              padding: EdgeInsets.only(
+                                                  left: 10, right: 10),
+                                              child: DropdownButton<String>(
+                                                value: mbdropdownValue,
+                                                icon: const Icon(
+                                                    Icons.arrow_downward),
+                                                elevation: 16,
+                                                underline: Container(
+                                                  height: 5,
+                                                ),
+                                                onChanged: (String? value) {
+                                                  setState(() {
+                                                    mbdropdownValue = value!;
+                                                  });
+                                                },
+                                                items: blist.map<
+                                                        DropdownMenuItem<
+                                                            String>>(
                                                     (String value) {
-                                              return DropdownMenuItem<String>(
-                                                value: value,
-                                                child: Text(value),
-                                              );
-                                            }).toList(),
+                                                  return DropdownMenuItem<
+                                                      String>(
+                                                    value: value,
+                                                    child: Text(value),
+                                                  );
+                                                }).toList(),
+                                              ),
+                                            ),
                                           ),
                                           const SizedBox(height: 10.0),
                                           SingleChildScrollView(
@@ -671,29 +730,45 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                                   fontWeight: FontWeight.bold,
                                                 ),
                                               ),
-                                              DropdownButton<String>(
-                                                value: mdropdownValue,
-                                                icon: const Icon(
-                                                    Icons.arrow_downward),
-                                                elevation: 16,
-                                                underline: Container(
-                                                  height: 5,
+                                              DecoratedBox(
+                                                decoration: BoxDecoration(
+                                                  // color:Colors.lightGreen, //background color of dropdown button
+                                                  border: Border.all(
+                                                      color: Colors.black38,
+                                                      width:
+                                                          1), //border of dropdown button
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          15), //border raiuds of dropdown button
                                                 ),
-                                                onChanged: (String? value) {
-                                                  setState(() {
-                                                    mdropdownValue = value!;
-                                                  });
-                                                },
-                                                items: list.map<
-                                                        DropdownMenuItem<
-                                                            String>>(
-                                                    (String value) {
-                                                  return DropdownMenuItem<
-                                                      String>(
-                                                    value: value,
-                                                    child: Text(value),
-                                                  );
-                                                }).toList(),
+                                                child: Padding(
+                                                  padding: EdgeInsets.only(
+                                                      left: 10, right: 10),
+                                                  child: DropdownButton<String>(
+                                                    value: mdropdownValue,
+                                                    icon: const Icon(
+                                                        Icons.arrow_downward),
+                                                    elevation: 16,
+                                                    underline: Container(
+                                                      height: 5,
+                                                    ),
+                                                    onChanged: (String? value) {
+                                                      setState(() {
+                                                        mdropdownValue = value!;
+                                                      });
+                                                    },
+                                                    items: list.map<
+                                                            DropdownMenuItem<
+                                                                String>>(
+                                                        (String value) {
+                                                      return DropdownMenuItem<
+                                                          String>(
+                                                        value: value,
+                                                        child: Text(value),
+                                                      );
+                                                    }).toList(),
+                                                  ),
+                                                ),
                                               ),
                                               const SizedBox(
                                                 width: 8,
@@ -705,29 +780,46 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                                   fontWeight: FontWeight.bold,
                                                 ),
                                               ),
-                                              DropdownButton<String>(
-                                                value: mydropdownValue,
-                                                icon: const Icon(
-                                                    Icons.arrow_downward),
-                                                elevation: 16,
-                                                underline: Container(
-                                                  height: 2,
+                                              DecoratedBox(
+                                                decoration: BoxDecoration(
+                                                  // color:Colors.lightGreen, //background color of dropdown button
+                                                  border: Border.all(
+                                                      color: Colors.black38,
+                                                      width:
+                                                          1), //border of dropdown button
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          15), //border raiuds of dropdown button
                                                 ),
-                                                onChanged: (String? value) {
-                                                  setState(() {
-                                                    mydropdownValue = value!;
-                                                  });
-                                                },
-                                                items: ylist.map<
-                                                        DropdownMenuItem<
-                                                            String>>(
-                                                    (String value) {
-                                                  return DropdownMenuItem<
-                                                      String>(
-                                                    value: value,
-                                                    child: Text(value),
-                                                  );
-                                                }).toList(),
+                                                child: Padding(
+                                                  padding: EdgeInsets.only(
+                                                      left: 10, right: 10),
+                                                  child: DropdownButton<String>(
+                                                    value: mydropdownValue,
+                                                    icon: const Icon(
+                                                        Icons.arrow_downward),
+                                                    elevation: 16,
+                                                    underline: Container(
+                                                      height: 2,
+                                                    ),
+                                                    onChanged: (String? value) {
+                                                      setState(() {
+                                                        mydropdownValue =
+                                                            value!;
+                                                      });
+                                                    },
+                                                    items: ylist.map<
+                                                            DropdownMenuItem<
+                                                                String>>(
+                                                        (String value) {
+                                                      return DropdownMenuItem<
+                                                          String>(
+                                                        value: value,
+                                                        child: Text(value),
+                                                      );
+                                                    }).toList(),
+                                                  ),
+                                                ),
                                               )
                                             ]),
                                           ),
