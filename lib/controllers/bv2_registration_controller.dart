@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class BV2RegistrationController {
   dynamic register({
@@ -172,7 +173,7 @@ showSnackBarr(String content, BuildContext context) {
   ));
 }
 
-showAlertDialog(BuildContext context, String msg) {
+showAlertDialog(BuildContext context, String msg, String teamname) {
   // Create button
   Widget okButton = ElevatedButton(
     child: const Text("OK"),
@@ -180,13 +181,48 @@ showAlertDialog(BuildContext context, String msg) {
       Navigator.of(context).pop();
     },
   );
-
+  String m1 = "", m2 = "";
+  if (msg == "Registration successfull") {
+    m1 = "Thank you! You are all set";
+    m2 = "Team registration successful.";
+  } else if (msg == "user exits") {
+    m1 = "User Already Exists";
+    m2 = "One or more of your team member/s \n already exists.";
+  } else {
+    m1 = msg;
+    m2 = "Try resending your OTP ";
+  }
   // Create AlertDialog
   AlertDialog alert = AlertDialog(
-    content: Text(msg),
-    actions: [
-      okButton,
-    ],
+    shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(32.0))),
+    contentPadding: EdgeInsets.only(top: 10.0),
+    title: msg == "Registration successfull"
+        ? Lottie.asset("asset/successful.json")
+        : Lottie.asset("asset/error1.json", width: 100, height: 90),
+    content: Container(
+      height: 110,
+      child: Center(
+        child: Column(children: [
+          Text(
+            m1,
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(
+            height: 2,
+          ),
+          Text(
+            m2,
+            textAlign: TextAlign.center,
+            style: TextStyle(color: Colors.grey, fontSize: 12),
+          ),
+          SizedBox(
+            height: 12,
+          ),
+          okButton
+        ]),
+      ),
+    ),
   );
 
   // show the dialog
