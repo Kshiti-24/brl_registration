@@ -1195,7 +1195,8 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                 }
                                 (res).log();
                                 if (!mounted) return;
-                                showAlertDialog(context, res);
+                                showAlertDialog(context, res,
+                                    _teamNameController.text.toString());
                                 ("Registered Successfully").log();
                               } else {
                                 if (formKey.currentState!.validate() &&
@@ -1249,8 +1250,12 @@ class _BV2RegistrationState extends State<BV2Registration> {
                               });
                             },
                             child: _loading
-                                ? const CircularProgressIndicator(
-                                    color: Colors.white,
+                                ? SizedBox(
+                                    height: 15,
+                                    width: 15,
+                                    child: const CircularProgressIndicator(
+                                      color: Colors.white,
+                                    ),
                                   )
                                 : const Text("Submit"),
                           ),
