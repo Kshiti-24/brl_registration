@@ -157,7 +157,7 @@ class _BV2RegistrationState extends State<BV2Registration> {
                             keyboardType: TextInputType.name,
                             controller: _teamNameController,
                             hintText: "Enter your Team Name",
-                            icon: Icons.drive_file_rename_outline_outlined,
+                            img: "asset/team1.png",
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return 'Team Name cannot be empty';
@@ -207,8 +207,9 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                         controller: _nameController,
                                         keyboardType: TextInputType.name,
                                         hintText: "Enter Leader Name",
-                                        icon: Icons
-                                            .drive_file_rename_outline_outlined,
+                                        // icon: Icons
+                                        //     .drive_file_rename_outline_outlined,
+                                        img: "asset/user.png",
                                         validator: (value) {
                                           if (value!.isEmpty) {
                                             return 'Name cannot be empty';
@@ -237,7 +238,8 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                           controller: _phoneNoController,
                                           keyboardType: TextInputType.number,
                                           hintText: "Enter Phone No.",
-                                          icon: Icons.phone_outlined,
+                                          // icon: Icons.phone_outlined,
+                                          img: "asset/phone.png",
                                           validator: (value) {
                                             if (value!.isEmpty) {
                                               return 'Phone No. cannot be empty';
@@ -258,39 +260,46 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
-                                      DecoratedBox(
-                                        decoration: BoxDecoration(
-                                          border: Border.all(
-                                              color: Colors.black38,
-                                              width:
-                                                  1), //border of dropdown button
-                                          borderRadius: BorderRadius.circular(
-                                              15), //border raiuds of dropdown button
-                                        ),
-                                        child: Padding(
-                                          padding: EdgeInsets.only(
-                                              left: 10, right: 10),
-                                          child: DropdownButton<String>(
-                                            value: bdropdownValue,
-                                            icon: const Icon(
-                                                Icons.arrow_downward),
-                                            elevation: 16,
-                                            underline: Container(
-                                              height: 5,
+                                      SizedBox(
+                                        height: 40,
+                                        child: DecoratedBox(
+                                          decoration: BoxDecoration(
+                                            border: Border.all(
+                                                color: Colors.black38,
+                                                width: 1),
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                          ),
+                                          child: Padding(
+                                            padding: EdgeInsets.only(
+                                                left: 10, right: 10),
+                                            child: DropdownButton<String>(
+                                              value: bdropdownValue,
+                                              // icon: const Icon(
+                                              //     Icons.arrow_downward),
+                                              icon: Image.asset(
+                                                "asset/arrow.png",
+                                                width: 25,
+                                                height: 30,
+                                              ),
+                                              elevation: 16,
+                                              underline: Container(
+                                                height: 5,
+                                              ),
+                                              onChanged: (String? value) {
+                                                setState(() {
+                                                  bdropdownValue = value!;
+                                                });
+                                              },
+                                              items: blist.map<
+                                                      DropdownMenuItem<String>>(
+                                                  (String value) {
+                                                return DropdownMenuItem<String>(
+                                                  value: value,
+                                                  child: Text(value),
+                                                );
+                                              }).toList(),
                                             ),
-                                            onChanged: (String? value) {
-                                              setState(() {
-                                                bdropdownValue = value!;
-                                              });
-                                            },
-                                            items: blist
-                                                .map<DropdownMenuItem<String>>(
-                                                    (String value) {
-                                              return DropdownMenuItem<String>(
-                                                value: value,
-                                                child: Text(value),
-                                              );
-                                            }).toList(),
                                           ),
                                         ),
                                       ),
@@ -305,42 +314,49 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
-                                          DecoratedBox(
-                                            decoration: BoxDecoration(
-                                              // color:Colors.lightGreen, //background color of dropdown button
-                                              border: Border.all(
-                                                  color: Colors.black38,
-                                                  width:
-                                                      1), //border of dropdown button
-                                              borderRadius: BorderRadius.circular(
-                                                  15), //border raiuds of dropdown button
-                                            ),
-                                            child: Padding(
-                                              padding: EdgeInsets.only(
-                                                  left: 10, right: 10),
-                                              child: DropdownButton<String>(
-                                                value: dropdownValue,
-                                                icon: const Icon(
-                                                    Icons.arrow_downward),
-                                                elevation: 16,
-                                                underline: Container(
-                                                  height: 5,
+                                          SizedBox(
+                                            height: 40,
+                                            width: 100,
+                                            child: DecoratedBox(
+                                              decoration: BoxDecoration(
+                                                // color:Colors.lightGreen, //background color of dropdown button
+                                                border: Border.all(
+                                                    color: Colors.black38,
+                                                    width:
+                                                        1), //border of dropdown button
+                                                borderRadius: BorderRadius.circular(
+                                                    15), //border raiuds of dropdown button
+                                              ),
+                                              child: Padding(
+                                                padding: EdgeInsets.only(
+                                                    left: 10, right: 10),
+                                                child: DropdownButton<String>(
+                                                  value: dropdownValue,
+                                                  icon: Image.asset(
+                                                    "asset/arrow.png",
+                                                    width: 25,
+                                                    height: 30,
+                                                  ),
+                                                  elevation: 16,
+                                                  underline: Container(
+                                                    height: 5,
+                                                  ),
+                                                  onChanged: (String? value) {
+                                                    setState(() {
+                                                      dropdownValue = value!;
+                                                    });
+                                                  },
+                                                  items: list.map<
+                                                          DropdownMenuItem<
+                                                              String>>(
+                                                      (String value) {
+                                                    return DropdownMenuItem<
+                                                        String>(
+                                                      value: value,
+                                                      child: Text(value),
+                                                    );
+                                                  }).toList(),
                                                 ),
-                                                onChanged: (String? value) {
-                                                  setState(() {
-                                                    dropdownValue = value!;
-                                                  });
-                                                },
-                                                items: list.map<
-                                                        DropdownMenuItem<
-                                                            String>>(
-                                                    (String value) {
-                                                  return DropdownMenuItem<
-                                                      String>(
-                                                    value: value,
-                                                    child: Text(value),
-                                                  );
-                                                }).toList(),
                                               ),
                                             ),
                                           ),
@@ -354,48 +370,90 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
-                                          DecoratedBox(
-                                            decoration: BoxDecoration(
-                                              // color:Colors.lightGreen, //background color of dropdown button
-                                              border: Border.all(
-                                                  color: Colors.black38,
-                                                  width:
-                                                      1), //border of dropdown button
-                                              borderRadius: BorderRadius.circular(
-                                                  15), //border raiuds of dropdown button
-                                            ),
-                                            child: Padding(
-                                              padding: EdgeInsets.only(
-                                                  left: 10, right: 10),
-                                              child: DropdownButton<String>(
-                                                value: ydropdownValue,
-                                                icon: const Icon(
-                                                    Icons.arrow_downward),
-                                                elevation: 16,
-                                                disabledHint:
-                                                    Text(ydropdownValue),
-                                                underline: Container(
-                                                  height: 2,
+                                          SizedBox(
+                                            height: 40,
+                                            width: 100,
+                                            child: DecoratedBox(
+                                              decoration: BoxDecoration(
+                                                // color:Colors.lightGreen, //background color of dropdown button
+                                                border: Border.all(
+                                                    color: Colors.black38,
+                                                    width:
+                                                        1), //border of dropdown button
+                                                borderRadius: BorderRadius.circular(
+                                                    15), //border raiuds of dropdown button
+                                              ),
+                                              child: Padding(
+                                                padding: EdgeInsets.only(
+                                                    left: 10, right: 10),
+                                                child: DropdownButton<String>(
+                                                  value: ydropdownValue,
+                                                  icon: Image.asset(
+                                                    "asset/arrow.png",
+                                                    width: 25,
+                                                    height: 30,
+                                                  ),
+                                                  elevation: 16,
+                                                  disabledHint:
+                                                      Text(ydropdownValue),
+                                                  underline: Container(
+                                                    height: 2,
+                                                  ),
+                                                  onChanged: (String? value) {
+                                                    setState(() {
+                                                      ydropdownValue = value!;
+                                                    });
+                                                  },
+                                                  items: ylist.map<
+                                                          DropdownMenuItem<
+                                                              String>>(
+                                                      (String value) {
+                                                    return DropdownMenuItem<
+                                                        String>(
+                                                      value: value,
+                                                      child: Text(value),
+                                                    );
+                                                  }).toList(),
                                                 ),
-                                                onChanged: (String? value) {
-                                                  setState(() {
-                                                    ydropdownValue = value!;
-                                                  });
-                                                },
-                                                items: ylist.map<
-                                                        DropdownMenuItem<
-                                                            String>>(
-                                                    (String value) {
-                                                  return DropdownMenuItem<
-                                                      String>(
-                                                    value: value,
-                                                    child: Text(value),
-                                                  );
-                                                }).toList(),
                                               ),
                                             ),
                                           )
                                         ]),
+                                      ),
+                                      const SizedBox(height: 10.0),
+                                      const Text(
+                                        'Roll No',
+                                        style: TextStyle(
+                                          fontSize: 18.0,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      textFormFieldWidget(
+                                        keyboardType: TextInputType.number,
+                                        controller: _rollNoController,
+                                        hintText: "Enter Roll No.",
+                                        img: "asset/hashtag.png",
+                                        // icon: Icons.numbers_outlined,
+                                        validator: (value) {
+                                          if (value!.isEmpty) {
+                                            return 'Roll No. cannot be empty';
+                                          } else if (bdropdownValue ==
+                                              'Select Branch') {
+                                            return 'Select Branch';
+                                          } else if (ydropdownValue ==
+                                              'Choose') {
+                                            return 'Select Year';
+                                          }
+                                          if (RegExp(r"^(21|22)0027\d{7}$")
+                                              .hasMatch(value)) {
+                                            return null;
+                                          } else {
+                                            return "Enter correct Roll No.";
+                                          }
+                                        },
                                       ),
                                       const SizedBox(height: 10.0),
                                       const Text(
@@ -413,7 +471,8 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                           keyboardType:
                                               TextInputType.emailAddress,
                                           hintText: "Enter Email",
-                                          icon: Icons.email_outlined,
+                                          // icon: Icons.email_outlined,
+                                          img: "asset/mail.png",
                                           validator: (value) {
                                             value = value!.toLowerCase();
                                             if (value.isEmpty) {
@@ -444,7 +503,7 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                                   ans != "mohd") {
                                                 if (RegExp(r"^" +
                                                         ans +
-                                                        r"[A-Za-z0-9._%+-]+@akgec\.ac\.in$")
+                                                        r"(21|22)[A-Za-z0-9._%+-]+@akgec\.ac\.in$")
                                                     .hasMatch(value)) {
                                                   cheeek = true;
                                                   return null;
@@ -495,10 +554,15 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                               child: Text(
                                                 checkotp
                                                     ? _sendAllow
-                                                        ? "Resend Otp"
+                                                        ? "Resend OTP"
                                                         : _timerText
-                                                    : "Send Otp",
+                                                    : "Send OTP",
                                               ),
+                                              style: ElevatedButton.styleFrom(
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10))),
                                             ),
                                             const SizedBox(
                                               width: 25,
@@ -519,40 +583,6 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                               ),
                                             )
                                           ])),
-                                      const SizedBox(height: 10.0),
-                                      const Text(
-                                        'Roll No',
-                                        style: TextStyle(
-                                          fontSize: 18.0,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 5,
-                                      ),
-                                      textFormFieldWidget(
-                                        keyboardType: TextInputType.number,
-                                        controller: _rollNoController,
-                                        hintText: "Enter Roll No.",
-                                        icon: Icons.numbers_outlined,
-                                        validator: (value) {
-                                          if (value!.isEmpty) {
-                                            return 'Roll No. cannot be empty';
-                                          } else if (bdropdownValue ==
-                                              'Select Branch') {
-                                            return 'Select Branch';
-                                          } else if (ydropdownValue ==
-                                              'Choose') {
-                                            return 'Select Year';
-                                          }
-                                          if (RegExp(r"^\d{13}$")
-                                              .hasMatch(value)) {
-                                            return null;
-                                          } else {
-                                            return "Enter correct Roll No.";
-                                          }
-                                        },
-                                      ),
                                     ]),
                               ),
                             ),
@@ -574,12 +604,11 @@ class _BV2RegistrationState extends State<BV2Registration> {
                             ),
                             const SizedBox(height: 15.0),
                             Center(
-                              child: Card(
-                                elevation: 5,
-                                shadowColor: Colors.black,
-                                child: SizedBox(
-                                  width: 400,
-                                  height: 700,
+                              child: SingleChildScrollView(
+                                scrollDirection: Axis.vertical,
+                                child: Card(
+                                  elevation: 5,
+                                  shadowColor: Colors.black,
                                   child: Padding(
                                     padding: const EdgeInsets.all(15.0),
                                     child: Column(
@@ -596,25 +625,11 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                           const SizedBox(
                                             height: 5,
                                           ),
-                                          TextFormField(
+                                          textFormFieldWidget(
+                                              keyboardType: TextInputType.name,
+                                              hintText: "Enter your name",
                                               controller: _mnameController,
-                                              decoration: InputDecoration(
-                                                hintText: "Enter Name",
-                                                border: OutlineInputBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          15.0),
-                                                ),
-                                                suffixIcon: const Icon(
-                                                  Icons
-                                                      .drive_file_rename_outline_outlined,
-                                                  size: 20,
-                                                  color: Colors.black,
-                                                ),
-                                                // suffix: Text("@akgec.ac.in"),
-                                              ),
-                                              autovalidateMode: AutovalidateMode
-                                                  .onUserInteraction,
+                                              img: "asset/user.png",
                                               validator: (value) {
                                                 if (value!.isEmpty) {
                                                   return 'Name cannot be empty';
@@ -639,26 +654,12 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                           const SizedBox(
                                             height: 5,
                                           ),
-                                          TextFormField(
+                                          textFormFieldWidget(
                                               controller: _mphoneNoController,
                                               keyboardType:
                                                   TextInputType.number,
-                                              decoration: InputDecoration(
-                                                hintText: "Enter Phone No.",
-                                                border: OutlineInputBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          15.0),
-                                                ),
-                                                suffixIcon: const Icon(
-                                                  Icons.phone_outlined,
-                                                  size: 20,
-                                                  color: Colors.black,
-                                                ),
-                                                // suffix: Text("@akgec.ac.in"),
-                                              ),
-                                              autovalidateMode: AutovalidateMode
-                                                  .onUserInteraction,
+                                              hintText: "Enter Phone No.",
+                                              img: "asset/phone.png",
                                               validator: (value) {
                                                 if (value!.isEmpty) {
                                                   return 'Phone No. cannot be empty';
@@ -680,42 +681,46 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
-                                          DecoratedBox(
-                                            decoration: BoxDecoration(
-                                              // color:Colors.lightGreen, //background color of dropdown button
-                                              border: Border.all(
-                                                  color: Colors.black38,
-                                                  width:
-                                                      1), //border of dropdown button
-                                              borderRadius: BorderRadius.circular(
-                                                  15), //border raiuds of dropdown button
-                                            ),
-                                            child: Padding(
-                                              padding: EdgeInsets.only(
-                                                  left: 10, right: 10),
-                                              child: DropdownButton<String>(
-                                                value: mbdropdownValue,
-                                                icon: const Icon(
-                                                    Icons.arrow_downward),
-                                                elevation: 16,
-                                                underline: Container(
-                                                  height: 5,
+                                          SizedBox(
+                                            height: 40,
+                                            child: DecoratedBox(
+                                              decoration: BoxDecoration(
+                                                border: Border.all(
+                                                    color: Colors.black38,
+                                                    width: 1),
+                                                borderRadius:
+                                                    BorderRadius.circular(15),
+                                              ),
+                                              child: Padding(
+                                                padding: EdgeInsets.only(
+                                                    left: 10, right: 10),
+                                                child: DropdownButton<String>(
+                                                  value: mbdropdownValue,
+                                                  icon: Image.asset(
+                                                    "asset/arrow.png",
+                                                    width: 25,
+                                                    height: 30,
+                                                  ),
+                                                  elevation: 16,
+                                                  underline: Container(
+                                                    height: 5,
+                                                  ),
+                                                  onChanged: (String? value) {
+                                                    setState(() {
+                                                      mbdropdownValue = value!;
+                                                    });
+                                                  },
+                                                  items: blist.map<
+                                                          DropdownMenuItem<
+                                                              String>>(
+                                                      (String value) {
+                                                    return DropdownMenuItem<
+                                                        String>(
+                                                      value: value,
+                                                      child: Text(value),
+                                                    );
+                                                  }).toList(),
                                                 ),
-                                                onChanged: (String? value) {
-                                                  setState(() {
-                                                    mbdropdownValue = value!;
-                                                  });
-                                                },
-                                                items: blist.map<
-                                                        DropdownMenuItem<
-                                                            String>>(
-                                                    (String value) {
-                                                  return DropdownMenuItem<
-                                                      String>(
-                                                    value: value,
-                                                    child: Text(value),
-                                                  );
-                                                }).toList(),
                                               ),
                                             ),
                                           ),
@@ -730,43 +735,51 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                                   fontWeight: FontWeight.bold,
                                                 ),
                                               ),
-                                              DecoratedBox(
-                                                decoration: BoxDecoration(
-                                                  // color:Colors.lightGreen, //background color of dropdown button
-                                                  border: Border.all(
-                                                      color: Colors.black38,
-                                                      width:
-                                                          1), //border of dropdown button
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          15), //border raiuds of dropdown button
-                                                ),
-                                                child: Padding(
-                                                  padding: EdgeInsets.only(
-                                                      left: 10, right: 10),
-                                                  child: DropdownButton<String>(
-                                                    value: mdropdownValue,
-                                                    icon: const Icon(
-                                                        Icons.arrow_downward),
-                                                    elevation: 16,
-                                                    underline: Container(
-                                                      height: 5,
+                                              SizedBox(
+                                                height: 40,
+                                                width: 100,
+                                                child: DecoratedBox(
+                                                  decoration: BoxDecoration(
+                                                    border: Border.all(
+                                                        color: Colors.black38,
+                                                        width: 1),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15),
+                                                  ),
+                                                  child: Padding(
+                                                    padding: EdgeInsets.only(
+                                                        left: 10, right: 10),
+                                                    child:
+                                                        DropdownButton<String>(
+                                                      value: mdropdownValue,
+                                                      icon: Image.asset(
+                                                        "asset/arrow.png",
+                                                        width: 25,
+                                                        height: 30,
+                                                      ),
+                                                      elevation: 16,
+                                                      underline: Container(
+                                                        height: 5,
+                                                      ),
+                                                      onChanged:
+                                                          (String? value) {
+                                                        setState(() {
+                                                          mdropdownValue =
+                                                              value!;
+                                                        });
+                                                      },
+                                                      items: list.map<
+                                                              DropdownMenuItem<
+                                                                  String>>(
+                                                          (String value) {
+                                                        return DropdownMenuItem<
+                                                            String>(
+                                                          value: value,
+                                                          child: Text(value),
+                                                        );
+                                                      }).toList(),
                                                     ),
-                                                    onChanged: (String? value) {
-                                                      setState(() {
-                                                        mdropdownValue = value!;
-                                                      });
-                                                    },
-                                                    items: list.map<
-                                                            DropdownMenuItem<
-                                                                String>>(
-                                                        (String value) {
-                                                      return DropdownMenuItem<
-                                                          String>(
-                                                        value: value,
-                                                        child: Text(value),
-                                                      );
-                                                    }).toList(),
                                                   ),
                                                 ),
                                               ),
@@ -780,52 +793,98 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                                   fontWeight: FontWeight.bold,
                                                 ),
                                               ),
-                                              DecoratedBox(
-                                                decoration: BoxDecoration(
-                                                  // color:Colors.lightGreen, //background color of dropdown button
-                                                  border: Border.all(
-                                                      color: Colors.black38,
-                                                      width:
-                                                          1), //border of dropdown button
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          15), //border raiuds of dropdown button
-                                                ),
-                                                child: Padding(
-                                                  padding: EdgeInsets.only(
-                                                      left: 10, right: 10),
-                                                  child: DropdownButton<String>(
-                                                    value: mydropdownValue,
-                                                    icon: const Icon(
-                                                        Icons.arrow_downward),
-                                                    elevation: 16,
-                                                    underline: Container(
-                                                      height: 2,
+                                              SizedBox(
+                                                height: 40,
+                                                width: 100,
+                                                child: DecoratedBox(
+                                                  decoration: BoxDecoration(
+                                                    border: Border.all(
+                                                        color: Colors.black38,
+                                                        width: 1),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15),
+                                                  ),
+                                                  child: Padding(
+                                                    padding: EdgeInsets.only(
+                                                        left: 10, right: 10),
+                                                    child:
+                                                        DropdownButton<String>(
+                                                      value: mydropdownValue,
+                                                      icon: Image.asset(
+                                                        "asset/arrow.png",
+                                                        width: 25,
+                                                        height: 30,
+                                                      ),
+                                                      elevation: 16,
+                                                      underline: Container(
+                                                        height: 2,
+                                                      ),
+                                                      onChanged:
+                                                          (String? value) {
+                                                        setState(() {
+                                                          mydropdownValue =
+                                                              value!;
+                                                        });
+                                                      },
+                                                      items: ylist.map<
+                                                              DropdownMenuItem<
+                                                                  String>>(
+                                                          (String value) {
+                                                        return DropdownMenuItem<
+                                                            String>(
+                                                          value: value,
+                                                          child: Text(value),
+                                                        );
+                                                      }).toList(),
                                                     ),
-                                                    onChanged: (String? value) {
-                                                      setState(() {
-                                                        mydropdownValue =
-                                                            value!;
-                                                      });
-                                                    },
-                                                    items: ylist.map<
-                                                            DropdownMenuItem<
-                                                                String>>(
-                                                        (String value) {
-                                                      return DropdownMenuItem<
-                                                          String>(
-                                                        value: value,
-                                                        child: Text(value),
-                                                      );
-                                                    }).toList(),
                                                   ),
                                                 ),
                                               )
                                             ]),
                                           ),
+                                          const SizedBox(height: 10.0),
+                                          const Text(
+                                            'Roll No',
+                                            style: TextStyle(
+                                              fontSize: 18.0,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
                                           const SizedBox(
                                             height: 5,
                                           ),
+                                          textFormFieldWidget(
+                                              controller: _mrollNoController,
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              img: "asset/hashtag.png",
+                                              hintText: "Enter Roll No.",
+                                              validator: (value) {
+                                                if (value!.isEmpty) {
+                                                  return 'Roll No. cannot be empty';
+                                                } else if (bdropdownValue ==
+                                                    'Select Branch') {
+                                                  return 'Select Branch';
+                                                } else if (ydropdownValue ==
+                                                    'Choose') {
+                                                  return 'Select Year';
+                                                }
+                                                int mpp = ylist
+                                                    .indexOf(mydropdownValue);
+                                                String msyy = yylist[mpp];
+                                                int mtr = blist
+                                                    .indexOf(mbdropdownValue);
+                                                String mww = rlist[mtr];
+                                                if (RegExp(
+                                                        r"^(21|22)0027\d{7}$")
+                                                    .hasMatch(value)) {
+                                                  // rn = true;
+                                                  return null;
+                                                } else {
+                                                  return "Enter correct Roll No.";
+                                                }
+                                              }),
                                           const SizedBox(height: 10.0),
                                           const Text(
                                             'College Email',
@@ -834,26 +893,15 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
-                                          TextFormField(
+                                          const SizedBox(
+                                            height: 6,
+                                          ),
+                                          textFormFieldWidget(
                                               keyboardType:
                                                   TextInputType.emailAddress,
                                               controller: _memailController,
-                                              decoration: InputDecoration(
-                                                hintText: "Enter Email",
-                                                border: OutlineInputBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          15.0),
-                                                ),
-                                                suffixIcon: const Icon(
-                                                  Icons.email_outlined,
-                                                  size: 20,
-                                                  color: Colors.black,
-                                                ),
-                                                // suffix: Text("@akgec.ac.in"),
-                                              ),
-                                              autovalidateMode: AutovalidateMode
-                                                  .onUserInteraction,
+                                              hintText: "Enter Email",
+                                              img: "asset/mail.png",
                                               validator: (value) {
                                                 value = value!.toLowerCase();
                                                 if (value.isEmpty) {
@@ -881,7 +929,8 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                                     mans = mname.toLowerCase();
                                                   }
                                                   if (RegExp(r"^" +
-                                                          r"[A-Za-z0-9._%+-]+@akgec\.ac\.in$")
+                                                          mans +
+                                                          r"(21|22)[A-Za-z0-9._%+-]+@akgec\.ac\.in$")
                                                       .hasMatch(value)) {
                                                     // cm = true;
                                                     mcheeek = true;
@@ -899,40 +948,46 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                               visible: mcheeek,
                                               child: Row(children: [
                                                 ElevatedButton(
-                                                  onPressed: !_sendAllow
-                                                      ? null
-                                                      : () {
-                                                          if (formKey
-                                                              .currentState!
-                                                              .validate()) {
-                                                            sendEmail(
-                                                                _memailController
-                                                                    .text,
-                                                                context);
-                                                            // Timer(
-                                                            //     const Duration(
-                                                            //         minutes: 1),
-                                                            //     () {
-                                                            //   setState(() {
-                                                            //     checkotp = false;
-                                                            //   });
-                                                            // });
-                                                            setState(() {
-                                                              _sendAllow =
-                                                                  false;
-                                                              mcheckotp = true;
-                                                            });
-                                                            timer();
-                                                          }
-                                                        },
-                                                  child: Text(
-                                                    mcheckotp
-                                                        ? _sendAllow
-                                                            ? "Resend Otp"
-                                                            : _timerText
-                                                        : "Send Otp",
-                                                  ),
-                                                ),
+                                                    onPressed: !_sendAllow
+                                                        ? null
+                                                        : () {
+                                                            if (formKey
+                                                                .currentState!
+                                                                .validate()) {
+                                                              sendEmail(
+                                                                  _memailController
+                                                                      .text,
+                                                                  context);
+                                                              // Timer(
+                                                              //     const Duration(
+                                                              //         minutes: 1),
+                                                              //     () {
+                                                              //   setState(() {
+                                                              //     checkotp = false;
+                                                              //   });
+                                                              // });
+                                                              setState(() {
+                                                                _sendAllow =
+                                                                    false;
+                                                                mcheckotp =
+                                                                    true;
+                                                              });
+                                                              timer();
+                                                            }
+                                                          },
+                                                    child: Text(
+                                                      mcheckotp
+                                                          ? _sendAllow
+                                                              ? "Resend Otp"
+                                                              : _timerText
+                                                          : "Send Otp",
+                                                    ),
+                                                    style: ElevatedButton.styleFrom(
+                                                        shape: RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10)))),
                                                 const SizedBox(
                                                   width: 25,
                                                 ),
@@ -945,61 +1000,6 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                                   ),
                                                 )
                                               ])),
-                                          const SizedBox(height: 10.0),
-                                          const Text(
-                                            'Roll No',
-                                            style: TextStyle(
-                                              fontSize: 18.0,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            height: 5,
-                                          ),
-                                          TextFormField(
-                                              controller: _mrollNoController,
-                                              keyboardType:
-                                                  TextInputType.number,
-                                              decoration: InputDecoration(
-                                                hintText: "Enter Roll No.",
-                                                border: OutlineInputBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          15.0),
-                                                ),
-                                                suffixIcon: const Icon(
-                                                  Icons.numbers_outlined,
-                                                  size: 20,
-                                                  color: Colors.black,
-                                                ),
-                                                // suffix: Text("@akgec.ac.in"),
-                                              ),
-                                              autovalidateMode: AutovalidateMode
-                                                  .onUserInteraction,
-                                              validator: (value) {
-                                                if (value!.isEmpty) {
-                                                  return 'Roll No. cannot be empty';
-                                                } else if (bdropdownValue ==
-                                                    'Select Branch') {
-                                                  return 'Select Branch';
-                                                } else if (ydropdownValue ==
-                                                    'Choose') {
-                                                  return 'Select Year';
-                                                }
-                                                int mpp = ylist
-                                                    .indexOf(mydropdownValue);
-                                                String msyy = yylist[mpp];
-                                                int mtr = blist
-                                                    .indexOf(mbdropdownValue);
-                                                String mww = rlist[mtr];
-                                                if (RegExp(r"^\d{13}$")
-                                                    .hasMatch(value)) {
-                                                  // rn = true;
-                                                  return null;
-                                                } else {
-                                                  return "Enter correct Roll No.";
-                                                }
-                                              }),
                                           const SizedBox(
                                             height: 10,
                                           ),
@@ -1065,200 +1065,206 @@ class _BV2RegistrationState extends State<BV2Registration> {
                         const SizedBox(height: 10.0),
                         Center(
                           child: ElevatedButton(
-                            onPressed: () async {
-                              setState(() {
-                                _loading = true;
-                              });
-                              var res =
-                                  "Please fill the above details properly first";
-                              if (_emailController.text ==
-                                      _memailController.text &&
-                                  _emailController.text.toString().isNotEmpty) {
+                              onPressed: () async {
                                 setState(() {
-                                  _loading = false;
-                                  res = "Duplicate Email";
+                                  _loading = true;
                                 });
-                                return showSnackBarr(res, context);
-                              } else if (_rollNoController.text ==
-                                      _mrollNoController.text &&
-                                  _rollNoController.text
-                                      .toString()
-                                      .isNotEmpty) {
-                                setState(() {
-                                  _loading = false;
-                                  res = "Duplicate Roll No.";
-                                });
-                                return showSnackBarr(res, context);
-                              } else if (_phoneNoController.text ==
-                                      _mphoneNoController.text &&
-                                  _phoneNoController.text
-                                      .toString()
-                                      .isNotEmpty) {
-                                setState(() {
-                                  _loading = false;
-                                  res = "Duplicate Phone No.";
-                                });
-                                return showSnackBarr(res, context);
-                              } else if (formKey.currentState!.validate() &&
-                                  (_otpController.text.isEmpty ||
-                                      _otpController.text.length < 4)) {
-                                setState(() {
-                                  _loading = false;
-                                  res = "Enter the OTP";
-                                });
-                                return showSnackBarr(res, context);
-                              } else if (formKey.currentState!.validate() &&
-                                  ((_motpController.text.isEmpty &&
-                                          _motpController.text.length < 4) &&
-                                      show == true)) {
-                                setState(() {
-                                  _loading = false;
-                                  res = "Enter the OTP";
-                                });
-                                print(formKey.currentState!.validate());
-                                return showSnackBarr(res, context);
-                              } else if (formKey.currentState!.validate() &&
-                                  dropdownValue != list.first &&
-                                  ydropdownValue != ylist.first &&
-                                  bdropdownValue != blist.first &&
-                                  ((mbdropdownValue != blist.first &&
-                                          mdropdownValue != list.first &&
-                                          mydropdownValue != ylist.first) ^
-                                      (!show))) {
-                                bool host = false;
-                                if (dropdownValue == "Yes") {
+                                var res =
+                                    "Please fill the above details properly first";
+                                if (_emailController.text ==
+                                        _memailController.text &&
+                                    _emailController.text
+                                        .toString()
+                                        .isNotEmpty) {
                                   setState(() {
-                                    host = true;
+                                    _loading = false;
+                                    res = "Duplicate Email";
                                   });
-                                } else if (dropdownValue == "No") {
+                                  return showSnackBarr(res, context);
+                                } else if (_rollNoController.text ==
+                                        _mrollNoController.text &&
+                                    _rollNoController.text
+                                        .toString()
+                                        .isNotEmpty) {
                                   setState(() {
-                                    host = false;
+                                    _loading = false;
+                                    res = "Duplicate Roll No.";
                                   });
-                                }
-                                bool mhost = false;
-                                if (mdropdownValue == "Yes") {
+                                  return showSnackBarr(res, context);
+                                } else if (_phoneNoController.text ==
+                                        _mphoneNoController.text &&
+                                    _phoneNoController.text
+                                        .toString()
+                                        .isNotEmpty) {
                                   setState(() {
-                                    mhost = true;
+                                    _loading = false;
+                                    res = "Duplicate Phone No.";
                                   });
-                                } else if (mdropdownValue == "No") {
-                                  setState(() {
-                                    mhost = false;
-                                  });
-                                }
-                                print(_teamNameController.text);
-                                print(_nameController.text.toString());
-                                print(_emailController.text.toString());
-                                print(int.parse(_otpController.text));
-                                print(host);
-                                print(int.parse(ydropdownValue));
-                                print(bdropdownValue);
-                                print(int.parse(_rollNoController.text));
-                                print(int.parse(_phoneNoController.text));
-                                if (show == true) {
-                                  res = await BV2RegistrationController()
-                                      .teamRegister(
-                                          _teamNameController.text,
-                                          _nameController.text.toString(),
-                                          _emailController.text.toString(),
-                                          int.parse(
-                                              _otpController.text.toString()),
-                                          host,
-                                          int.parse(ydropdownValue),
-                                          bdropdownValue,
-                                          int.parse(_rollNoController.text
-                                              .toString()),
-                                          int.parse(_phoneNoController.text
-                                              .toString()),
-                                          _mnameController.text,
-                                          _memailController.text,
-                                          int.parse(_motpController.text),
-                                          mhost,
-                                          int.parse(mydropdownValue),
-                                          bdropdownValue,
-                                          int.parse(_mrollNoController.text),
-                                          int.parse(_mphoneNoController.text));
-                                } else {
-                                  res = await BV2RegistrationController()
-                                      .individualRegister(
-                                          _teamNameController.text,
-                                          _nameController.text.toString(),
-                                          _emailController.text.toString(),
-                                          int.parse(
-                                              _otpController.text.toString()),
-                                          host,
-                                          int.parse(ydropdownValue),
-                                          bdropdownValue,
-                                          int.parse(_rollNoController.text
-                                              .toString()),
-                                          int.parse(_phoneNoController.text
-                                              .toString()));
-                                }
-                                (res).log();
-                                if (!mounted) return;
-                                showAlertDialog(context, res,
-                                    _teamNameController.text.toString());
-                                ("Registered Successfully").log();
-                              } else {
-                                if (formKey.currentState!.validate() &&
+                                  return showSnackBarr(res, context);
+                                } else if (formKey.currentState!.validate() &&
                                     (_otpController.text.isEmpty ||
                                         _otpController.text.length < 4)) {
-                                  res = "kjhj";
-                                } else if (formKey.currentState!.validate() !=
-                                    true) {
-                                  res = "Please correct the above details";
-                                } else if (bdropdownValue == blist.first) {
-                                  res = "Choose your branch";
-                                } else if (dropdownValue == list.first) {
-                                  res = "Choose if you are hosteler or not";
-                                } else if (ydropdownValue == ylist.first) {
-                                  res = "Choose your year";
-                                } else if ((mbdropdownValue == blist.first &&
-                                    show == true)) {
-                                  res = "Choose your branch";
-                                } else if ((mdropdownValue == list.first &&
-                                    show == true)) {
-                                  res = "Choose if you are hosteler or not";
-                                } else if ((mydropdownValue == ylist.first &&
-                                    show == true)) {
-                                  res = "Choose your year";
+                                  setState(() {
+                                    _loading = false;
+                                    res = "Enter the OTP";
+                                  });
+                                  return showSnackBarr(res, context);
+                                } else if (formKey.currentState!.validate() &&
+                                    ((_motpController.text.isEmpty &&
+                                            _motpController.text.length < 4) &&
+                                        show == true)) {
+                                  setState(() {
+                                    _loading = false;
+                                    res = "Enter the OTP";
+                                  });
+                                  print(formKey.currentState!.validate());
+                                  return showSnackBarr(res, context);
+                                } else if (formKey.currentState!.validate() &&
+                                    dropdownValue != list.first &&
+                                    ydropdownValue != ylist.first &&
+                                    bdropdownValue != blist.first &&
+                                    ((mbdropdownValue != blist.first &&
+                                            mdropdownValue != list.first &&
+                                            mydropdownValue != ylist.first) ^
+                                        (!show))) {
+                                  bool host = false;
+                                  if (dropdownValue == "Yes") {
+                                    setState(() {
+                                      host = true;
+                                    });
+                                  } else if (dropdownValue == "No") {
+                                    setState(() {
+                                      host = false;
+                                    });
+                                  }
+                                  bool mhost = false;
+                                  if (mdropdownValue == "Yes") {
+                                    setState(() {
+                                      mhost = true;
+                                    });
+                                  } else if (mdropdownValue == "No") {
+                                    setState(() {
+                                      mhost = false;
+                                    });
+                                  }
+                                  print(_teamNameController.text);
+                                  print(_nameController.text.toString());
+                                  print(_emailController.text.toString());
+                                  print(int.parse(_otpController.text));
+                                  print(host);
+                                  print(int.parse(ydropdownValue));
+                                  print(bdropdownValue);
+                                  print(int.parse(_rollNoController.text));
+                                  print(int.parse(_phoneNoController.text));
+                                  if (show == true) {
+                                    res = await BV2RegistrationController()
+                                        .teamRegister(
+                                            _teamNameController.text,
+                                            _nameController.text.toString(),
+                                            _emailController.text.toString(),
+                                            int.parse(
+                                                _otpController.text.toString()),
+                                            host,
+                                            int.parse(ydropdownValue),
+                                            bdropdownValue,
+                                            int.parse(_rollNoController.text
+                                                .toString()),
+                                            int.parse(_phoneNoController.text
+                                                .toString()),
+                                            _mnameController.text,
+                                            _memailController.text,
+                                            int.parse(_motpController.text),
+                                            mhost,
+                                            int.parse(mydropdownValue),
+                                            bdropdownValue,
+                                            int.parse(_mrollNoController.text),
+                                            int.parse(
+                                                _mphoneNoController.text));
+                                  } else {
+                                    res = await BV2RegistrationController()
+                                        .individualRegister(
+                                            _teamNameController.text,
+                                            _nameController.text.toString(),
+                                            _emailController.text.toString(),
+                                            int.parse(
+                                                _otpController.text.toString()),
+                                            host,
+                                            int.parse(ydropdownValue),
+                                            bdropdownValue,
+                                            int.parse(_rollNoController.text
+                                                .toString()),
+                                            int.parse(_phoneNoController.text
+                                                .toString()));
+                                  }
+                                  (res).log();
+                                  if (!mounted) return;
+                                  showAlertDialog(context, res,
+                                      _teamNameController.text.toString());
+                                  ("Registered Successfully").log();
+                                } else {
+                                  if (formKey.currentState!.validate() &&
+                                      (_otpController.text.isEmpty ||
+                                          _otpController.text.length < 4)) {
+                                    res = "kjhj";
+                                  } else if (formKey.currentState!.validate() !=
+                                      true) {
+                                    res = "Please correct the above details";
+                                  } else if (bdropdownValue == blist.first) {
+                                    res = "Choose your branch";
+                                  } else if (dropdownValue == list.first) {
+                                    res = "Choose if you are hosteler or not";
+                                  } else if (ydropdownValue == ylist.first) {
+                                    res = "Choose your year";
+                                  } else if ((mbdropdownValue == blist.first &&
+                                      show == true)) {
+                                    res = "Choose your branch";
+                                  } else if ((mdropdownValue == list.first &&
+                                      show == true)) {
+                                    res = "Choose if you are hosteler or not";
+                                  } else if ((mydropdownValue == ylist.first &&
+                                      show == true)) {
+                                    res = "Choose your year";
+                                  }
+                                  showSnackBarr(res, context);
                                 }
-                                showSnackBarr(res, context);
-                              }
-                              if (res == "Registration successfull") {
-                                _teamNameController.clear();
-                                _emailController.clear();
-                                _nameController.clear();
-                                _phoneNoController.clear();
-                                _rollNoController.clear();
-                                _memailController.clear();
-                                _mnameController.clear();
-                                _mphoneNoController.clear();
-                                _mrollNoController.clear();
-                                _otpController.clear();
-                                _motpController.clear();
+                                if (res == "Registration successfull") {
+                                  _teamNameController.clear();
+                                  _emailController.clear();
+                                  _nameController.clear();
+                                  _phoneNoController.clear();
+                                  _rollNoController.clear();
+                                  _memailController.clear();
+                                  _mnameController.clear();
+                                  _mphoneNoController.clear();
+                                  _mrollNoController.clear();
+                                  _otpController.clear();
+                                  _motpController.clear();
+                                  setState(() {
+                                    dropdownValue = list.first;
+                                    ydropdownValue = ylist.first;
+                                    bdropdownValue = blist.first;
+                                    mdropdownValue = list.first;
+                                    mydropdownValue = ylist.first;
+                                    mbdropdownValue = blist.first;
+                                  });
+                                }
                                 setState(() {
-                                  dropdownValue = list.first;
-                                  ydropdownValue = ylist.first;
-                                  bdropdownValue = blist.first;
-                                  mdropdownValue = list.first;
-                                  mydropdownValue = ylist.first;
-                                  mbdropdownValue = blist.first;
+                                  _loading = false;
                                 });
-                              }
-                              setState(() {
-                                _loading = false;
-                              });
-                            },
-                            child: _loading
-                                ? SizedBox(
-                                    height: 15,
-                                    width: 15,
-                                    child: const CircularProgressIndicator(
-                                      color: Colors.white,
-                                    ),
-                                  )
-                                : const Text("Submit"),
-                          ),
+                              },
+                              child: _loading
+                                  ? SizedBox(
+                                      height: 15,
+                                      width: 15,
+                                      child: const CircularProgressIndicator(
+                                        color: Colors.white,
+                                      ),
+                                    )
+                                  : const Text("SUBMIT"),
+                              style: ElevatedButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(10)))),
                         ),
                       ],
                     ),
