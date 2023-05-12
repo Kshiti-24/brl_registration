@@ -36,6 +36,7 @@ class _BV2RegistrationState extends State<BV2Registration> {
   String mdropdownValue = list.first;
   String mydropdownValue = ylist.first;
   String mbdropdownValue = blist.first;
+  String mgdropdownValue = glist.first;
   bool show = false;
   bool checkotp = false;
   bool mcheeek = false;
@@ -47,6 +48,7 @@ class _BV2RegistrationState extends State<BV2Registration> {
   bool cheeek = false;
   bool _sendAllow = true;
   String _timerText = "";
+  String gdropdownValue = glist.first;
   String dropdownValue = list.first;
   String ydropdownValue = ylist.first;
   String bdropdownValue = blist.first;
@@ -253,55 +255,117 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                             }
                                           }),
                                       const SizedBox(height: 10.0),
-                                      const Text(
-                                        'Branch',
-                                        style: TextStyle(
-                                          fontSize: 18.0,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 40,
-                                        child: DecoratedBox(
-                                          decoration: BoxDecoration(
-                                            border: Border.all(
-                                                color: Colors.black38,
-                                                width: 1),
-                                            borderRadius:
-                                                BorderRadius.circular(15),
-                                          ),
-                                          child: Padding(
-                                            padding: EdgeInsets.only(
-                                                left: 10, right: 10),
-                                            child: DropdownButton<String>(
-                                              value: bdropdownValue,
-                                              // icon: const Icon(
-                                              //     Icons.arrow_downward),
-                                              icon: Image.asset(
-                                                "asset/arrow.png",
-                                                width: 25,
-                                                height: 30,
-                                              ),
-                                              elevation: 16,
-                                              underline: Container(
-                                                height: 5,
-                                              ),
-                                              onChanged: (String? value) {
-                                                setState(() {
-                                                  bdropdownValue = value!;
-                                                });
-                                              },
-                                              items: blist.map<
-                                                      DropdownMenuItem<String>>(
-                                                  (String value) {
-                                                return DropdownMenuItem<String>(
-                                                  value: value,
-                                                  child: Text(value),
-                                                );
-                                              }).toList(),
+                                      SingleChildScrollView(
+                                        scrollDirection: Axis.horizontal,
+                                        child: Row(children: [
+                                          const Text(
+                                            'Branch',
+                                            style: TextStyle(
+                                              fontSize: 18.0,
+                                              fontWeight: FontWeight.bold,
                                             ),
                                           ),
-                                        ),
+                                          SizedBox(
+                                            height: 40,
+                                            child: DecoratedBox(
+                                              decoration: BoxDecoration(
+                                                border: Border.all(
+                                                    color: Colors.black38,
+                                                    width: 1),
+                                                borderRadius:
+                                                    BorderRadius.circular(15),
+                                              ),
+                                              child: Padding(
+                                                padding: EdgeInsets.only(
+                                                    left: 10, right: 10),
+                                                child: DropdownButton<String>(
+                                                  value: bdropdownValue,
+                                                  // icon: const Icon(
+                                                  //     Icons.arrow_downward),
+                                                  icon: Image.asset(
+                                                    "asset/arrow.png",
+                                                    width: 25,
+                                                    height: 30,
+                                                  ),
+                                                  elevation: 16,
+                                                  underline: Container(
+                                                    height: 5,
+                                                  ),
+                                                  onChanged: (String? value) {
+                                                    setState(() {
+                                                      bdropdownValue = value!;
+                                                    });
+                                                  },
+                                                  items: blist.map<
+                                                          DropdownMenuItem<
+                                                              String>>(
+                                                      (String value) {
+                                                    return DropdownMenuItem<
+                                                        String>(
+                                                      value: value,
+                                                      child: Text(value),
+                                                    );
+                                                  }).toList(),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          const Text(
+                                            'Gender',
+                                            style: TextStyle(
+                                              fontSize: 18.0,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 40,
+                                            child: DecoratedBox(
+                                              decoration: BoxDecoration(
+                                                border: Border.all(
+                                                    color: Colors.black38,
+                                                    width: 1),
+                                                borderRadius:
+                                                    BorderRadius.circular(15),
+                                              ),
+                                              child: Padding(
+                                                padding: EdgeInsets.only(
+                                                    left: 10, right: 10),
+                                                child: DropdownButton<String>(
+                                                  value: gdropdownValue,
+                                                  // icon: const Icon(
+                                                  //     Icons.arrow_downward),
+                                                  icon: Image.asset(
+                                                    "asset/arrow.png",
+                                                    width: 25,
+                                                    height: 30,
+                                                  ),
+                                                  elevation: 16,
+                                                  underline: Container(
+                                                    height: 5,
+                                                  ),
+                                                  onChanged: (String? value) {
+                                                    setState(() {
+                                                      gdropdownValue = value!;
+                                                    });
+                                                  },
+                                                  items: glist.map<
+                                                          DropdownMenuItem<
+                                                              String>>(
+                                                      (String value) {
+                                                    return DropdownMenuItem<
+                                                        String>(
+                                                      value: value,
+                                                      child: Text(value),
+                                                    );
+                                                  }).toList(),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ]),
                                       ),
                                       const SizedBox(height: 10.0),
                                       SingleChildScrollView(
@@ -440,6 +504,9 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                         validator: (value) {
                                           if (value!.isEmpty) {
                                             return 'Roll No. cannot be empty';
+                                          } else if (gdropdownValue ==
+                                              'Select Gender') {
+                                            return 'Select Branch';
                                           } else if (bdropdownValue ==
                                               'Select Branch') {
                                             return 'Select Branch';
@@ -482,6 +549,9 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                                   .toString();
                                               if (name.isEmpty) {
                                                 return 'Name cannot be empty';
+                                              } else if (gdropdownValue ==
+                                                  'Select Gender') {
+                                                return 'Select Branch';
                                               } else if (bdropdownValue ==
                                                   'Select Branch') {
                                                 return 'Select Branch';
@@ -674,55 +744,120 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                                 }
                                               }),
                                           const SizedBox(height: 10.0),
-                                          const Text(
-                                            'Branch',
-                                            style: TextStyle(
-                                              fontSize: 18.0,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height: 40,
-                                            child: DecoratedBox(
-                                              decoration: BoxDecoration(
-                                                border: Border.all(
-                                                    color: Colors.black38,
-                                                    width: 1),
-                                                borderRadius:
-                                                    BorderRadius.circular(15),
-                                              ),
-                                              child: Padding(
-                                                padding: EdgeInsets.only(
-                                                    left: 10, right: 10),
-                                                child: DropdownButton<String>(
-                                                  value: mbdropdownValue,
-                                                  icon: Image.asset(
-                                                    "asset/arrow.png",
-                                                    width: 25,
-                                                    height: 30,
-                                                  ),
-                                                  elevation: 16,
-                                                  underline: Container(
-                                                    height: 5,
-                                                  ),
-                                                  onChanged: (String? value) {
-                                                    setState(() {
-                                                      mbdropdownValue = value!;
-                                                    });
-                                                  },
-                                                  items: blist.map<
-                                                          DropdownMenuItem<
-                                                              String>>(
-                                                      (String value) {
-                                                    return DropdownMenuItem<
-                                                        String>(
-                                                      value: value,
-                                                      child: Text(value),
-                                                    );
-                                                  }).toList(),
+                                          SingleChildScrollView(
+                                            scrollDirection: Axis.horizontal,
+                                            child: Row(children: [
+                                              const Text(
+                                                'Branch',
+                                                style: TextStyle(
+                                                  fontSize: 18.0,
+                                                  fontWeight: FontWeight.bold,
                                                 ),
                                               ),
-                                            ),
+                                              SizedBox(
+                                                height: 40,
+                                                child: DecoratedBox(
+                                                  decoration: BoxDecoration(
+                                                    border: Border.all(
+                                                        color: Colors.black38,
+                                                        width: 1),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15),
+                                                  ),
+                                                  child: Padding(
+                                                    padding: EdgeInsets.only(
+                                                        left: 10, right: 10),
+                                                    child:
+                                                        DropdownButton<String>(
+                                                      value: mbdropdownValue,
+                                                      icon: Image.asset(
+                                                        "asset/arrow.png",
+                                                        width: 25,
+                                                        height: 30,
+                                                      ),
+                                                      elevation: 16,
+                                                      underline: Container(
+                                                        height: 5,
+                                                      ),
+                                                      onChanged:
+                                                          (String? value) {
+                                                        setState(() {
+                                                          mbdropdownValue =
+                                                              value!;
+                                                        });
+                                                      },
+                                                      items: blist.map<
+                                                              DropdownMenuItem<
+                                                                  String>>(
+                                                          (String value) {
+                                                        return DropdownMenuItem<
+                                                            String>(
+                                                          value: value,
+                                                          child: Text(value),
+                                                        );
+                                                      }).toList(),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              const Text(
+                                                'Gender',
+                                                style: TextStyle(
+                                                  fontSize: 18.0,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                height: 40,
+                                                child: DecoratedBox(
+                                                  decoration: BoxDecoration(
+                                                    border: Border.all(
+                                                        color: Colors.black38,
+                                                        width: 1),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15),
+                                                  ),
+                                                  child: Padding(
+                                                    padding: EdgeInsets.only(
+                                                        left: 10, right: 10),
+                                                    child:
+                                                        DropdownButton<String>(
+                                                      value: mgdropdownValue,
+                                                      // icon: const Icon(
+                                                      //     Icons.arrow_downward),
+                                                      icon: Image.asset(
+                                                        "asset/arrow.png",
+                                                        width: 25,
+                                                        height: 30,
+                                                      ),
+                                                      elevation: 16,
+                                                      underline: Container(
+                                                        height: 5,
+                                                      ),
+                                                      onChanged:
+                                                          (String? value) {
+                                                        setState(() {
+                                                          mgdropdownValue =
+                                                              value!;
+                                                        });
+                                                      },
+                                                      items: glist.map<
+                                                              DropdownMenuItem<
+                                                                  String>>(
+                                                          (String value) {
+                                                        return DropdownMenuItem<
+                                                            String>(
+                                                          value: value,
+                                                          child: Text(value),
+                                                        );
+                                                      }).toList(),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ]),
                                           ),
                                           const SizedBox(height: 10.0),
                                           SingleChildScrollView(
@@ -863,6 +998,9 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                               validator: (value) {
                                                 if (value!.isEmpty) {
                                                   return 'Roll No. cannot be empty';
+                                                } else if (gdropdownValue ==
+                                                    'Select Gender') {
+                                                  return 'Select Branch';
                                                 } else if (bdropdownValue ==
                                                     'Select Branch') {
                                                   return 'Select Branch';
@@ -912,6 +1050,9 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                                           .toString();
                                                   if (mname.isEmpty) {
                                                     return 'Name cannot be empty';
+                                                  } else if (mgdropdownValue ==
+                                                      'Select Gender') {
+                                                    return 'Select Branch';
                                                   } else if (mbdropdownValue ==
                                                       'Select Branch') {
                                                     return 'Select Branch';
@@ -1019,7 +1160,8 @@ class _BV2RegistrationState extends State<BV2Registration> {
                               if (formKey.currentState!.validate() &&
                                   ydropdownValue != ylist.first &&
                                   bdropdownValue != blist.first &&
-                                  dropdownValue != list.first) {
+                                  dropdownValue != list.first &&
+                                  gdropdownValue != glist.first) {
                                 setState(() {
                                   show = !show;
                                 });
@@ -1033,6 +1175,7 @@ class _BV2RegistrationState extends State<BV2Registration> {
                               }
                             } else {
                               mbdropdownValue = blist.first;
+                              mgdropdownValue = glist.first;
                               mydropdownValue = ylist.first;
                               mdropdownValue = list.first;
                               _memailController.clear();
@@ -1123,9 +1266,11 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                     dropdownValue != list.first &&
                                     ydropdownValue != ylist.first &&
                                     bdropdownValue != blist.first &&
+                                    gdropdownValue != glist.first &&
                                     ((mbdropdownValue != blist.first &&
                                             mdropdownValue != list.first &&
-                                            mydropdownValue != ylist.first) ^
+                                            mydropdownValue != ylist.first &&
+                                            mgdropdownValue != glist.first) ^
                                         (!show))) {
                                   bool host = false;
                                   if (dropdownValue == "Yes") {
@@ -1147,6 +1292,8 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                       mhost = false;
                                     });
                                   }
+                                  print(bdropdownValue);
+                                  print(mbdropdownValue);
                                   print(_teamNameController.text);
                                   print(_nameController.text.toString());
                                   print(_emailController.text.toString());
@@ -1161,6 +1308,7 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                         .teamRegister(
                                             _teamNameController.text,
                                             _nameController.text.toString(),
+                                            gdropdownValue,
                                             _emailController.text.toString(),
                                             int.parse(
                                                 _otpController.text.toString()),
@@ -1172,11 +1320,12 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                             int.parse(_phoneNoController.text
                                                 .toString()),
                                             _mnameController.text,
+                                            mgdropdownValue,
                                             _memailController.text,
                                             int.parse(_motpController.text),
                                             mhost,
                                             int.parse(mydropdownValue),
-                                            bdropdownValue,
+                                            mbdropdownValue,
                                             int.parse(_mrollNoController.text),
                                             int.parse(
                                                 _mphoneNoController.text));
@@ -1185,6 +1334,7 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                         .individualRegister(
                                             _teamNameController.text,
                                             _nameController.text.toString(),
+                                            gdropdownValue,
                                             _emailController.text.toString(),
                                             int.parse(
                                                 _otpController.text.toString()),
@@ -1211,6 +1361,8 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                     res = "Please correct the above details";
                                   } else if (bdropdownValue == blist.first) {
                                     res = "Choose your branch";
+                                  } else if (gdropdownValue == glist.first) {
+                                    res = "Choose your Gender";
                                   } else if (dropdownValue == list.first) {
                                     res = "Choose if you are hosteler or not";
                                   } else if (ydropdownValue == ylist.first) {
@@ -1218,6 +1370,8 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                   } else if ((mbdropdownValue == blist.first &&
                                       show == true)) {
                                     res = "Choose your branch";
+                                  } else if (mgdropdownValue == glist.first) {
+                                    res = "Choose your Gender";
                                   } else if ((mdropdownValue == list.first &&
                                       show == true)) {
                                     res = "Choose if you are hosteler or not";
@@ -1242,6 +1396,8 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                   setState(() {
                                     dropdownValue = list.first;
                                     ydropdownValue = ylist.first;
+                                    gdropdownValue = glist.first;
+                                    mgdropdownValue = glist.first;
                                     bdropdownValue = blist.first;
                                     mdropdownValue = list.first;
                                     mydropdownValue = ylist.first;

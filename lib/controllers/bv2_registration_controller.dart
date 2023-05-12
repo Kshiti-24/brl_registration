@@ -6,6 +6,7 @@ class BV2RegistrationController {
   dynamic register({
     required String team_name,
     required String l_name,
+    required String l_gender,
     required String l_email,
     required int l_otp,
     required bool l_hosteler,
@@ -14,6 +15,7 @@ class BV2RegistrationController {
     required int l_rollNo,
     required int l_phoneNo,
     String? m_name,
+    String? m_gender,
     String? m_email,
     int? m_otp,
     bool? m_hosteler,
@@ -29,6 +31,7 @@ class BV2RegistrationController {
       return teamRegister(
           team_name,
           l_name,
+          l_gender,
           l_email,
           l_otp,
           l_hosteler,
@@ -37,6 +40,7 @@ class BV2RegistrationController {
           l_rollNo,
           l_phoneNo,
           m_name!,
+          m_gender!,
           m_email!,
           m_otp!,
           m_hosteler!,
@@ -48,6 +52,7 @@ class BV2RegistrationController {
       return individualRegister(
         team_name,
         l_name,
+        l_gender,
         l_email,
         l_otp,
         l_hosteler,
@@ -62,6 +67,7 @@ class BV2RegistrationController {
   Future<String> teamRegister(
       String team_name,
       String l_name,
+      String l_gender,
       String l_email,
       int l_otp,
       bool l_hosteler,
@@ -70,6 +76,7 @@ class BV2RegistrationController {
       int l_rollNo,
       int l_phoneNo,
       String m_name,
+      String m_gender,
       String m_email,
       int m_otp,
       bool m_hosteler,
@@ -82,6 +89,7 @@ class BV2RegistrationController {
     dynamic x = {
       "team_name": team_name,
       "l_name": l_name,
+      "l_gender": l_gender,
       "l_email": l_email,
       "l_otp": l_otp,
       "l_hosteler": l_hosteler,
@@ -90,6 +98,7 @@ class BV2RegistrationController {
       "l_rollNo": l_rollNo,
       "l_phoneNo": l_phoneNo,
       "m_name": m_name,
+      "m_gender": m_gender,
       "m_email": m_email,
       "m_otp": m_otp,
       "m_hosteler": m_hosteler,
@@ -122,6 +131,7 @@ class BV2RegistrationController {
   Future<dynamic> individualRegister(
     String team_name,
     String l_name,
+    String l_gender,
     String l_email,
     int l_otp,
     bool l_hosteler,
@@ -135,6 +145,7 @@ class BV2RegistrationController {
     dynamic x = {
       "team_name": team_name,
       "l_name": l_name,
+      "l_gender": l_gender,
       "l_email": l_email,
       "l_otp": l_otp,
       "l_hosteler": l_hosteler,
