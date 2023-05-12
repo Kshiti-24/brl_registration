@@ -14,6 +14,7 @@ class BV2RegistrationModel {
   BV2RegistrationModel({
     required this.teamName,
     required this.leaderName,
+    required this.lgender,
     required this.email,
     required this.hosteler,
     required this.year,
@@ -25,6 +26,7 @@ class BV2RegistrationModel {
 
   String teamName;
   String leaderName;
+  String lgender;
   String email;
   String hosteler;
   String year;
@@ -37,6 +39,7 @@ class BV2RegistrationModel {
       BV2RegistrationModel(
         teamName: json["team_name"],
         leaderName: json["leader_name"],
+        lgender: json["leader_gender"],
         email: json["email"],
         hosteler: json["hosteler"],
         year: json["year"],
@@ -49,6 +52,7 @@ class BV2RegistrationModel {
   Map<String, dynamic> toJson() => {
         "team_name": teamName,
         "leader_name": leaderName,
+        "leader_gender": lgender,
         "email": email,
         "hosteler": hosteler,
         "year": year,
@@ -57,14 +61,13 @@ class BV2RegistrationModel {
         "rollNo": rollNo,
         "team_member": teamMember.toJson(),
       };
-
-      
 }
 
 class BV2RegistrationTeamMember {
   BV2RegistrationTeamMember({
     this.mName,
     this.mEmail,
+    this.mgender,
     this.mRollNo,
     this.mYear,
     this.mHosteler,
@@ -72,6 +75,7 @@ class BV2RegistrationTeamMember {
     this.mPhoneNo,
   });
   String? mName;
+  String? mgender;
   String? mEmail;
   String? mYear;
   String? mHosteler;
@@ -82,6 +86,7 @@ class BV2RegistrationTeamMember {
   factory BV2RegistrationTeamMember.fromJson(Map<String, dynamic> json) =>
       BV2RegistrationTeamMember(
         mEmail: json["m_email"],
+        mgender: json["member_gender"],
         mRollNo: json["m_rollNo"],
         mName: json["m_name"],
         mYear: json["m_year"],
@@ -92,6 +97,7 @@ class BV2RegistrationTeamMember {
 
   Map<String, dynamic> toJson() => {
         "m_name": mName,
+        "member_gender": mgender,
         "m_email": mEmail,
         "m_hosteler": mHosteler,
         "m_year": mYear,

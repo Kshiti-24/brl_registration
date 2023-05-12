@@ -60,3 +60,9 @@ const List<String> rlist = <String>[
   '040',
   '000'
 ];
+
+const List<String> glist = <String>[
+  'Choose gender',
+  'Male',
+  'Female',
+];

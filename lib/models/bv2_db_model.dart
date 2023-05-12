@@ -1,9 +1,8 @@
-import 'dart:ffi';
-
 class TeamDetailsLeader {
   String id = "bv2_team_details";
   late final String teamName;
   late final String leaderName;
+  late final String lgender;
   late final String email;
   late final String hosteler;
   late final String year;
@@ -14,6 +13,7 @@ class TeamDetailsLeader {
   TeamDetailsLeader({
     required this.teamName,
     required this.leaderName,
+    required this.lgender,
     required this.email,
     required this.hosteler,
     required this.year,
