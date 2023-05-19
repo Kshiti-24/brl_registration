@@ -47,7 +47,9 @@ class _BV2RegistrationState extends State<BV2Registration> {
   bool optloading = false;
   bool cheeek = false;
   bool _sendAllow = true;
+  bool _msendAllow = true;
   String _timerText = "";
+  String _mtimerText = "";
   String gdropdownValue = glist.first;
   String dropdownValue = list.first;
   String ydropdownValue = ylist.first;
@@ -561,7 +563,7 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                               }
                                               String w = name.trim();
                                               int len = w.length;
-                                              int r = name.indexOf(" ");
+                                              int r = w.indexOf(" ");
                                               int kl = w.lastIndexOf(" ");
                                               print(r);
                                               print(kl);
@@ -572,26 +574,30 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                               if (r > 0) {
                                                 ans = w
                                                     .substring(0, r)
-                                                    .toLowerCase();
+                                                    .toLowerCase()
+                                                    .trim();
                                                 print(ans);
                                                 if (r == kl) {
                                                   ans1 = w
                                                       .substring(kl + 1, len)
-                                                      .toLowerCase();
+                                                      .toLowerCase()
+                                                      .trim();
                                                   print(ans1);
                                                 }
                                                 if (r != kl) {
                                                   ans1 = w
                                                       .substring(r + 1, kl)
-                                                      .toLowerCase();
+                                                      .toLowerCase()
+                                                      .trim();
                                                   print(ans1);
                                                   ans2 = w
                                                       .substring(kl + 1)
-                                                      .toLowerCase();
+                                                      .toLowerCase()
+                                                      .trim();
                                                   print(ans2);
                                                 }
                                               } else {
-                                                ans = name.toLowerCase();
+                                                ans = name.toLowerCase().trim();
                                               }
                                               if (ans != "mohammad" &&
                                                   ans != "md." &&
@@ -1107,27 +1113,33 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                                   if (r > 0) {
                                                     mans = mname
                                                         .substring(0, r)
-                                                        .toLowerCase();
+                                                        .toLowerCase()
+                                                        .trim();
                                                     print(mans);
                                                     if (r == kl) {
                                                       mans1 = w
                                                           .substring(
                                                               kl + 1, len)
-                                                          .toLowerCase();
+                                                          .toLowerCase()
+                                                          .trim();
                                                       print(mans1);
                                                     }
                                                     if (r != kl) {
                                                       mans1 = w
                                                           .substring(r + 1, kl)
-                                                          .toLowerCase();
+                                                          .toLowerCase()
+                                                          .trim();
                                                       print(mans1);
                                                       mans2 = w
                                                           .substring(kl + 1)
-                                                          .toLowerCase();
+                                                          .toLowerCase()
+                                                          .trim();
                                                       print(mans2);
                                                     }
                                                   } else {
-                                                    mans = mname.toLowerCase();
+                                                    mans = mname
+                                                        .toLowerCase()
+                                                        .trim();
                                                   }
                                                   if (mans != "mohammad" &&
                                                       mans != "md." &&
@@ -1171,7 +1183,7 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                               visible: mcheeek,
                                               child: Row(children: [
                                                 ElevatedButton(
-                                                    onPressed: !_sendAllow
+                                                    onPressed: !_msendAllow
                                                         ? null
                                                         : () {
                                                             if (formKey
@@ -1190,19 +1202,19 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                                               //   });
                                                               // });
                                                               setState(() {
-                                                                _sendAllow =
+                                                                _msendAllow =
                                                                     false;
                                                                 mcheckotp =
                                                                     true;
                                                               });
-                                                              timer();
+                                                              mtimer();
                                                             }
                                                           },
                                                     child: Text(
                                                       mcheckotp
-                                                          ? _sendAllow
+                                                          ? _msendAllow
                                                               ? "Resend Otp"
-                                                              : _timerText
+                                                              : _mtimerText
                                                           : "Send Otp",
                                                     ),
                                                     style: ElevatedButton.styleFrom(
@@ -1526,6 +1538,22 @@ class _BV2RegistrationState extends State<BV2Registration> {
       }
       setState(() {
         _timerText = "${0}:${ref--}";
+      });
+    });
+  }
+
+  void mtimer() {
+    int ref = 29;
+
+    Timer.periodic(const Duration(seconds: 1), (Timer timer) {
+      // final DateTime now = DateTime.now();
+      if (0 == ref) {
+        // cancel the timer
+        _msendAllow = true;
+        timer.cancel();
+      }
+      setState(() {
+        _mtimerText = "${0}:${ref--}";
       });
     });
   }
