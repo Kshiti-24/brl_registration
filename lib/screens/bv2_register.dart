@@ -561,75 +561,14 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                                   'Choose') {
                                                 return 'Select Year';
                                               }
-                                              String w = name.trim();
-                                              int len = w.length;
-                                              int r = w.indexOf(" ");
-                                              int kl = w.lastIndexOf(" ");
-                                              print(r);
-                                              print(kl);
-                                              print(len);
-                                              String ans = "";
-                                              String ans1 = "";
-                                              String ans2 = "";
-                                              if (r > 0) {
-                                                ans = w
-                                                    .substring(0, r)
-                                                    .toLowerCase()
-                                                    .trim();
-                                                print(ans);
-                                                if (r == kl) {
-                                                  ans1 = w
-                                                      .substring(kl + 1, len)
-                                                      .toLowerCase()
-                                                      .trim();
-                                                  print(ans1);
-                                                }
-                                                if (r != kl) {
-                                                  ans1 = w
-                                                      .substring(r + 1, kl)
-                                                      .toLowerCase()
-                                                      .trim();
-                                                  print(ans1);
-                                                  ans2 = w
-                                                      .substring(kl + 1)
-                                                      .toLowerCase()
-                                                      .trim();
-                                                  print(ans2);
-                                                }
+                                              if (RegExp(
+                                                      r"^[A-Za-z]+(21|22)[A-Za-z0-9._%+-]+@akgec\.ac\.in$")
+                                                  .hasMatch(value)) {
+                                                cheeek = true;
+                                                return null;
                                               } else {
-                                                ans = name.toLowerCase().trim();
-                                              }
-                                              if (ans != "mohammad" &&
-                                                  ans != "md." &&
-                                                  ans != "mohd") {
-                                                if (RegExp(r"^" +
-                                                            ans +
-                                                            r"(21|22)[A-Za-z0-9._%+-]+@akgec\.ac\.in$")
-                                                        .hasMatch(value) ||
-                                                    RegExp(r"^" +
-                                                            ans1 +
-                                                            r"(21|22)[A-Za-z0-9._%+-]+@akgec\.ac\.in$")
-                                                        .hasMatch(value) ||
-                                                    RegExp(r"^" +
-                                                            ans2 +
-                                                            r"(21|22)[A-Za-z0-9._%+-]+@akgec\.ac\.in$")
-                                                        .hasMatch(value)) {
-                                                  cheeek = true;
-                                                  return null;
-                                                } else {
-                                                  cheeek = false;
-                                                  return "Enter correct College Email";
-                                                }
-                                              } else {
-                                                if (RegExp(
-                                                        r"^.*@akgec\.ac\.in$")
-                                                    .hasMatch(value)) {
-                                                  cheeek = true;
-                                                  return null;
-                                                } else {
-                                                  cheeek = false;
-                                                  return "Enter correct College Email";
-                                                }
+                                                cheeek = false;
+                                                return "Enter correct College Email";
                                               }
                                             }
                                           }),
@@ -1099,80 +1038,14 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                                       'Choose') {
                                                     return 'Select Year';
                                                   }
-
-                                                  String w = mname.trim();
-                                                  int len = w.length;
-                                                  int r = w.indexOf(" ");
-                                                  int kl = w.lastIndexOf(" ");
-                                                  print(r);
-                                                  print(kl);
-                                                  print(len);
-                                                  String mans = "";
-                                                  String mans1 = "";
-                                                  String mans2 = "";
-                                                  if (r > 0) {
-                                                    mans = mname
-                                                        .substring(0, r)
-                                                        .toLowerCase()
-                                                        .trim();
-                                                    print(mans);
-                                                    if (r == kl) {
-                                                      mans1 = w
-                                                          .substring(
-                                                              kl + 1, len)
-                                                          .toLowerCase()
-                                                          .trim();
-                                                      print(mans1);
-                                                    }
-                                                    if (r != kl) {
-                                                      mans1 = w
-                                                          .substring(r + 1, kl)
-                                                          .toLowerCase()
-                                                          .trim();
-                                                      print(mans1);
-                                                      mans2 = w
-                                                          .substring(kl + 1)
-                                                          .toLowerCase()
-                                                          .trim();
-                                                      print(mans2);
-                                                    }
+                                                  if (RegExp(
+                                                          r"^[A-Za-z]+(21|22)[A-Za-z0-9._%+-]+@akgec\.ac\.in$")
+                                                      .hasMatch(value)) {
+                                                    mcheeek = true;
+                                                    return null;
                                                   } else {
-                                                    mans = mname
-                                                        .toLowerCase()
-                                                        .trim();
-                                                  }
-                                                  if (mans != "mohammad" &&
-                                                      mans != "md." &&
-                                                      mans != "mohd") {
-                                                    if (RegExp(r"^" +
-                                                                mans +
-                                                                r"(21|22)[A-Za-z0-9._%+-]+@akgec\.ac\.in$")
-                                                            .hasMatch(value) ||
-                                                        RegExp(r"^" +
-                                                                mans1 +
-                                                                r"(21|22)[A-Za-z0-9._%+-]+@akgec\.ac\.in$")
-                                                            .hasMatch(value) ||
-                                                        RegExp(r"^" +
-                                                                mans2 +
-                                                                r"(21|22)[A-Za-z0-9._%+-]+@akgec\.ac\.in$")
-                                                            .hasMatch(value)) {
-                                                      // cm = true;
-                                                      mcheeek = true;
-                                                      return null;
-                                                    } else {
-                                                      mcheeek = false;
-                                                      return "Enter correct College Email";
-                                                    }
-                                                  } else {
-                                                    if (RegExp(
-                                                            r"^.*@akgec\.ac\.in$")
-                                                        .hasMatch(value)) {
-                                                      mcheeek = true;
-                                                      return null;
-                                                    } else {
-                                                      mcheeek = false;
-                                                      return "Enter correct College Email";
-                                                    }
+                                                    mcheeek = false;
+                                                    return "Enter correct College Email";
                                                   }
                                                 }
                                               }),
