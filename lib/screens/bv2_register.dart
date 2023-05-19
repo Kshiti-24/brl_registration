@@ -559,12 +559,37 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                                   'Choose') {
                                                 return 'Select Year';
                                               }
+                                              String w = name.trim();
+                                              int len = w.length;
                                               int r = name.indexOf(" ");
+                                              int kl = w.lastIndexOf(" ");
+                                              print(r);
+                                              print(kl);
+                                              print(len);
                                               String ans = "";
+                                              String ans1 = "";
+                                              String ans2 = "";
                                               if (r > 0) {
-                                                ans = name
+                                                ans = w
                                                     .substring(0, r)
                                                     .toLowerCase();
+                                                print(ans);
+                                                if (r == kl) {
+                                                  ans1 = w
+                                                      .substring(kl + 1, len)
+                                                      .toLowerCase();
+                                                  print(ans1);
+                                                }
+                                                if (r != kl) {
+                                                  ans1 = w
+                                                      .substring(r + 1, kl)
+                                                      .toLowerCase();
+                                                  print(ans1);
+                                                  ans2 = w
+                                                      .substring(kl + 1)
+                                                      .toLowerCase();
+                                                  print(ans2);
+                                                }
                                               } else {
                                                 ans = name.toLowerCase();
                                               }
@@ -572,9 +597,17 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                                   ans != "md." &&
                                                   ans != "mohd") {
                                                 if (RegExp(r"^" +
-                                                        ans +
-                                                        r"(21|22)[A-Za-z0-9._%+-]+@akgec\.ac\.in$")
-                                                    .hasMatch(value)) {
+                                                            ans +
+                                                            r"(21|22)[A-Za-z0-9._%+-]+@akgec\.ac\.in$")
+                                                        .hasMatch(value) ||
+                                                    RegExp(r"^" +
+                                                            ans1 +
+                                                            r"(21|22)[A-Za-z0-9._%+-]+@akgec\.ac\.in$")
+                                                        .hasMatch(value) ||
+                                                    RegExp(r"^" +
+                                                            ans2 +
+                                                            r"(21|22)[A-Za-z0-9._%+-]+@akgec\.ac\.in$")
+                                                        .hasMatch(value)) {
                                                   cheeek = true;
                                                   return null;
                                                 } else {
@@ -1060,25 +1093,74 @@ class _BV2RegistrationState extends State<BV2Registration> {
                                                       'Choose') {
                                                     return 'Select Year';
                                                   }
-                                                  int r = mname.indexOf(" ");
+
+                                                  String w = mname.trim();
+                                                  int len = w.length;
+                                                  int r = w.indexOf(" ");
+                                                  int kl = w.lastIndexOf(" ");
+                                                  print(r);
+                                                  print(kl);
+                                                  print(len);
                                                   String mans = "";
+                                                  String mans1 = "";
+                                                  String mans2 = "";
                                                   if (r > 0) {
                                                     mans = mname
                                                         .substring(0, r)
                                                         .toLowerCase();
+                                                    print(mans);
+                                                    if (r == kl) {
+                                                      mans1 = w
+                                                          .substring(
+                                                              kl + 1, len)
+                                                          .toLowerCase();
+                                                      print(mans1);
+                                                    }
+                                                    if (r != kl) {
+                                                      mans1 = w
+                                                          .substring(r + 1, kl)
+                                                          .toLowerCase();
+                                                      print(mans1);
+                                                      mans2 = w
+                                                          .substring(kl + 1)
+                                                          .toLowerCase();
+                                                      print(mans2);
+                                                    }
                                                   } else {
                                                     mans = mname.toLowerCase();
                                                   }
-                                                  if (RegExp(r"^" +
-                                                          mans +
-                                                          r"(21|22)[A-Za-z0-9._%+-]+@akgec\.ac\.in$")
-                                                      .hasMatch(value)) {
-                                                    // cm = true;
-                                                    mcheeek = true;
-                                                    return null;
+                                                  if (mans != "mohammad" &&
+                                                      mans != "md." &&
+                                                      mans != "mohd") {
+                                                    if (RegExp(r"^" +
+                                                                mans +
+                                                                r"(21|22)[A-Za-z0-9._%+-]+@akgec\.ac\.in$")
+                                                            .hasMatch(value) ||
+                                                        RegExp(r"^" +
+                                                                mans1 +
+                                                                r"(21|22)[A-Za-z0-9._%+-]+@akgec\.ac\.in$")
+                                                            .hasMatch(value) ||
+                                                        RegExp(r"^" +
+                                                                mans2 +
+                                                                r"(21|22)[A-Za-z0-9._%+-]+@akgec\.ac\.in$")
+                                                            .hasMatch(value)) {
+                                                      // cm = true;
+                                                      mcheeek = true;
+                                                      return null;
+                                                    } else {
+                                                      mcheeek = false;
+                                                      return "Enter correct College Email";
+                                                    }
                                                   } else {
-                                                    mcheeek = false;
-                                                    return "Enter correct College Email";
+                                                    if (RegExp(
+                                                            r"^.*@akgec\.ac\.in$")
+                                                        .hasMatch(value)) {
+                                                      mcheeek = true;
+                                                      return null;
+                                                    } else {
+                                                      mcheeek = false;
+                                                      return "Enter correct College Email";
+                                                    }
                                                   }
                                                 }
                                               }),
